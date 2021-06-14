@@ -1,8 +1,44 @@
-# Getting Started with Create React App
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <h1 align="center">GluciCalc</h1>
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#built-with">How to use </a></li>
+      </ul>
+    </li>
+    <li><a href="#user-journey">User journey</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+GluciCalc is a website which aims to help diabetes patients to estimate their carbohydrate rate in their daily food consumption . 
+**Find the app in production on Vercel [CluciCalc]()!**
+
+Welcome to the GluciCalc app!
+
+### Built With
+
+#### Languages and frameworks
+* [JavaScript](https://www.ecma-international.org/publications-and-standards/standards/ecma-262/)
+* [ReactJS](https://fr.reactjs.org/)
+* [Create React App](https://github.com/facebook/create-react-app).
+* [Bootstrap](https://getbootstrap.com)
+* [React-Bootstrap](https://react-bootstrap.github.io/)
+
+#### Available Scripts
 
 In the project directory, you can run:
 
@@ -21,50 +57,27 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 ### `yarn build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### Front-end
+The Front-End was build with ReactJS and written in full JavaScript.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Back-end
+The Back-End was generated with Ruby and Ruby On Rails and data was consumed in a JSON API format.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+<!-- USER JOURNEY -->
+## User Journey
+### On the users' side
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### On the visitors' side
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<!-- CONTACT -->
+## Contributors
+* [Carole](https://github.com/carolemny)
+* [Arnaud](https://github.com/JAG-ROSA/)
+* [Morgane](https://github.com/m-tessier)
+* [Martin](https://github.com/Martinfzz)
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Usage
+This project is part of a bootcamp training formation. This web site was built for educational purpose only.
