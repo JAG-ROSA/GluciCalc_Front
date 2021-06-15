@@ -5,6 +5,9 @@ import {
   registrationRequest,
   registrationFailed,
   registrationSuccess,
+  logoutRequest,
+  logoutFailed,
+  logoutSuccess,
   loginRequest,
   loginSuccess,
   loginFailed,
@@ -29,6 +32,18 @@ export default class UserManager {
     }
   }
 
+  static async logoutUser() {
+    store.dispatch(logoutRequest());
+    try {
+      await API.delete("/users/sign_out");
+      store.dispatch(logoutSuccess());
+      Cookies.remove(AUTH_TOKEN);
+      Cookies.remove(USER_ID);
+    } catch (error) {
+      store.dispatch(logoutFailed(error.message));
+    }
+  }
+      
   static async loginUser(email, password) {
     store.dispatch(loginRequest());
     try {
