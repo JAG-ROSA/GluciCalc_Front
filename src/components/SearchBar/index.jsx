@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import {
   Form, ListGroup, Col,
 } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const SearchBar = () => {
   const [searchTerme, setSearchTerme] = useState("");
@@ -10,7 +11,6 @@ const SearchBar = () => {
   const [searchList, setSearchList] = useState([]);
 
   const searchFetch = () => {
-    console.log(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${searchTerme}&search_simple=1&action=process&json=1&page_size=5`);
     fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${searchTerme}&search_simple=1&action=process&json=1&page_size=5`, {
       method: "GET",
     })
@@ -19,17 +19,12 @@ const SearchBar = () => {
   };
 
   const handleSearch = (e) => {
-    e.preventDefault();
     setSearchTerme(e.target.value);
   };
+
   useEffect(() => {
-    console.log(searchTerme);
     searchFetch();
   }, [searchTerme]);
-
-  console.log(searchResult);
-  console.log(searchList);
-  console.log(searchTerme);
 
   useEffect(() => {
     setSearchList(searchResult);
@@ -52,7 +47,7 @@ const SearchBar = () => {
               </ListGroup.Item>
             ))}
             <ListGroup.Item>
-              Plus de résultats
+              <Link to="/search">Plus de résultats</Link>
             </ListGroup.Item>
           </ListGroup>
         </Col>
