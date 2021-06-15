@@ -1,41 +1,15 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { Container, Form, Button } from "react-bootstrap";
-import {
-  registrationRequest,
-  registrationSuccess,
-} from "store/user/userAction";
+import { UserManager } from "services";
 
 const Register = () => {
-  const dispatch = useDispatch();
   const fetchRegister = (event) => {
     event.preventDefault();
-    dispatch(registrationRequest());
     const data = {
-      user: {
-        email: event.target.inputEmail.value,
-        password: event.target.inputPassword.value,
-      },
+      email: event.target.inputEmail.value,
+      password: event.target.inputPassword.value,
     };
-    fetch("http://localhost:3001/users", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((response) => {
-        dispatch(
-          registrationSuccess({
-            id: response.id,
-            firstName: response.first_name,
-          }),
-        );
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    UserManager.registerUser(data.email, data.password);
   };
 
   return (
