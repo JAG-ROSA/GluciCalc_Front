@@ -43,12 +43,11 @@ export default class UserManager {
       store.dispatch(logoutFailed(error.message));
     }
   }
-      
+
   static async loginUser(email, password) {
     store.dispatch(loginRequest());
     try {
       const response = await API.post("/users/sign_in", { user: { email, password } });
-      console.log(response);
       store.dispatch(
         loginSuccess({
           id: response.data.id,

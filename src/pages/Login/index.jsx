@@ -1,9 +1,24 @@
-import React from "react";
-import { Container, Form, Button } from "react-bootstrap";
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { UserManager } from "services";
+import { Container, Form, Button } from "react-bootstrap";
+import { UserManager, UiManager } from "services";
 
 const Login = () => {
+  const isLoginSuccess = useSelector((store) => store.isLogged);
+  const isLoginFailed = useSelector((store) => !!store.error);
+
+  useEffect(() => {
+    if (isLoginSuccess) {
+      UiManager.openNotification("success", "Connexion réussie !");
+    } else if (isLoginFailed) {
+      UiManager.openNotification(
+        "error",
+        "Hum... il y a une petite erreur! 🤔",
+      );
+    }
+  }, [isLoginSuccess, isLoginFailed]);
+
   const loginFetch = (event) => {
     event.preventDefault();
     const data = {
