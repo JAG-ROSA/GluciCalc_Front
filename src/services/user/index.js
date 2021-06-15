@@ -43,7 +43,7 @@ export default class UserManager {
       store.dispatch(logoutFailed(error.message));
     }
   }
-      
+
   static async loginUser(email, password) {
     store.dispatch(loginRequest());
     try {
