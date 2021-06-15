@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Form, Button } from "react-bootstrap";
-import { UserManager } from "services";
+import { useSelector } from "react-redux";
+import { UiManager, UserManager } from "services";
 
 const Register = () => {
+  const isRegisterSuccess = useSelector((store) => store.isLogged);
+  const isRegisterFailed = useSelector((store) => !!store.error);
+
+  useEffect(() => {
+    if (isRegisterSuccess) {
+      UiManager.openNotification("success", "Bienvenue 🙂");
+    } else if (isRegisterFailed) {
+      UiManager.openNotification(
+        "error",
+        "Hum... il y a une petite erreur! 🤔",
+      );
+    }
+  }, [isRegisterSuccess, isRegisterFailed]);
+
   const fetchRegister = (event) => {
     event.preventDefault();
     const data = {
