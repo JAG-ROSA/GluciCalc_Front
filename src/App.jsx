@@ -6,6 +6,7 @@ import Navbar from "components/Navbar";
 import Footer from "components/Footer";
 import Home from "pages/Home";
 import Register from "pages/Register";
+import Logout from "pages/Logout";
 
 const App = () => (
   <Router>
@@ -17,6 +18,9 @@ const App = () => (
         </Route>
         <Route path="/register">
           <Register />
+        </Route>
+        <Route path="/logout">
+          <Logout />
         </Route>
       </Switch>
     </main>

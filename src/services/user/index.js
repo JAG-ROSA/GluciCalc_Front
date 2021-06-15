@@ -5,6 +5,9 @@ import {
   registrationRequest,
   registrationFailed,
   registrationSuccess,
+  logoutRequest,
+  logoutFailed,
+  logoutSuccess,
 } from "store";
 import API from "../api";
 
@@ -23,6 +26,18 @@ export default class UserManager {
       Cookies.set(USER_ID, response.data.id, { expires: 7 });
     } catch (error) {
       store.dispatch(registrationFailed(error.message));
+    }
+  }
+
+  static async logoutUser() {
+    store.dispatch(logoutRequest());
+    try {
+      await API.delete("/users/sign_out");
+      store.dispatch(logoutSuccess());
+      Cookies.remove(AUTH_TOKEN);
+      Cookies.remove(USER_ID);
+    } catch (error) {
+      store.dispatch(logoutFailed(error.message));
     }
   }
 }
