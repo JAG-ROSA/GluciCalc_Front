@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from "react";
 import {
-  Form, ListGroup, Row, Col,
+  Form, ListGroup, Col,
 } from "react-bootstrap";
 
 const SearchBar = () => {
@@ -38,28 +38,24 @@ const SearchBar = () => {
   return (
     <div>
       <Form>
-        <Row>
-          <Col md={{ span: 4, offset: 4 }}>
-            <Form.Group controlId="searchTerme">
-              <Form.Control type="text" placeholder="Je recherche..." className="text-center" onChange={(e) => handleSearch(e)} />
-            </Form.Group>
-          </Col>
-        </Row>
+        <Col md={{ span: 4, offset: 4 }}>
+          <Form.Group controlId="searchTerme">
+            <Form.Control type="text" placeholder="Je recherche..." className="text-center" onChange={(e) => handleSearch(e)} />
+          </Form.Group>
+        </Col>
         { searchTerme.length !== 0 && (
-        <Row>
-          <Col md={{ span: 4, offset: 4 }}>
-            <ListGroup>
-              {searchList.map((element) => (
-                <ListGroup.Item>
-                  {element}
-                </ListGroup.Item>
-              ))}
+        <Col md={{ span: 4, offset: 4 }} className="searchList">
+          <ListGroup>
+            {searchList.map((element) => (
               <ListGroup.Item>
-                Plus de résultats
+                {element}
               </ListGroup.Item>
-            </ListGroup>
-          </Col>
-        </Row>
+            ))}
+            <ListGroup.Item>
+              Plus de résultats
+            </ListGroup.Item>
+          </ListGroup>
+        </Col>
         )}
       </Form>
     </div>
