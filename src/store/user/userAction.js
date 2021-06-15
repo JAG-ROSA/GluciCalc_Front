@@ -10,14 +10,13 @@ import {
   LOGOUT_FAILED,
 } from "./userType";
 
-export const registrationRequest = (id) => ({
+export const registrationRequest = () => ({
   type: REGISTRATION_REQUEST,
-  userId: id,
 });
 
-export const registrationSuccess = (id) => ({
+export const registrationSuccess = (user) => ({
   type: REGISTRATION_SUCCESS,
-  userId: id,
+  userProfile: user,
 });
 
 export const registrationFailed = (error) => ({
@@ -25,14 +24,13 @@ export const registrationFailed = (error) => ({
   error,
 });
 
-export const loginRequest = (id) => ({
+export const loginRequest = () => ({
   type: LOGIN_REQUEST,
-  userId: id,
 });
 
-export const loginSuccess = (id) => ({
+export const loginSuccess = (user) => ({
   type: LOGIN_SUCCESS,
-  userId: id,
+  userProfile: user,
 });
 
 export const loginFailed = (error) => ({
@@ -40,9 +38,8 @@ export const loginFailed = (error) => ({
   error,
 });
 
-export const logoutRequest = (error) => ({
+export const logoutRequest = () => ({
   type: LOGOUT_REQUEST,
-  error,
 });
 
 export const logoutSuccess = () => ({
