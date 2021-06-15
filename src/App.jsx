@@ -7,6 +7,7 @@ import Footer from "components/Footer";
 import Home from "pages/Home";
 import Register from "pages/Register";
 import Logout from "pages/Logout";
+import Login from "pages/Login";
 
 const App = () => (
   <Router>
@@ -21,6 +22,9 @@ const App = () => (
         </Route>
         <Route path="/logout">
           <Logout />
+        </Route>
+        <Route path="/login">
+          <Login />
         </Route>
       </Switch>
     </main>
