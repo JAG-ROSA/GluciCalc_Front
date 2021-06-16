@@ -15,7 +15,7 @@ const SearchCard = ({ data }) => (
             <Card.Body>
               <SearchCardImage data={element} />
               <Card.Title>
-                {element.product_name}
+                {element.product_name_fr}
               </Card.Title>
               <Card.Text>
                 Marque:
