@@ -1,20 +1,19 @@
 import React, { useEffect, useState } from "react";
-import {
-  Form, Col,
-} from "react-bootstrap";
+import { Form, Col } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
 import SearchCard from "components/SearchCard";
 
 const Search = () => {
-  const [searchTerme, setSearchTerme] = useState("");
+  const { data } = useLocation();
+  const [searchTerme, setSearchTerme] = useState(data);
   const [searchResult, setSearchResult] = useState([]);
-  // const [searchList, setSearchList] = useState([]);
 
   const searchFetch = () => {
     fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${searchTerme}&search_simple=1&action=process&json=1`, {
       method: "GET",
     })
       .then((response) => response.json())
-      .then((data) => setSearchResult(data.products));
+      .then((response) => setSearchResult(response.products));
   };
 
   const handleSearch = (e) => {
@@ -27,7 +26,6 @@ const Search = () => {
 
   useEffect(() => {
     console.log(searchResult);
-    // setSearchList(searchResult);
   }, [searchResult]);
 
   return (
@@ -35,11 +33,11 @@ const Search = () => {
       <Form>
         <Col md={{ span: 4, offset: 4 }}>
           <Form.Group controlId="searchTerme">
-            <Form.Control type="text" placeholder="Je recherche..." className="text-center" onChange={(e) => handleSearch(e)} />
+            <Form.Control type="text" placeholder="Je recherche..." value={searchTerme} className="text-center" onChange={(e) => handleSearch(e)} />
           </Form.Group>
         </Col>
       </Form>
-      {searchResult.length > 0 && <SearchCard data={searchResult} />}
+      <SearchCard data={searchResult} />
     </div>
   );
 };

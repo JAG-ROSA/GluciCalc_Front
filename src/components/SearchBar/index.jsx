@@ -47,7 +47,7 @@ const SearchBar = () => {
               </ListGroup.Item>
             ))}
             <ListGroup.Item>
-              <Link to="/search">Plus de résultats</Link>
+              <Link to={{ pathname: "/search", data: searchTerme }}>Plus de résultats</Link>
             </ListGroup.Item>
           </ListGroup>
         </Col>
