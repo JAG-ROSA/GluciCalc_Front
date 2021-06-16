@@ -4,6 +4,7 @@ import React from "react";
 import { Row, Card } from "react-bootstrap";
 import SearchCardImage from "components/SearchCardImage";
 import SearchCardNutriscore from "components/SearchCardNutriscore";
+import SearchCardNova from "components/SearchCardNova";
 
 const SearchCard = ({ data }) => (
   <div className="d-flex flex-wrap searchCard">
@@ -15,18 +16,19 @@ const SearchCard = ({ data }) => (
               <SearchCardImage data={element} />
               <Card.Title>
                 {element.product_name}
-                &nbsp;
-                -
+              </Card.Title>
+              <Card.Text>
+                Marque:
                 &nbsp;
                 {element.brands}
-                &nbsp;
-                -
+              </Card.Text>
+              <Card.Text>
+                Quantité:
                 &nbsp;
                 {element.quantity}
-              </Card.Title>
+              </Card.Text>
               <SearchCardNutriscore data={element} />
-              {element.nova_group !== undefined && <Card.Img variant="bottom" src={`https://static.openfoodfacts.org/images/attributes/nova-group-${element.nova_group}.svg`} className="novagroupImage" alt="Representation of the nova group value" />}
-              {element.nova_group === undefined && <Card.Img variant="bottom" src="https://static.openfoodfacts.org/images/attributes/nova-group-unknown.svg" className="novagroupImage" alt="Representation of the nova group value" />}
+              <SearchCardNova data={element} />
             </Card.Body>
           </Card>
         </div>
