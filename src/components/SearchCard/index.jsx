@@ -3,6 +3,7 @@
 import React from "react";
 import { Row, Card } from "react-bootstrap";
 import SearchCardImage from "components/SearchCardImage";
+import SearchCardNutriscore from "components/SearchCardNutriscore";
 
 const SearchCard = ({ data }) => (
   <div className="d-flex flex-wrap searchCard">
@@ -23,9 +24,8 @@ const SearchCard = ({ data }) => (
                 &nbsp;
                 {element.quantity}
               </Card.Title>
-              {element.nutriscore_grade !== undefined && <Card.Img variant="bottom" src={`https://static.openfoodfacts.org/images/attributes/nutriscore-${element.nutriscore_grade}.svg`} className="nutriscoreImage" alt="Representation of the nutriscore value" />}
+              <SearchCardNutriscore data={element} />
               {element.nova_group !== undefined && <Card.Img variant="bottom" src={`https://static.openfoodfacts.org/images/attributes/nova-group-${element.nova_group}.svg`} className="novagroupImage" alt="Representation of the nova group value" />}
-              {element.nutriscore_grade === undefined && <Card.Img variant="bottom" src="https://static.openfoodfacts.org/images/attributes/nutriscore-unknown.svg" className="nutriscoreImage" alt="Representation of the nutriscore value" />}
               {element.nova_group === undefined && <Card.Img variant="bottom" src="https://static.openfoodfacts.org/images/attributes/nova-group-unknown.svg" className="novagroupImage" alt="Representation of the nova group value" />}
             </Card.Body>
           </Card>
