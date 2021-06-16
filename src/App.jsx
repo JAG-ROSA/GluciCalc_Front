@@ -9,6 +9,7 @@ import Register from "pages/Register";
 import Logout from "pages/Logout";
 import Login from "pages/Login";
 import Search from "pages/Search";
+import Product from "pages/Product";
 
 const App = () => (
   <Router>
@@ -29,6 +30,9 @@ const App = () => (
         </Route>
         <Route path="/search">
           <Search />
+        </Route>
+        <Route path="/product/:idProduct">
+          <Product />
         </Route>
       </Switch>
     </main>
