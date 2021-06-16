@@ -41,10 +41,6 @@ const Search = () => {
     searchFetch();
   }, [searchTerme, searchBrand, searchSugar]);
 
-  useEffect(() => {
-    console.log(searchResult);
-  }, [searchResult]);
-
   return (
     <div>
       <Form>
