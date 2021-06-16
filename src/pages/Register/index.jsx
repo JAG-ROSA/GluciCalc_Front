@@ -24,7 +24,17 @@ const Register = () => {
       email: event.target.inputEmail.value,
       password: event.target.inputPassword.value,
     };
-    UserManager.registerUser(data.email, data.password);
+    if (
+      event.target.inputPasswordConfirm.value
+      === event.target.inputPassword.value
+    ) {
+      UserManager.registerUser(data.email, data.password);
+    } else {
+      UiManager.openNotification(
+        "warning",
+        "Les deux mots de passe ne sont pas identiques 😉",
+      );
+    }
   };
 
   return (
