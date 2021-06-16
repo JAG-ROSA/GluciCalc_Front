@@ -1,0 +1,87 @@
+@import "../helpers/variables", "../helpers/mixins";
+@include anim-bounce;
+
+
+button {
+  cursor: pointer;
+  position: relative;
+  padding: 1.5em 4em 1.5em;
+  font-size: 20px;
+  letter-spacing: 1px;
+  border: none;
+  
+  & span {
+    position: absolute;
+    width: 20em;
+    transform: translateX(-50%) translateY(-50%);
+  }
+
+  &:active {
+    transform: scale(.96);
+  }
+
+  &:hover{
+    border: 1px solid $black-color;
+    & span {
+      animation: bounce 2s infinite linear;
+    }
+    &:after {
+      top: 9px;
+      left: 9px;
+    }
+  }
+
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+    height: 100%;
+    transition: 0.2s;
+  }
+}
+
+.my-btn-primary {
+  border: 1px solid $primary-color;
+  background-color: $primary-color;
+  &:hover {
+    background-color: transparent;
+    z-index: 1;
+    &:after {
+      z-index: -1000;
+      background-color: $primary-color;
+    }
+  }
+}
+
+.my-btn-secondary {
+  border: 1px solid $secondary-color;
+  background-color: $secondary-color;
+  &:hover {
+    background-color: transparent;
+    
+    &:after {
+      background-color: $secondary-color;
+    }
+  }
+}
+
+.my-btn-tertiary:after {
+  background-color: $tertiary-color;
+  &:hover {
+    background-color: transparent;
+    &:after {
+      background-color: $tertiary-color;
+    }
+  }
+}
+
+
+.my-btn-sm {
+  font-size: .8em;
+}
+.my-btn-lg {
+  font-size: 1.4em;
+}

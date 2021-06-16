@@ -1,4 +1,5 @@
-@import "base/fonts", "base/colors";
+@import "base/fonts", "base/colors", "base/animations";
+@import "components/buttons", "components/borders";
 @import "helpers/variables";
 @import "layout/navbar", "layout/footer";
 
@@ -37,13 +38,4 @@ h1, h2, h3, h4, h5, h6 {
 
 .searchList {
   position: absolute;
-}
-
-
-.jumbotron {
-  background-image: url("../assets/images/01.jpg");
-  height: 80vh;
-  width: 100%;
-  background-size: cover;
-  background-position: center top;
 }

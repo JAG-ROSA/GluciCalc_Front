@@ -21,7 +21,6 @@ nav {
   &:hover {
     background-color: $primary-color;
     border-bottom: 3px solid $black-color;
-    transition: all 0.1s ease-in;
     & a {
       color: #fff;
     }

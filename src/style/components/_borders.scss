@@ -1,0 +1,22 @@
+@import "../helpers/variables";
+
+.border-black {
+  border: 1px solid $black-color;
+}
+
+.border-shadow {
+  position: relative;
+  background-color: #fff;
+  &::after {
+    z-index: -1000;
+    position: absolute;
+    background-color: $primary-color;
+    content: "";
+    width: 100%;
+    height: 100%;
+    z-index: -5;
+    top: 1em;
+    left: 1em;
+  }
+  
+}

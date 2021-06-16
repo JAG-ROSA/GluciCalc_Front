@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { Container, Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { UserManager, UiManager } from "services";
 
 const Login = () => {
@@ -29,47 +29,46 @@ const Login = () => {
   };
 
   return (
-    <Container>
-      <div className="d-flex justify-content-center">
-        <div className="col col-md-8 col-lg-5 my-bg-light border-quaternary p-4 my-5 mx-3">
-          <h2 className=" my-text-tertiary">Se connecter</h2>
+    <div className="d-flex justify-content-center pt-5 slide-left">
+      <div className="col col-md-8 col-lg-5 border-shadow border-black p-5 my-5 mx-3">
+        <h2 className="my-text-primary">Se connecter</h2>
 
-          <Form onSubmit={loginFetch}>
-            <Form.Group controlId="formBasicEmail" className="pb-3">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                size="sm"
-                type="email"
-                placeholder="nom@example.com"
-              />
-            </Form.Group>
+        <Form onSubmit={loginFetch}>
+          <Form.Group controlId="formBasicEmail" className="pb-3">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              size="sm"
+              type="email"
+              placeholder="nom@example.com"
+            />
+          </Form.Group>
 
-            <Form.Group controlId="formBasicPassword">
-              <Form.Label>Mot de passe</Form.Label>
-              <Form.Control
-                size="sm"
-                type="password"
-                placeholder="Mot de passe"
-              />
-            </Form.Group>
-            <Button
-              variant="primary"
-              type="submit"
-              className="btn btn-secondary mt-4 mb-3"
-            >
-              Se connecter
-            </Button>
-          </Form>
-          <Link to="/password/forgot" className="link-tertiary">
-            Mot de passe oublié ?
-          </Link>
-          <br />
-          <Link to="/register" className="link-tertiary">
-            S&apos;inscrire
-          </Link>
-        </div>
+          <Form.Group controlId="formBasicPassword">
+            <Form.Label>Mot de passe</Form.Label>
+            <Form.Control
+              size="sm"
+              type="password"
+              placeholder="Mot de passe"
+            />
+          </Form.Group>
+
+          <button
+            type="submit"
+            className="my-btn-primary my-4"
+          >
+            <span>Se connecter</span>
+          </button>
+        </Form>
+
+        <Link to="/password/forgot" className="link-tertiary">
+          Mot de passe oublié ?
+        </Link>
+        <br />
+        <Link to="/register" className="link-tertiary">
+          S&apos;inscrire
+        </Link>
       </div>
-    </Container>
+    </div>
   );
 };
 
