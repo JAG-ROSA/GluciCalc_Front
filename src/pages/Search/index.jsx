@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Form, Col } from "react-bootstrap";
+import { Form, Col, Button } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import SearchCard from "components/SearchCard";
 
@@ -29,6 +29,14 @@ const Search = () => {
     setSearchSugar(e.target.value);
   };
 
+  const handleSearchReset = () => {
+    setSearchTerme("");
+    setSearchBrand("");
+    setSearchSugar(500000);
+    document.querySelector("#searchBrand").value = "";
+    document.querySelector("#searchSugar").value = "";
+  };
+
   useEffect(() => {
     searchFetch();
   }, [searchTerme, searchBrand, searchSugar]);
@@ -56,6 +64,14 @@ const Search = () => {
           </Form.Group>
         </Col>
       </Form>
+      <Button
+        variant="primary"
+        type="submit"
+        className="btn btn-secondary mt-2 mb-3"
+        onClick={handleSearchReset}
+      >
+        Remise à 0
+      </Button>
       <SearchCard data={searchResult} />
     </div>
   );
