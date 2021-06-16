@@ -34,8 +34,17 @@ h1, h2, h3, h4, h5, h6 {
 
 .pt-70 {
   padding-top: 70px;
-}
+
 
 .searchList {
   position: absolute;
+}
+
+
+.jumbotron {
+  background-image: url("../assets/images/01.jpg");
+  height: 80vh;
+  width: 100%;
+  background-size: cover;
+  background-position: center top;
 }
