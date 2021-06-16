@@ -1,3 +1,15 @@
 .searchList {
   position: absolute;
 }
+
+.searchCard {
+  & .productImage {
+    width: 50px;
+  }
+  & .nutriscoreImage {
+    width: 75px;
+  }
+  & .novagroupImage {
+    width: 25px;
+  }
+}
