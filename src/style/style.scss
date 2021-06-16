@@ -1,5 +1,4 @@
 @import "base/fonts", "base/colors";
-@import "components/buttons";
 @import "helpers/variables";
 @import "layout/navbar", "layout/footer";
 
@@ -34,7 +33,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .pt-70 {
   padding-top: 70px;
-
+}
 
 .searchList {
   position: absolute;
