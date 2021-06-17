@@ -4,11 +4,13 @@ import { useParams } from "react-router-dom";
 import SearchCard from "components/SearchCard";
 import Nutriments from "components/Nutriments";
 import CarbohydratesCalculus from "components/CarbohydratesCalculus";
+import CreateMeal from "components/CreateMeal";
 
 const Product = () => {
   const { idProduct } = useParams();
   const [searchResult, setSearchResult] = useState([]);
   const [isFetched, setIsFetched] = useState(false);
+  const [carbohydratesQuantity, setCarbohydratesQuantity] = useState(null);
 
   useEffect(() => {
     fetch(`https://world.openfoodfacts.org/api/v0/product/${idProduct}.json`, {
@@ -21,7 +23,9 @@ const Product = () => {
       });
   }, [idProduct]);
 
-  console.log(searchResult);
+  const totalCarbohydrates = (value) => {
+    setCarbohydratesQuantity(value);
+  };
 
   return (
     <div className="d-flex flex-wrap">
@@ -36,7 +40,13 @@ const Product = () => {
           <div className="py-2 mr-5">
             <Card style={{ width: "18rem" }}>
               {isFetched
-              && <CarbohydratesCalculus data={searchResult.nutriments.carbohydrates_100g} />}
+              && (
+              <CarbohydratesCalculus
+                data={searchResult.nutriments.carbohydrates_100g}
+                totalCarbohydrates={totalCarbohydrates}
+              />
+              )}
+              {isFetched && <CreateMeal data={carbohydratesQuantity} />}
             </Card>
           </div>
         </Col>
