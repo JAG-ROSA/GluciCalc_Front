@@ -4,11 +4,13 @@ import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { UiManager, UserManager } from "services";
 import Button from "components/Button";
+import { resetErrors } from "store";
+import store from "store/store";
 
 const Register = () => {
-  const isRegisterSuccess = useSelector((store) => store.isLogged);
-  const isRegisterFailed = useSelector((store) => !!store.error);
   const history = useHistory();
+  const isRegisterSuccess = useSelector((registerStore) => registerStore.isLogged);
+  const isRegisterFailed = useSelector((registerStore) => !!registerStore.registrationError);
 
   useEffect(() => {
     if (isRegisterSuccess) {
@@ -19,6 +21,7 @@ const Register = () => {
         "error",
         "Hum... il y a une petite erreur ! 🤔",
       );
+      store.dispatch(resetErrors());
     }
   }, [isRegisterSuccess, isRegisterFailed]);
 

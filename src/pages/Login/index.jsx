@@ -3,12 +3,14 @@ import { useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import { UserManager, UiManager } from "services";
+import { resetErrors } from "store";
+import store from "store/store";
 import Button from "components/Button";
 
 const Login = () => {
-  const isLoginSuccess = useSelector((store) => store.isLogged);
-  const isLoginFailed = useSelector((store) => !!store.error);
+  const isLoginSuccess = useSelector((loginstore) => loginstore.isLogged);
   const history = useHistory();
+  const isLoginFailed = useSelector((loginstore) => !!loginstore.loginError);
 
   useEffect(() => {
     if (isLoginSuccess) {
@@ -19,6 +21,7 @@ const Login = () => {
         "error",
         "Hum... il y a une petite erreur ! 🤔",
       );
+      store.dispatch(resetErrors());
     }
   }, [isLoginSuccess, isLoginFailed]);
 

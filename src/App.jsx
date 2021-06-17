@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import PrivateRoute from "components/PrivateRoute";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "style/style.scss";
 import Navbar from "components/Navbar";
@@ -37,11 +38,9 @@ const App = () => (
         <Route path="/password/reset/:token">
           <ResetPassword />
         </Route>
+        <PrivateRoute path="/profile" component={Profile} />
         <Route path="/dashboard">
           <Dashboard />
-        </Route>
-        <Route path="/profile">
-          <Profile />
         </Route>
         <Route path="/search">
           <Search />
