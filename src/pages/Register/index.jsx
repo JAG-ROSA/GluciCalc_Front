@@ -2,23 +2,27 @@ import React, { useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import { UiManager, UserManager } from "services";
 import Button from "components/Button";
+import { resetErrors } from "store";
+import store from "store/store";
 
 const Register = () => {
-  const isRegisterSuccess = useSelector((store) => store.isLogged);
-  const isRegisterFailed = useSelector((store) => !!store.error);
   const history = useHistory();
+  const isRegisterSuccess = useSelector((registerStore) => registerStore.isLogged);
+  const isRegisterFailed = useSelector((registerStore) => !!registerStore.registrationError);
 
   useEffect(() => {
     if (isRegisterSuccess) {
       UiManager.openNotification("success", "Bienvenue 🙂");
-      history.push("/dashbord");
+      history.push("/dashboard");
     } else if (isRegisterFailed) {
       UiManager.openNotification(
         "error",
         "Hum... il y a une petite erreur ! 🤔",
       );
+      store.dispatch(resetErrors());
     }
   }, [isRegisterSuccess, isRegisterFailed]);
 
