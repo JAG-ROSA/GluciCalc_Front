@@ -16,14 +16,19 @@ import {
   UPDATE_USER_REQUEST,
   UPDATE_USER_FAILED,
   UPDATE_USER_SUCCESS,
+  RESET_ERRORS,
 } from "./userType";
 
 const INITIAL_STATE = {
   loading: false,
   isLogged: !!Cookies.get(AUTH_TOKEN),
+  isUpdateSucceed: false,
   userProfile: {
     id: Cookies.get(USER_ID), firstName: "",
   },
+  loginError: "",
+  logoutError: "",
+  registrationError: "",
   error: "",
 };
 
@@ -37,22 +42,40 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         loading: true,
+        isUpdateSucceed: false,
+        loginError: "",
+        logoutError: "",
+        registrationError: "",
+        error: "",
       };
     case REGISTRATION_FAILED:
+      return {
+        ...state,
+        loading: false,
+        isLogged: false,
+        registrationError: action.error,
+      };
     case LOGIN_FAILED:
       return {
         ...state,
         loading: false,
         isLogged: false,
-        error: action.error,
+        loginError: action.error,
       };
     case REGISTRATION_SUCCESS:
     case LOGIN_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        isLogged: true,
+        userProfile: action.userProfile,
+      };
     case UPDATE_USER_SUCCESS:
       return {
         ...state,
         loading: false,
         isLogged: true,
+        isUpdateSucceed: true,
         userProfile: action.userProfile,
       };
     case GET_USER_SUCCESS:
@@ -60,6 +83,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: false,
         isLogged: true,
+        isUpdateSucceed: false,
       };
     case LOGOUT_SUCCESS:
       return {
@@ -68,11 +92,30 @@ const userReducer = (state = INITIAL_STATE, action) => {
         userProfile: {},
       };
     case LOGOUT_FAILED:
+      return {
+        ...state,
+        loading: false,
+        isLogged: true,
+        logoutError: action.error,
+      };
     case GET_USER_FAILED:
+      return {
+        loading: false,
+        isLogged: true,
+        error: action.error,
+      };
     case UPDATE_USER_FAILED:
       return {
         loading: false,
+        isUpdateSucceed: false,
         error: action.error,
+      };
+    case RESET_ERRORS:
+      return {
+        loginError: "",
+        logoutError: "",
+        registrationError: "",
+        error: "",
       };
     default:
       return state;
