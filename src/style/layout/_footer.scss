@@ -1,0 +1,43 @@
+footer {
+  background-color: $light-color;
+  padding: 0px 40px 30px 40px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  width: 100%;
+  
+  & > div {
+    border-top: 3px solid $black-color;
+  }
+
+  & a.title-footer {
+    color: $primary-color;
+    text-decoration: none;
+    font-family: 'Chakra-Petch-Bold';
+    letter-spacing: 1.6px;
+    font-size: 2.1em;
+    &:hover {
+      color: $tertiary-color;
+    }
+  }
+
+  & p {
+    font-size: 1.05em;
+    font-family: 'Nunito-Sans-SemiBold';
+  }
+
+  &:hover {
+    background-color: $primary-color;
+    border-top: 3px solid $black-color;
+    & a {
+      color: #fff;
+    }
+    & > div {
+      border-top: none;
+    }
+  }
+}
+
+
+
