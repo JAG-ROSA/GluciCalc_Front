@@ -8,6 +8,7 @@ import Home from "pages/Home";
 import Register from "pages/Register";
 import Logout from "pages/Logout";
 import Login from "pages/Login";
+import Profile from "pages/Profile";
 import Search from "pages/Search";
 
 const App = () => (
@@ -26,6 +27,9 @@ const App = () => (
         </Route>
         <Route path="/login">
           <Login />
+        </Route>
+        <Route path="/profile">
+          <Profile />
         </Route>
         <Route path="/search">
           <Search />
