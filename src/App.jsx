@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import PrivateRoute from "components/PrivateRoute";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "style/style.scss";
 import Navbar from "components/Navbar";
@@ -28,9 +29,7 @@ const App = () => (
         <Route path="/login">
           <Login />
         </Route>
-        <Route path="/profile">
-          <Profile />
-        </Route>
+        <PrivateRoute path="/profile" component={Profile} />
         <Route path="/search">
           <Search />
         </Route>
