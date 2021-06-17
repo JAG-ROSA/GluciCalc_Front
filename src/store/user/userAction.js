@@ -14,6 +14,7 @@ import {
   UPDATE_USER_REQUEST,
   UPDATE_USER_SUCCESS,
   UPDATE_USER_FAILED,
+  RESET_ERRORS,
 } from "./userType";
 
 export const registrationRequest = () => ({
@@ -82,4 +83,8 @@ export const updateUserSuccess = (user) => ({
 export const updateUserFailed = (error) => ({
   type: UPDATE_USER_FAILED,
   error,
+});
+
+export const resetErrors = () => ({
+  type: RESET_ERRORS,
 });
