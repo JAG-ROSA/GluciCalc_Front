@@ -5,7 +5,7 @@
 button {
   cursor: pointer;
   position: relative;
-  padding: 1.5em 4em 1.5em;
+  padding: 1.8em 5em 1.8em;
   font-size: 20px;
   letter-spacing: 1px;
   border: none;
@@ -21,11 +21,13 @@ button {
   }
 
   &:hover{
+    z-index: 1;
     border: 1px solid $black-color;
     & span {
       animation: bounce 2s infinite linear;
     }
     &:after {
+      z-index: -1;
       top: 9px;
       left: 9px;
     }
@@ -37,20 +39,28 @@ button {
     top: 0;
     left: 0;
     width: 100%;
-    z-index: -1;
     height: 100%;
     transition: 0.2s;
   }
 }
+
+
+.my-btn-sm {
+  font-size: 0.8em;
+}
+
+.my-btn-lg {
+  font-size: 1.4em;
+}
+
+
 
 .my-btn-primary {
   border: 1px solid $primary-color;
   background-color: $primary-color;
   &:hover {
     background-color: transparent;
-    z-index: 1;
     &:after {
-      z-index: -1000;
       background-color: $primary-color;
     }
   }
@@ -61,14 +71,14 @@ button {
   background-color: $secondary-color;
   &:hover {
     background-color: transparent;
-    
     &:after {
       background-color: $secondary-color;
     }
   }
 }
 
-.my-btn-tertiary:after {
+.my-btn-tertiary {
+  border: 1px solid $tertiary-color;
   background-color: $tertiary-color;
   &:hover {
     background-color: transparent;
@@ -79,9 +89,28 @@ button {
 }
 
 
-.my-btn-sm {
-  font-size: .8em;
-}
-.my-btn-lg {
-  font-size: 1.4em;
+.link-primary, .link-primary:visited {
+	text-decoration: none;
+	position: relative;
+	color: $primary-color;
+  font-family: 'Nunito-Sans-SemiBold';
+  
+  &:hover  {
+    color: $primary-color;
+  }
+	
+	&:after {
+		content: '';
+		height: 2px;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 0%;
+		background: $primary-color;
+		transition: 0.2s;
+	}
+
+	&:hover:after {
+		width: 100%;
+	}
 }
