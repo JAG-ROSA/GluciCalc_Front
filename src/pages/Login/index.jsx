@@ -1,16 +1,18 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Container, Form, Button } from "react-bootstrap";
 import { UserManager, UiManager } from "services";
 
 const Login = () => {
   const isLoginSuccess = useSelector((store) => store.isLogged);
   const isLoginFailed = useSelector((store) => !!store.error);
+  const history = useHistory();
 
   useEffect(() => {
     if (isLoginSuccess) {
       UiManager.openNotification("success", "Connexion réussie !");
+      history.push("/dashboard");
     } else if (isLoginFailed) {
       UiManager.openNotification(
         "error",
