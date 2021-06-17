@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Row, Card, Col } from "react-bootstrap";
+import { Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import SearchCardImage from "components/SearchCardImage";
-import SearchCardNutriscore from "components/SearchCardNutriscore";
-import SearchCardNova from "components/SearchCardNova";
+import SearchCard from "components/SearchCard";
+
 import Nutriments from "components/Nutriments";
 
 const Product = () => {
@@ -27,29 +26,10 @@ const Product = () => {
   console.log(searchResult);
 
   return (
-    <div className="d-flex flex-wrap searchCard">
+    <div className="d-flex flex-wrap">
       <Row>
         <Col>
-          <Card style={{ width: "18rem" }}>
-            <Card.Body>
-              <SearchCardImage data={searchResult} />
-              <Card.Title>
-                {searchResult.product_name_fr}
-              </Card.Title>
-              <Card.Text>
-                Marque:
-                &nbsp;
-                {searchResult.brands}
-              </Card.Text>
-              <Card.Text>
-                Quantité:
-                &nbsp;
-                {searchResult.quantity}
-              </Card.Text>
-              <SearchCardNutriscore data={searchResult} />
-              <SearchCardNova data={searchResult} />
-            </Card.Body>
-          </Card>
+          <SearchCard data={searchResult} />
         </Col>
         <Col>
           {isFetched && <Nutriments data={searchResult.nutriments} />}
