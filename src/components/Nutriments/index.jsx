@@ -7,8 +7,6 @@ const Nutriments = ({ data }) => {
   const [nutriQuantitySodium, setNutriQuantitySodium] = useState("");
   const [nutriQuantitySaturatedFat, setNutriQuantitySaturatedFat] = useState("");
 
-  console.log(data);
-
   const nutriColor = (value, quantity1, quantity2, type) => {
     if (value < quantity1) {
       type("https://static.openfoodfacts.org/images/misc/low_30.png");
