@@ -29,6 +29,9 @@ const Navbar = () => {
                   <Link to="/user/me">Mon dashboard</Link>
                 </li>
                 <li className="ms-3">
+                  <Link to="/profile">Mon profil</Link>
+                </li>
+                <li className="ms-3">
                   <Link to="/logout">Se déconnecter</Link>
                 </li>
               </>
