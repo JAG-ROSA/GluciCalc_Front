@@ -18,7 +18,6 @@ const Product = () => {
   const [mealList, setMealList] = useState([]);
 
   console.log(carbohydratesQuantity);
-  console.log(mealList);
 
   useEffect(() => {
     fetch(`https://world.openfoodfacts.org/api/v0/product/${idProduct}.json`, {
@@ -34,18 +33,12 @@ const Product = () => {
     });
   }, [idProduct]);
 
-  // useEffect(() => {
-  //   MealsManager.getMeals().then((data) => {
-  //     console.log(data);
-  //   });
-  // }, [mealList]);
-
   const totalCarbohydrates = (value) => {
     setCarbohydratesQuantity(value);
   };
 
   const handleNewMeal = (value) => {
-    console.log(value);
+    setMealList(value);
   };
 
   return (

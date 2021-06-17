@@ -7,7 +7,6 @@ const AddProductToMeal = ({ data }) => {
 
   const handleMealCreate = (e) => {
     e.preventDefault();
-    console.log(e.target.mealCreateForm.value);
     setCreateMeal(e.target.mealCreateForm.value);
   };
 
@@ -19,18 +18,25 @@ const AddProductToMeal = ({ data }) => {
 
   return (
     <Card.Body>
+      <Card.Title>Selectionner le repas</Card.Title>
       <Form onSubmit={handleMealCreate}>
-        <Form.Group controlId="mealSelect">
-          <Form.Label>Selectionner le repas</Form.Label>
-          <Form.Control as="select">
-            {data.map((element) => (
-              <option key={element.id} value={element.id}>{element.name}</option>
-            ))}
-          </Form.Control>
-        </Form.Group>
-        <Button variant="primary" type="submit">
-          Créer le repas
-        </Button>
+        {data.length > 0 ? (
+          <Form.Group controlId="mealSelect">
+            <Form.Control as="select">
+              {data.map((element) => (
+                <option key={element.id} value={element.id}>{element.name}</option>
+              ))}
+            </Form.Control>
+            <Button variant="primary" type="submit">
+              Ajouter au repas
+            </Button>
+          </Form.Group>
+        )
+          : (
+            <Card.Text>
+              Il n&apos;y a pas encore de repas disponible, merci d&apos;en créer un.
+            </Card.Text>
+          )}
       </Form>
     </Card.Body>
   );

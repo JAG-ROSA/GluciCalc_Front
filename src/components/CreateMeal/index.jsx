@@ -4,25 +4,22 @@ import MealsManager from "services/meals";
 
 const CreateMeal = ({ newMeal }) => {
   const [createMeal, setCreateMeal] = useState("");
-  newMeal(createMeal);
 
   const handleMealCreate = (e) => {
     e.preventDefault();
-    console.log(e.target.mealCreateForm.value);
     setCreateMeal(e.target.mealCreateForm.value);
   };
 
   useEffect(() => {
-    MealsManager.createMeal(createMeal).then((data) => {
-      console.log(data);
-    });
+    MealsManager.createMeal(createMeal);
+    newMeal(createMeal);
   }, [createMeal]);
 
   return (
     <Card.Body>
+      <Card.Title>Donne un nom à ton repas</Card.Title>
       <Form onSubmit={handleMealCreate}>
         <Form.Group controlId="mealCreateForm">
-          <Form.Label>Donne un nom à ton repas</Form.Label>
           <Form.Control type="text" placeholder="Mon nouveau repas" />
         </Form.Group>
         <Button variant="primary" type="submit">
