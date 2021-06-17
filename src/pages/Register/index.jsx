@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { UiManager, UserManager } from "services";
 import Button from "components/Button";
 import { resetErrors } from "store";
