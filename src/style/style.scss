@@ -1,3 +1,55 @@
+@import "base/fonts", "base/colors";
+@import "helpers/variables";
+@import "layout/navbar", "layout/footer";
+
+
+* {
+  box-sizing: border-box;
+  font-family: 'Nunito-Sans-Regular';
+}
+
+#root {
+  position: relative;
+  min-height: 100%;
+  background-color: $light-color;
+}
+
+html {
+  height: 100%;
+}
+
+body { 
+  margin: auto;
+  font-family: 'Nunito-Sans-Regular';
+  color: $black-color;
+  scroll-behavior: smooth;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Chakra-Petch-Bold';
+  letter-spacing: 1.6px;
+}
+
+
+.pt-70 {
+  padding-top: 70px;
+}
+
+.searchList {
+  position: absolute;
+}
+
+.searchCard {
+  & .productImage {
+    width: 50px;
+  }
+  & .nutriscoreImage {
+    width: 75px;
+  }
+  & .novagroupImage {
+    width: 25px;
+  }
+}
 
 .jumbotron {
   background-image: url("../assets/images/01.jpg");
