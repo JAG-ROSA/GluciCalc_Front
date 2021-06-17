@@ -24,6 +24,24 @@ const SearchCard = ({ data }) => (
           &nbsp;
           {data.quantity}
         </Card.Text>
+        {data.nutriments !== undefined && (
+        <Card.Text>
+          Glucides:
+          &nbsp;
+          {data.nutriments.carbohydrates_100g}
+          &nbsp;
+          g
+        </Card.Text>
+        )}
+        {data.nutriments !== undefined && (
+        <Card.Text>
+          Dont sucres:
+          &nbsp;
+          {data.nutriments.sugars}
+          &nbsp;
+          g
+        </Card.Text>
+        )}
         <SearchCardNutriscore data={data} />
         <SearchCardNova data={data} />
       </Card.Body>
