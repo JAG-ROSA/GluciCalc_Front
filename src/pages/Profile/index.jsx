@@ -9,7 +9,7 @@ import ProfileInput from "components/ProfileInput";
 const Profile = () => {
   const [userProfile, setUserProfile] = useState("");
   const [isUpdateUserProfile, setIsUpdateUserProfile] = useState("");
-  const isGetUserFailed = useSelector((store) => !!store.error);
+  const isUpdateUserFailed = useSelector((store) => !!store.error);
 
   const updateUserProfile = (event) => {
     event.preventDefault();
@@ -17,16 +17,21 @@ const Profile = () => {
       first_name: event.target.formPlaintextFirstName.value,
       last_name: event.target.formPlaintextLastName.value,
     };
-    UserManager.updateUser(data).then((response) => {
-      setIsUpdateUserProfile(response);
-      UiManager.openNotification("success", "Profil mise à jour !");
-    });
+    UserManager.updateUser(data)
+      .then((response) => {
+        setIsUpdateUserProfile(response);
+        if (isUpdateUserFailed) {
+          UiManager.openNotification(
+            "error",
+            "Hum... il y a une petite erreur! 🤔",
+          );
+        } else { UiManager.openNotification("success", "Profil mise à jour !"); }
+      });
   };
-  console.log(isUpdateUserProfile);
 
   useEffect(() => {
     UserManager.getUser().then((response) => setUserProfile(response));
-  }, [isGetUserFailed, isUpdateUserProfile]);
+  }, [isUpdateUserProfile]);
 
   return (
     <Container fluid>
