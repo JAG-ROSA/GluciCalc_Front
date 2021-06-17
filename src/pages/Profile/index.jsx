@@ -10,6 +10,7 @@ const Profile = () => {
   const [userProfile, setUserProfile] = useState("");
   const [isUpdateUserProfile, setIsUpdateUserProfile] = useState("");
   const isUpdateUserFailed = useSelector((store) => !!store.error);
+  const isUpdateSucceed = useSelector((store) => store.isUpdateSucceed);
 
   const updateUserProfile = (event) => {
     event.preventDefault();
@@ -20,19 +21,21 @@ const Profile = () => {
     UserManager.updateUser(data)
       .then((response) => {
         setIsUpdateUserProfile(response);
-        if (isUpdateUserFailed) {
-          UiManager.openNotification(
-            "error",
-            "Hum... il y a une petite erreur! 🤔",
-          );
-        } else { UiManager.openNotification("success", "Profil mise à jour !"); }
+        console.log(response);
       });
   };
 
   useEffect(() => {
     UserManager.getUser().then((response) => setUserProfile(response));
-  }, [isUpdateUserProfile]);
-
+    if (isUpdateSucceed) {
+      UiManager.openNotification("success", "Profil mise à jour !");
+    } else if (isUpdateUserFailed) {
+      UiManager.openNotification(
+        "error",
+        "Hum... il y a une petite erreur! Veuillez ré-essayer 🤔",
+      );
+    }
+  }, [isUpdateSucceed, isUpdateUserProfile, isUpdateUserFailed]);
   return (
     <Container fluid>
       <h2 className="headingProfile">
@@ -46,7 +49,6 @@ const Profile = () => {
           Test
         </Col>
       </Row>
-
     </Container>
   );
 };
