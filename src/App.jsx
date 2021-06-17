@@ -9,6 +9,7 @@ import Home from "pages/Home";
 import Register from "pages/Register";
 import Logout from "pages/Logout";
 import Login from "pages/Login";
+import Dashboard from "pages/Dashboard";
 import Profile from "pages/Profile";
 import Search from "pages/Search";
 
@@ -30,6 +31,9 @@ const App = () => (
           <Login />
         </Route>
         <PrivateRoute path="/profile" component={Profile} />
+        <Route path="/dashboard">
+          <Dashboard />
+        </Route>
         <Route path="/search">
           <Search />
         </Route>

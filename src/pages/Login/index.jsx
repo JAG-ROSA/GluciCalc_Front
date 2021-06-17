@@ -18,7 +18,7 @@ const Login = () => {
     } else if (isLoginFailed) {
       UiManager.openNotification(
         "error",
-        "Hum... il y a une petite erreur! 🤔",
+        "Hum... il y a une petite erreur ! 🤔",
       );
       store.dispatch(resetErrors());
     }
@@ -34,47 +34,29 @@ const Login = () => {
   };
 
   return (
-    <Container>
-      <div className="d-flex justify-content-center">
-        <div className="col col-md-8 col-lg-5 my-bg-light border-quaternary p-4 my-5 mx-3">
-          <h2 className=" my-text-tertiary">Se connecter</h2>
+    <div className="d-flex justify-content-center slide-left">
+      <div className="col-sm-10 col-md-8 col-lg-5 border-shadow p-5 mt-5">
+        <h2 className="my-text-primary pb-3">Se connecter</h2>
 
-          <Form onSubmit={loginFetch}>
-            <Form.Group controlId="formBasicEmail" className="pb-3">
-              <Form.Label>Email</Form.Label>
-              <Form.Control
-                size="sm"
-                type="email"
-                placeholder="nom@example.com"
-              />
-            </Form.Group>
+        <Form onSubmit={loginFetch}>
+          <Form.Group controlId="formBasicEmail" className="fs-6 pb-3">
+            <Form.Label>Email</Form.Label>
+            <Form.Control type="email" placeholder="nom@exemple.com" />
+          </Form.Group>
 
-            <Form.Group controlId="formBasicPassword">
-              <Form.Label>Mot de passe</Form.Label>
-              <Form.Control
-                size="sm"
-                type="password"
-                placeholder="Mot de passe"
-              />
-            </Form.Group>
-            <Button
-              variant="primary"
-              type="submit"
-              className="btn btn-secondary mt-4 mb-3"
-            >
-              Se connecter
-            </Button>
-          </Form>
-          <Link to="/password/forgot" className="link-tertiary">
-            Mot de passe oublié ?
-          </Link>
-          <br />
-          <Link to="/register" className="link-tertiary">
-            S&apos;inscrire
-          </Link>
-        </div>
+          <Form.Group controlId="formBasicPassword" className="fs-6 pb-3">
+            <Form.Label>Mot de passe</Form.Label>
+            <Form.Control type="password" placeholder="Mot de passe" />
+          </Form.Group>
+
+          <Button type="submit" content="Se connecter" styles="my-btn-primary my-2" />
+        </Form>
+
+        <Link to="/password/forgot" className="link-primary">Mot de passe oublié ?</Link>
+        <br />
+        <Link to="/register" className="link-primary">S&apos;inscrire</Link>
       </div>
-    </Container>
+    </div>
   );
 };
 

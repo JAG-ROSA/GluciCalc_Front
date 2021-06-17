@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Footer = () => (
-  <div className="pt-70">
+  <div className="pt-150">
     <footer>
       <div className="d-flex justify-content-between align-items-end">
         <div className="pe-3 pt-2">
