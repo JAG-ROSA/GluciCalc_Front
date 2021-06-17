@@ -8,6 +8,7 @@ import Home from "pages/Home";
 import Register from "pages/Register";
 import Logout from "pages/Logout";
 import Login from "pages/Login";
+import Dashboard from "pages/Dashboard";
 import Profile from "pages/Profile";
 import Search from "pages/Search";
 import Product from "pages/Product";
@@ -28,6 +29,9 @@ const App = () => (
         </Route>
         <Route path="/login">
           <Login />
+        </Route>
+        <Route path="/dashboard">
+          <Dashboard />
         </Route>
         <Route path="/profile">
           <Profile />
