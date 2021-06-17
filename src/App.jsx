@@ -8,6 +8,7 @@ import Home from "pages/Home";
 import Register from "pages/Register";
 import Logout from "pages/Logout";
 import Login from "pages/Login";
+import Dashboard from "pages/Dashboard";
 
 const App = () => (
   <Router>
@@ -25,6 +26,9 @@ const App = () => (
         </Route>
         <Route path="/login">
           <Login />
+        </Route>
+        <Route path="/dashboard">
+          <Dashboard />
         </Route>
       </Switch>
     </main>
