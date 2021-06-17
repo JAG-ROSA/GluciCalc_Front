@@ -7,10 +7,12 @@
 .border-shadow {
   position: relative;
   background-color: #fff;
-  &::after {
+  border: 1px solid $black-color;
+
+  &:after {
+    background-color: $primary-color;
     z-index: -1000;
     position: absolute;
-    background-color: $primary-color;
     content: "";
     width: 100%;
     height: 100%;
@@ -18,5 +20,4 @@
     top: 1em;
     left: 1em;
   }
-  
 }

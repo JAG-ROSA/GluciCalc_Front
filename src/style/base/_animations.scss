@@ -1,8 +1,17 @@
 @import "../helpers/mixins";
 
+
 @include keyframes(slideLeft, translateX, -800px, 0);
 
 .slide-left {
-  animation: slideLeft 2s ease .1s forwards;
+  animation: slideLeft 1s ease .1s forwards;
+  opacity: 0;
+}
+
+
+@include keyframes(slideRight, translateX, 800px, 0);
+
+.slide-right {
+  animation: slideRight 1s ease .1s forwards;
   opacity: 0;
 }
