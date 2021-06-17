@@ -1,20 +1,27 @@
 import React, { useEffect } from "react";
-import { Container, Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { UiManager, UserManager } from "services";
+import Button from "components/Button";
+import { resetErrors } from "store";
+import store from "store/store";
 
 const Register = () => {
-  const isRegisterSuccess = useSelector((store) => store.isLogged);
-  const isRegisterFailed = useSelector((store) => !!store.error);
+  const history = useHistory();
+  const isRegisterSuccess = useSelector((registerStore) => registerStore.isLogged);
+  const isRegisterFailed = useSelector((registerStore) => !!registerStore.registrationError);
 
   useEffect(() => {
     if (isRegisterSuccess) {
       UiManager.openNotification("success", "Bienvenue 🙂");
+      history.push("/dashboard");
     } else if (isRegisterFailed) {
       UiManager.openNotification(
         "error",
-        "Hum... il y a une petite erreur! 🤔",
+        "Hum... il y a une petite erreur ! 🤔",
       );
+      store.dispatch(resetErrors());
     }
   }, [isRegisterSuccess, isRegisterFailed]);
 
@@ -38,41 +45,29 @@ const Register = () => {
   };
 
   return (
-    <div className="Register">
-      <Container>
-        <h2 className="my-text-tertiary">S&apos;inscrire</h2>
+    <div className="d-flex justify-content-center slide-right">
+      <div className="col-sm-10 col-md-8 col-lg-5 border-shadow p-5 my-5 mx-3">
+        <h2 className="my-text-primary">S&apos;inscrire</h2>
+
         <Form onSubmit={fetchRegister}>
-          <Form.Group controlId="inputEmail" className="pb-3">
+          <Form.Group controlId="inputEmail" className="fs-6 pb-3">
             <Form.Label>Email</Form.Label>
-            <Form.Control size="sm" type="email" placeholder="Adresse e-mail" />
+            <Form.Control type="email" placeholder="Adresse e-mail" />
           </Form.Group>
 
-          <Form.Group controlId="inputPassword" className="pb-3">
+          <Form.Group controlId="inputPassword" className="fs-6 pb-3">
             <Form.Label>Mot de passe</Form.Label>
-            <Form.Control
-              size="sm"
-              type="password"
-              placeholder="Mot de passe"
-            />
+            <Form.Control type="password" placeholder="Mot de passe" />
           </Form.Group>
 
-          <Form.Group controlId="inputPasswordConfirm">
+          <Form.Group controlId="inputPasswordConfirm" className="fs-6 pb-3">
             <Form.Label>Confirmer le mot de passe</Form.Label>
-            <Form.Control
-              size="sm"
-              type="password"
-              placeholder="Confirmer le mot de passe"
-            />
+            <Form.Control type="password" placeholder="Confirmer le mot de passe" />
           </Form.Group>
-          <Button
-            variant="primary"
-            type="submit"
-            className="btn btn-secondary mt-4 mb-3"
-          >
-            S&apos;inscrire
-          </Button>
+
+          <Button type="submit" content="Se connecter" styles="my-btn-primary my-2" />
         </Form>
-      </Container>
+      </div>
     </div>
   );
 };
