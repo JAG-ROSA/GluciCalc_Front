@@ -27,7 +27,7 @@ const Nutriments = ({ data }) => {
   }, [data]);
 
   return (
-    <div className="">
+    <div>
       <Row>
         <div className="py-2 mr-5">
           <Card>

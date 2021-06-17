@@ -26,7 +26,7 @@ const SearchCard = ({ data }) => (
         </Card.Text>
         {data.nutriments !== undefined && (
         <Card.Text>
-          Glucides:
+          Glucides / 100g:
           &nbsp;
           {data.nutriments.carbohydrates_100g}
           &nbsp;
