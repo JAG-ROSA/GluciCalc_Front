@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Card, Form, Button } from "react-bootstrap";
 import MealsManager from "services/meals";
 
-const CreateMeal = ({ newMeal }) => {
+const AddProductToMeal = ({ data }) => {
   const [createMeal, setCreateMeal] = useState("");
-  newMeal(createMeal);
 
   const handleMealCreate = (e) => {
     e.preventDefault();
@@ -13,17 +12,21 @@ const CreateMeal = ({ newMeal }) => {
   };
 
   useEffect(() => {
-    MealsManager.createMeal(createMeal).then((data) => {
-      console.log(data);
+    MealsManager.getMeals(createMeal).then((response) => {
+      console.log(response);
     });
   }, [createMeal]);
 
   return (
     <Card.Body>
       <Form onSubmit={handleMealCreate}>
-        <Form.Group controlId="mealCreateForm">
-          <Form.Label>Donne un nom à ton repas</Form.Label>
-          <Form.Control type="text" placeholder="Mon nouveau repas" />
+        <Form.Group controlId="mealSelect">
+          <Form.Label>Selectionner le repas</Form.Label>
+          <Form.Control as="select">
+            {data.map((element) => (
+              <option key={element.id} value={element.id}>{element.name}</option>
+            ))}
+          </Form.Control>
         </Form.Group>
         <Button variant="primary" type="submit">
           Créer le repas
@@ -33,4 +36,4 @@ const CreateMeal = ({ newMeal }) => {
   );
 };
 
-export default CreateMeal;
+export default AddProductToMeal;

@@ -14,4 +14,13 @@ export default class MealsManager {
       return error.message;
     }
   }
+
+  static async getMeals() {
+    try {
+      const response = await API.get("/meals");
+      return response.data;
+    } catch (error) {
+      return error.message;
+    }
+  }
 }
