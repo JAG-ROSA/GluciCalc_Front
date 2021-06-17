@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import moment from "moment";
 import "moment/locale/fr";
 import MealSummary from "components/MealSummary";
-import { Button } from "react-bootstrap";
 import MealsManager from "services/meals";
 
 const DaySummary = () => {
@@ -11,7 +11,6 @@ const DaySummary = () => {
 
   useEffect(() => {
     MealsManager.getMealsForDay(date.format("YYYY-MM-DD")).then((data) => {
-      console.log(data);
       setMeals(data);
     });
   }, [date]);
@@ -24,18 +23,26 @@ const DaySummary = () => {
 
   return (
     <div className="DaySummary">
-      <Button variant="info" onClick={() => changeDay(-1)}>
-        Prec
-      </Button>
-      <h1>{date.locale("fr").format("dddd Do MMMM")}</h1>
-      <Button variant="info" onClick={() => changeDay(1)}>
-        Suiv
-      </Button>
-      {meals.map((meal) => (
-        <div key={meal.id}>
-          <MealSummary meal={meal} />
+      <div className="headerDashboard">
+        <div className="containerDashboard d-flex justify-content-between align-items-center">
+          <div className="chevron">
+            <FaChevronLeft onClick={() => changeDay(-1)} />
+          </div>
+          <div className="displayDate">
+            <h2>{date.locale("fr").format("dddd Do MMMM")}</h2>
+          </div>
+          <div className="chevron">
+            <FaChevronRight onClick={() => changeDay(+1)} />
+          </div>
         </div>
-      ))}
+      </div>
+      <div className="containerDashboard">
+        {meals.map((meal) => (
+          <div key={meal.id}>
+            <MealSummary meal={meal} />
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

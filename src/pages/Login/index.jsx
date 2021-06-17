@@ -1,14 +1,15 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { Form, Button } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import { UserManager, UiManager } from "services";
 import { resetErrors } from "store";
 import store from "store/store";
+import Button from "components/Button";
 
 const Login = () => {
-  const history = useHistory();
   const isLoginSuccess = useSelector((loginstore) => loginstore.isLogged);
+  const history = useHistory();
   const isLoginFailed = useSelector((loginstore) => !!loginstore.loginError);
 
   useEffect(() => {
