@@ -1,38 +1,22 @@
-import React, { useState } from "react";
-import { Card, Form } from "react-bootstrap";
+import React from "react";
+import { Card, Form, Button } from "react-bootstrap";
 
-const CreateMeal = ({ data }) => {
-  const [glucidesQuantity, setGlucidesQuantity] = useState(data);
-
-  const handleGlucidesQuantity = (e) => {
-    const glucideCalculus = ((data * e.target.value) / 100).toFixed(2);
-    setGlucidesQuantity(glucideCalculus);
+const CreateMeal = () => {
+  const handleMealCreate = (e) => {
+    console.log(e.target.value);
   };
 
   return (
     <Card.Body>
-      <Card.Title>
-        Ajouter à mon repas
-      </Card.Title>
-      <Card.Text>
-        Glucides / 100g:
-        &nbsp;
-        {data}
-      </Card.Text>
-      <Card.Text>
-        Ma portion en g:
-        &nbsp;
-        <Form.Group controlId="searchSugar">
-          <Form.Control type="number" step="0.1" placeholder="Ma portion" className="text-center" onChange={(e) => handleGlucidesQuantity(e)} />
+      <Form onSubmit={handleMealCreate}>
+        <Form.Group controlId="mealCreateForm">
+          <Form.Label>Email address</Form.Label>
+          <Form.Control type="text" placeholder="Mon nouveau repas" />
         </Form.Group>
-      </Card.Text>
-      <Card.Text>
-        Total de glucides pour la portion:
-        &nbsp;
-        {glucidesQuantity}
-        &nbsp;
-        g
-      </Card.Text>
+        <Button variant="primary" type="submit">
+          Créer le repas
+        </Button>
+      </Form>
     </Card.Body>
   );
 };

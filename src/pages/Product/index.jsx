@@ -12,6 +12,8 @@ const Product = () => {
   const [isFetched, setIsFetched] = useState(false);
   const [carbohydratesQuantity, setCarbohydratesQuantity] = useState(null);
 
+  console.log(carbohydratesQuantity);
+
   useEffect(() => {
     fetch(`https://world.openfoodfacts.org/api/v0/product/${idProduct}.json`, {
       method: "GET",
@@ -46,7 +48,7 @@ const Product = () => {
                 totalCarbohydrates={totalCarbohydrates}
               />
               )}
-              {isFetched && <CreateMeal data={carbohydratesQuantity} />}
+              <CreateMeal />
             </Card>
           </div>
         </Col>
