@@ -5,10 +5,10 @@ import { Form } from "react-bootstrap";
 import { UserManager, UiManager } from "services";
 import { resetErrors } from "store";
 import store from "store/store";
-import { Button } from "components/Button";
+import Button from "components/Button";
 
 const Login = () => {
-  const isLoginSuccess = useSelector((store) => store.isLogged);
+  const isLoginSuccess = useSelector((loginstore) => loginstore.isLogged);
   const history = useHistory();
   const isLoginFailed = useSelector((loginstore) => !!loginstore.loginError);
 
