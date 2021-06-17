@@ -11,6 +11,12 @@ import {
   loginRequest,
   loginSuccess,
   loginFailed,
+  getUserSuccess,
+  getUserFailed,
+  getUserRequest,
+  updateUserSuccess,
+  updateUserFailed,
+  updateUserRequest,
 } from "store";
 import API from "../api";
 
@@ -58,6 +64,35 @@ export default class UserManager {
       Cookies.set(USER_ID, response.data.id, { expires: 7 });
     } catch (error) {
       store.dispatch(loginFailed(error.message));
+    }
+  }
+
+  static async getUser() {
+    store.dispatch(getUserRequest());
+    try {
+      const response = await API.get(`/users/${Cookies.get(USER_ID)}`);
+      store.dispatch(getUserSuccess());
+      return response.data;
+    } catch (error) {
+      store.dispatch(getUserFailed(error));
+      return error.message;
+    }
+  }
+
+  static async updateUser(user) {
+    store.dispatch(updateUserRequest());
+    try {
+      const response = await API.put(`/users/${Cookies.get(USER_ID)}`, user);
+      store.dispatch(
+        updateUserSuccess({
+          id: response.data.id,
+          firstName: response.data.first_name,
+        }),
+      );
+      return response.data;
+    } catch (error) {
+      store.dispatch(updateUserFailed(error));
+      return error.message;
     }
   }
 }

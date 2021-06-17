@@ -11,7 +11,7 @@ const SearchBar = () => {
   const [searchList, setSearchList] = useState([]);
 
   const searchFetch = () => {
-    fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${searchTerme}&search_simple=1&action=process&json=1&page_size=5`, {
+    fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${searchTerme}&action=process&json=1&page_size=5`, {
       method: "GET",
     })
       .then((response) => response.json())
@@ -47,7 +47,7 @@ const SearchBar = () => {
               </ListGroup.Item>
             ))}
             <ListGroup.Item>
-              <Link to="/search">Plus de résultats</Link>
+              <Link to={{ pathname: "/search", data: searchTerme }}>Plus de résultats</Link>
             </ListGroup.Item>
           </ListGroup>
         </Col>

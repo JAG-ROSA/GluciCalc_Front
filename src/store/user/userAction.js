@@ -8,6 +8,12 @@ import {
   LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
   LOGOUT_FAILED,
+  GET_USER_REQUEST,
+  GET_USER_SUCCESS,
+  GET_USER_FAILED,
+  UPDATE_USER_REQUEST,
+  UPDATE_USER_SUCCESS,
+  UPDATE_USER_FAILED,
 } from "./userType";
 
 export const registrationRequest = () => ({
@@ -48,5 +54,32 @@ export const logoutSuccess = () => ({
 
 export const logoutFailed = (error) => ({
   type: LOGOUT_FAILED,
+  error,
+});
+
+export const getUserRequest = () => ({
+  type: GET_USER_REQUEST,
+});
+
+export const getUserSuccess = () => ({
+  type: GET_USER_SUCCESS,
+});
+
+export const getUserFailed = (error) => ({
+  type: GET_USER_FAILED,
+  error,
+});
+
+export const updateUserRequest = () => ({
+  type: UPDATE_USER_REQUEST,
+});
+
+export const updateUserSuccess = (user) => ({
+  type: UPDATE_USER_SUCCESS,
+  userProfile: user,
+});
+
+export const updateUserFailed = (error) => ({
+  type: UPDATE_USER_FAILED,
   error,
 });
