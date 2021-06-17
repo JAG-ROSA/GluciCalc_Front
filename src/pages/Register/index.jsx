@@ -65,7 +65,7 @@ const Register = () => {
             <Form.Control type="password" placeholder="Confirmer le mot de passe" />
           </Form.Group>
 
-          <Button type="submit" content="Se connecter" styles="my-btn-primary my-2" />
+          <Button type="submit" content="S&apos;inscrire" styles="my-btn-primary my-2" />
         </Form>
       </div>
     </div>
