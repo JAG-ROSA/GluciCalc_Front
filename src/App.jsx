@@ -11,6 +11,8 @@ import Login from "pages/Login";
 import Dashboard from "pages/Dashboard";
 import Profile from "pages/Profile";
 import Search from "pages/Search";
+import ForgotPassword from "pages/ForgotPassword";
+import ResetPassword from "pages/ResetPassword";
 
 const App = () => (
   <Router>
@@ -28,6 +30,12 @@ const App = () => (
         </Route>
         <Route path="/login">
           <Login />
+        </Route>
+        <Route path="/password/forgot">
+          <ForgotPassword />
+        </Route>
+        <Route path="/password/reset/:token">
+          <ResetPassword />
         </Route>
         <Route path="/dashboard">
           <Dashboard />

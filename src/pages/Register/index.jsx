@@ -13,7 +13,7 @@ const Register = () => {
   useEffect(() => {
     if (isRegisterSuccess) {
       UiManager.openNotification("success", "Bienvenue 🙂");
-      history.push("/dashbord");
+      history.push("/dashboard");
     } else if (isRegisterFailed) {
       UiManager.openNotification(
         "error",
@@ -62,7 +62,7 @@ const Register = () => {
             <Form.Control type="password" placeholder="Confirmer le mot de passe" />
           </Form.Group>
 
-          <Button type="submit" content="Se connecter" styles="my-btn-primary my-2" />
+          <Button type="submit" content="S&apos;inscrire" styles="my-btn-primary my-2" />
         </Form>
       </div>
     </div>
