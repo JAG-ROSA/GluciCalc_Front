@@ -1,29 +1,32 @@
-import React, { useEffect, useState } from "react";
+/* eslint-disable no-underscore-dangle */
+import React from "react";
 import { Card, Form, Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import MealsManager from "services/meals";
 
-const AddProductToMeal = ({ data }) => {
-  const [createMeal, setCreateMeal] = useState("");
+const AddProductToMeal = ({ data, carbohydrates }) => {
+  const { amount, idProduct, mealList } = data;
+  const history = useHistory();
 
-  const handleMealCreate = (e) => {
+  const handleAddProduct = (e) => {
     e.preventDefault();
-    setCreateMeal(e.target.mealCreateForm.value);
-  };
-
-  useEffect(() => {
-    MealsManager.getMeals(createMeal).then((response) => {
-      console.log(response);
+    MealsManager.addProductToMeal(
+      amount, carbohydrates, e.target.mealSelect.value, idProduct,
+    ).then(() => {
+      history.push("/dashboard");
     });
-  }, [createMeal]);
+  };
 
   return (
     <Card.Body>
-      <Card.Title>Selectionner le repas</Card.Title>
-      <Form onSubmit={handleMealCreate}>
-        {data.length > 0 ? (
+      <Card.Title>
+        Selectionner le repas
+      </Card.Title>
+      <Form onSubmit={handleAddProduct}>
+        {mealList.length > 0 ? (
           <Form.Group controlId="mealSelect">
             <Form.Control as="select">
-              {data.map((element) => (
+              {mealList.map((element) => (
                 <option key={element.id} value={element.id}>{element.name}</option>
               ))}
             </Form.Control>

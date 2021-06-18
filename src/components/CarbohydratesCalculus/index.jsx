@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Card, Form } from "react-bootstrap";
 
-const CarbohydratesCalculus = ({ data, totalCarbohydrates }) => {
+const CarbohydratesCalculus = ({ data, amountQuantity }) => {
   const [carbohydratesQuantity, setCarbohydratesQuantity] = useState(0);
 
   const handleCarbohydratesQuantity = (e) => {
     const carbohydratesCalculus = ((data * e.target.value) / 100).toFixed(2);
     setCarbohydratesQuantity(carbohydratesCalculus);
-    totalCarbohydrates(carbohydratesQuantity);
+    amountQuantity(e.target.value);
   };
 
   return (
@@ -19,6 +19,8 @@ const CarbohydratesCalculus = ({ data, totalCarbohydrates }) => {
         Glucides / 100g:
         &nbsp;
         {data}
+        &nbsp;
+        g
       </Card.Text>
       <Card.Text>
         Ma portion en g:

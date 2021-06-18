@@ -1,19 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Card, Form, Button } from "react-bootstrap";
 import MealsManager from "services/meals";
 
 const CreateMeal = ({ newMeal }) => {
-  const [createMeal, setCreateMeal] = useState("");
-
   const handleMealCreate = (e) => {
     e.preventDefault();
-    setCreateMeal(e.target.mealCreateForm.value);
+    MealsManager.createMeal(e.target.mealCreateForm.value);
+    newMeal(e.target.mealCreateForm.value);
   };
-
-  useEffect(() => {
-    MealsManager.createMeal(createMeal);
-    newMeal(createMeal);
-  }, [createMeal]);
 
   return (
     <Card.Body>
