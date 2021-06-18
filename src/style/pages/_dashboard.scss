@@ -62,5 +62,12 @@
         }
       }
     }
+    .emptyState {
+      text-align: center;
+      p {
+        color: #8ca8b4;
+        font-style: italic;
+      }
+    }
   }
 }

@@ -20,9 +20,9 @@ const MealSummary = ({ meal, onDelete }) => (
         <div className="carbsMeal d-flex justify-content-end">
           <GiScales className="iconMeal" />
           <p>
-            {meal.totalCarbs}
+            {Math.round(meal.totalCarbs)}
             {" "}
-            glucides
+            g
           </p>
         </div>
       </Col>
