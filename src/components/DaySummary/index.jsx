@@ -4,6 +4,7 @@ import moment from "moment";
 import "moment/locale/fr";
 import MealSummary from "components/MealSummary";
 import MealsManager from "services/meals";
+import EmptyState from "assets/images/empty-state.jpg";
 
 const DaySummary = () => {
   const [date, setDate] = useState(moment());
@@ -37,11 +38,18 @@ const DaySummary = () => {
         </div>
       </div>
       <div className="containerDashboard">
-        {meals.map((meal) => (
-          <div key={meal.id}>
-            <MealSummary meal={meal} />
+        {meals.length !== 0 ? (
+          meals.map((meal) => (
+            <div key={meal.id}>
+              <MealSummary meal={meal} />
+            </div>
+          ))
+        ) : (
+          <div className="emptyState">
+            <img src={EmptyState} alt="empty-state-img" />
+            <p>Recherche un aliment pour commencer ta journée...</p>
           </div>
-        ))}
+        )}
       </div>
     </div>
   );
