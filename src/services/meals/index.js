@@ -32,7 +32,7 @@ export default class MealsManager {
   static async getProductId(id, name) {
     try {
       const response = await API.get(`/food/${id}/${name}`);
-      return response.data;
+      return response.data[0];
     } catch (error) {
       return error.message;
     }

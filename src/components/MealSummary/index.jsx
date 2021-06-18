@@ -34,14 +34,11 @@ const MealSummary = ({ meal }) => (
         </Accordion.Toggle>
         <Accordion.Collapse eventKey="0">
           <div className="detailsMeal">
-            {meal.quantities.map((quantity) => {
-              const food = quantity.product ?? quantity.recipe;
-              return (
-                <div key={quantity.id} className="products">
-                  {food.name}
-                </div>
-              );
-            })}
+            {meal.quantities.map((quantity) => (
+              <div key={quantity.id} className="products">
+                az
+              </div>
+            ))}
           </div>
         </Accordion.Collapse>
       </div>

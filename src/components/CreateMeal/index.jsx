@@ -2,11 +2,10 @@ import React from "react";
 import { Card, Form, Button } from "react-bootstrap";
 import MealsManager from "services/meals";
 
-const CreateMeal = ({ newMeal }) => {
+const CreateMeal = () => {
   const handleMealCreate = (e) => {
     e.preventDefault();
     MealsManager.createMeal(e.target.mealCreateForm.value);
-    newMeal(e.target.mealCreateForm.value);
   };
 
   return (

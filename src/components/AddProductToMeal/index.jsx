@@ -1,20 +1,32 @@
 /* eslint-disable no-underscore-dangle */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Form, Button } from "react-bootstrap";
+import moment from "moment";
+import "moment/locale/fr";
 import { useHistory } from "react-router-dom";
 import MealsManager from "services/meals";
 
-const AddProductToMeal = ({ data, carbohydrates }) => {
-  const { amount, idProduct, mealList } = data;
+const AddProductToMeal = ({ data }) => {
+  const { amountConsumption, idProduct, searchResult } = data;
+  const [mealList, setMealList] = useState([]);
+  const date = moment();
   const history = useHistory();
+
+  useEffect(() => {
+    MealsManager.getMealsForDay(date.format("YYYY-MM-DD")).then((response) => {
+      setMealList(response);
+    });
+  }, [idProduct]);
 
   const handleAddProduct = (e) => {
     e.preventDefault();
-    MealsManager.addProductToMeal(
-      amount, carbohydrates, e.target.mealSelect.value, idProduct,
-    ).then(() => {
-      history.push("/dashboard");
-    });
+    MealsManager.getProductId(idProduct, searchResult.product_name_fr)
+      .then((response) => MealsManager.addProductToMeal(
+        amountConsumption,
+        searchResult.nutriments.carbohydrates_100g, e.target.mealSelect.value, response.id,
+      ).then(() => {
+        history.push("/dashboard");
+      }));
   };
 
   return (
