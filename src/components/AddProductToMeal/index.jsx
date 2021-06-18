@@ -4,6 +4,7 @@ import { Card, Form, Button } from "react-bootstrap";
 import moment from "moment";
 import "moment/locale/fr";
 import { useHistory } from "react-router-dom";
+import { UiManager } from "services";
 import MealsManager from "services/meals";
 import CreateMeal from "components/CreateMeal";
 
@@ -27,6 +28,10 @@ const AddProductToMeal = ({ data }) => {
         amountConsumption,
         searchResult.nutriments.carbohydrates_100g, e.target.mealSelect.value, response.id,
       ).then(() => {
+        UiManager.openNotification(
+          "success",
+          "Produit ajouté au repas 😉",
+        );
         history.push("/dashboard");
       }));
   };
