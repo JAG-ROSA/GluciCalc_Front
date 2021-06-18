@@ -40,9 +40,7 @@ const App = () => (
           <ResetPassword />
         </Route>
         <PrivateRoute path="/profile" component={Profile} />
-        <Route path="/dashboard">
-          <Dashboard />
-        </Route>
+        <PrivateRoute path="/dashboard" component={Dashboard} />
         <Route path="/search">
           <Search />
         </Route>
