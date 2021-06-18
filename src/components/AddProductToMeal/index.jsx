@@ -1,47 +1,73 @@
 /* eslint-disable no-underscore-dangle */
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Form, Button } from "react-bootstrap";
+import moment from "moment";
+import "moment/locale/fr";
 import { useHistory } from "react-router-dom";
+import { UiManager } from "services";
 import MealsManager from "services/meals";
+import CreateMeal from "components/CreateMeal";
 
-const AddProductToMeal = ({ data, carbohydrates }) => {
-  const { amount, idProduct, mealList } = data;
+const AddProductToMeal = ({ data }) => {
+  const { amountConsumption, idProduct, searchResult } = data;
+  const [mealList, setMealList] = useState([]);
+  const [newMeal, setNewMeal] = useState("");
+  const date = moment();
   const history = useHistory();
+
+  useEffect(() => {
+    MealsManager.getMealsForDay(date.format("YYYY-MM-DD")).then((response) => {
+      setMealList(response);
+    });
+  }, [idProduct, newMeal]);
 
   const handleAddProduct = (e) => {
     e.preventDefault();
-    MealsManager.addProductToMeal(
-      amount, carbohydrates, e.target.mealSelect.value, idProduct,
-    ).then(() => {
-      history.push("/dashboard");
-    });
+    MealsManager.getProductId(idProduct, searchResult.product_name_fr)
+      .then((response) => MealsManager.addProductToMeal(
+        amountConsumption,
+        searchResult.nutriments.carbohydrates_100g, e.target.mealSelect.value, response.id,
+      ).then(() => {
+        UiManager.openNotification(
+          "success",
+          "Produit ajouté au repas 😉",
+        );
+        history.push("/dashboard");
+      }));
+  };
+
+  const handleNewMeal = (value) => {
+    setNewMeal(value);
   };
 
   return (
-    <Card.Body>
-      <Card.Title>
-        Selectionner le repas
-      </Card.Title>
-      <Form onSubmit={handleAddProduct}>
-        {mealList.length > 0 ? (
-          <Form.Group controlId="mealSelect">
-            <Form.Control as="select">
-              {mealList.map((element) => (
-                <option key={element.id} value={element.id}>{element.name}</option>
-              ))}
-            </Form.Control>
-            <Button variant="primary" type="submit">
-              Ajouter au repas
-            </Button>
-          </Form.Group>
-        )
-          : (
-            <Card.Text>
-              Il n&apos;y a pas encore de repas disponible, merci d&apos;en créer un.
-            </Card.Text>
-          )}
-      </Form>
-    </Card.Body>
+    <div>
+      <CreateMeal newMeal={handleNewMeal} />
+      <Card.Body>
+        <Card.Title>
+          Selectionner le repas
+        </Card.Title>
+        <Form onSubmit={handleAddProduct}>
+          {mealList.length > 0 ? (
+            <Form.Group controlId="mealSelect">
+              <Form.Control as="select">
+                {mealList.map((element) => (
+                  <option key={element.id} value={element.id}>{element.name}</option>
+                ))}
+              </Form.Control>
+              <Button variant="primary" type="submit">
+                Ajouter au repas
+              </Button>
+            </Form.Group>
+          )
+            : (
+              <Card.Text>
+                Il n&apos;y a pas encore de repas disponible, merci d&apos;en créer un.
+              </Card.Text>
+            )}
+        </Form>
+      </Card.Body>
+    </div>
   );
 };
 
