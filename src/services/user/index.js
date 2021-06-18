@@ -95,4 +95,14 @@ export default class UserManager {
       return error.message;
     }
   }
+
+  static async forgotPassword(user) {
+    const response = await API.post("/password/forgot", user);
+    return response.data;
+  }
+
+  static async resetPassword(user) {
+    const response = await API.post("/password/reset", user);
+    return response.data;
+  }
 }

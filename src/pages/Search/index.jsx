@@ -1,6 +1,9 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from "react";
-import { Form, Col, Button } from "react-bootstrap";
-import { useLocation } from "react-router-dom";
+import {
+  Form, Col, Button, Row,
+} from "react-bootstrap";
+import { Link, useLocation } from "react-router-dom";
 import SearchCard from "components/SearchCard";
 
 const Search = () => {
@@ -68,7 +71,20 @@ const Search = () => {
       >
         Remise à 0
       </Button>
-      <SearchCard data={searchResult} />
+      <Row>
+        <div className="d-flex flex-wrap">
+          {searchResult.map((element) => (
+            <Link to={{ pathname: `product/${element._id}` }}>
+              <SearchCard data={element} />
+            </Link>
+          ))}
+        </div>
+      </Row>
+      {searchResult.length === 0 && (
+      <div className="w-100">
+        <h4 className="text-center">Aucuns résultats. Essayez autre chose.</h4>
+      </div>
+      )}
     </div>
   );
 };
