@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import PrivateRoute from "components/PrivateRoute";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "style/style.scss";
 import Navbar from "components/Navbar";
@@ -12,6 +13,8 @@ import Dashboard from "pages/Dashboard";
 import Profile from "pages/Profile";
 import Search from "pages/Search";
 import Product from "pages/Product";
+import ForgotPassword from "pages/ForgotPassword";
+import ResetPassword from "pages/ResetPassword";
 
 const App = () => (
   <Router>
@@ -30,11 +33,15 @@ const App = () => (
         <Route path="/login">
           <Login />
         </Route>
+        <Route path="/password/forgot">
+          <ForgotPassword />
+        </Route>
+        <Route path="/password/reset/:token">
+          <ResetPassword />
+        </Route>
+        <PrivateRoute path="/profile" component={Profile} />
         <Route path="/dashboard">
           <Dashboard />
-        </Route>
-        <Route path="/profile">
-          <Profile />
         </Route>
         <Route path="/search">
           <Search />

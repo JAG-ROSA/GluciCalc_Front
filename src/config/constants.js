@@ -1,6 +1,6 @@
 const prod = {
   url: {
-    BASE_URL: "https://api-immo-coin-dev.herokuapp.com",
+    BASE_URL: "https://glucicalc-back.herokuapp.com/",
   },
 };
 

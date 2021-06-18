@@ -1,0 +1,31 @@
+@import "../helpers/mixins";
+
+
+@include keyframes(slideLeft, translateX, -800px, 0);
+
+.slide-left {
+  animation: slideLeft 1s ease .1s forwards;
+  opacity: 0;
+}
+
+
+@include keyframes(slideRight, translateX, 800px, 0);
+
+.slide-right {
+  animation: slideRight 1s ease .1s forwards;
+  opacity: 0;
+}
+
+@include keyframes(slideBottom, translateY, 800px, 0);
+
+.slide-bottom {
+  animation: slideBottom 1s ease .1s forwards;
+  opacity: 0;
+}
+
+@include keyframes(slideTop, translateY, -800px, 0);
+
+.slide-top {
+  animation: slideTop 1s ease .1s forwards;
+  opacity: 0;
+}
