@@ -8,19 +8,24 @@ import MealsManager from "services/meals";
 const DaySummary = () => {
   const [date, setDate] = useState(moment());
   const [meals, setMeals] = useState([]);
+  const [deletedMeal, setDeletedMeals] = useState("");
+
+  const deleteMeal = (event, id) => {
+    event.preventDefault();
+    MealsManager.destroyMeal(id).then(() => setDeletedMeals(id));
+  };
 
   useEffect(() => {
     MealsManager.getMealsForDay(date.format("YYYY-MM-DD")).then((data) => {
       setMeals(data);
     });
-  }, [date]);
+  }, [deletedMeal, date]);
 
   const changeDay = (nbDay) => {
     const newDate = moment(date);
     newDate.add(nbDay, "day");
     setDate(newDate);
   };
-
   return (
     <div className="DaySummary">
       <div className="headerDashboard">
@@ -39,7 +44,7 @@ const DaySummary = () => {
       <div className="containerDashboard">
         {meals.map((meal) => (
           <div key={meal.id}>
-            <MealSummary meal={meal} />
+            <MealSummary meal={meal} onDelete={deleteMeal} />
           </div>
         ))}
       </div>

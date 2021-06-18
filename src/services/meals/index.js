@@ -37,4 +37,12 @@ export default class MealsManager {
       return error.message;
     }
   }
+
+  static async destroyMeal(id) {
+    try {
+      await API.delete(`/meals/${id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
