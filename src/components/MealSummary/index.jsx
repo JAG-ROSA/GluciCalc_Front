@@ -4,8 +4,9 @@ import {
 } from "react-bootstrap";
 import { BsSearch } from "react-icons/bs";
 import { GiScales } from "react-icons/gi";
+import Button1 from "components/Button";
 
-const MealSummary = ({ meal }) => (
+const MealSummary = ({ meal, onDelete }) => (
   <div className="MealSummary">
     <Row>
       <Col>
@@ -19,9 +20,9 @@ const MealSummary = ({ meal }) => (
         <div className="carbsMeal d-flex justify-content-end">
           <GiScales className="iconMeal" />
           <p>
-            {meal.totalCarbs}
+            {Math.round(meal.totalCarbs)}
             {" "}
-            glucides
+            g
           </p>
         </div>
       </Col>
@@ -41,6 +42,7 @@ const MealSummary = ({ meal }) => (
             ))}
           </div>
         </Accordion.Collapse>
+        <Button1 type="button" content="Supprimer" styles="my-btn-secondary" onAction={(event) => onDelete(event, meal.id)} />
       </div>
     </Accordion>
   </div>
