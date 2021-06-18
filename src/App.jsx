@@ -12,6 +12,7 @@ import Login from "pages/Login";
 import Dashboard from "pages/Dashboard";
 import Profile from "pages/Profile";
 import Search from "pages/Search";
+import Product from "pages/Product";
 import ForgotPassword from "pages/ForgotPassword";
 import ResetPassword from "pages/ResetPassword";
 
@@ -44,6 +45,9 @@ const App = () => (
         </Route>
         <Route path="/search">
           <Search />
+        </Route>
+        <Route path="/product/:idProduct">
+          <Product />
         </Route>
       </Switch>
     </main>
