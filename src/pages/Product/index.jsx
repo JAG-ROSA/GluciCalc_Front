@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 import SearchCard from "components/SearchCard";
 import Nutriments from "components/Nutriments";
 import CarbohydratesCalculus from "components/CarbohydratesCalculus";
-import CreateMeal from "components/CreateMeal";
 import AddProductToMeal from "components/AddProductToMeal";
 
 const Product = () => {
@@ -50,7 +49,6 @@ const Product = () => {
                 />
                 {auth ? (
                   <div>
-                    <CreateMeal />
                     <AddProductToMeal
                       data={{ amountConsumption, idProduct, searchResult }}
                     />
