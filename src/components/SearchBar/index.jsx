@@ -11,20 +11,18 @@ const SearchBar = () => {
   const [searchList, setSearchList] = useState([]);
 
   const searchFetch = () => {
-    fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${searchTerme}&action=process&json=1&page_size=5`, {
-      method: "GET",
-    })
+    fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${searchTerme}&action=process&json=1&page_size=5`)
       .then((response) => response.json())
-      .then((data) => setSearchResult(data.products.map((element) => element.product_name_fr)));
+      .then((data) => {
+        console.log(data);
+        setSearchResult(data.products.map((element) => element));
+      });
   };
 
   const handleSearch = (e) => {
     setSearchTerme(e.target.value);
-  };
-
-  useEffect(() => {
     searchFetch();
-  }, [searchTerme]);
+  };
 
   useEffect(() => {
     setSearchList(searchResult);
@@ -42,13 +40,17 @@ const SearchBar = () => {
         <Col md={{ span: 4, offset: 4 }} className="searchList">
           <ListGroup>
             {searchList.map((element) => (
-              <ListGroup.Item>
-                {element}
-              </ListGroup.Item>
+              <Link to={{ pathname: `product/${element._id}` }}>
+                <ListGroup.Item>
+                  {element.product_name_fr}
+                </ListGroup.Item>
+              </Link>
             ))}
-            <ListGroup.Item>
-              <Link to={{ pathname: "/search", data: searchTerme }}>Plus de résultats</Link>
-            </ListGroup.Item>
+            <Link to={{ pathname: "/search", data: searchTerme }}>
+              <ListGroup.Item>
+                Plus de résultats
+              </ListGroup.Item>
+            </Link>
           </ListGroup>
         </Col>
         )}
