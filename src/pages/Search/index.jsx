@@ -47,17 +47,34 @@ const Search = () => {
       <Form>
         <Col md={{ span: 4, offset: 4 }}>
           <Form.Group controlId="searchTerme">
-            <Form.Control type="text" placeholder="Je recherche..." value={searchTerme} className="text-center" onChange={(e) => handleSearchTerme(e)} />
+            <Form.Control
+              type="text"
+              placeholder="Je recherche..."
+              value={searchTerme}
+              className="text-center"
+              onChange={(e) => handleSearchTerme(e)}
+            />
           </Form.Group>
         </Col>
         <Col md={{ span: 4, offset: 4 }}>
           <Form.Group controlId="searchBrand">
-            <Form.Control type="text" placeholder="Marque" className="text-center" onChange={(e) => handleSearchBrand(e)} />
+            <Form.Control
+              type="text"
+              placeholder="Marque"
+              className="text-center"
+              onChange={(e) => handleSearchBrand(e)}
+            />
           </Form.Group>
         </Col>
         <Col md={{ span: 4, offset: 4 }}>
           <Form.Group controlId="searchSugar">
-            <Form.Control type="number" step="0.1" placeholder="Sucres" className="text-center" onChange={(e) => handleSearchSugar(e)} />
+            <Form.Control
+              type="number"
+              step="0.1"
+              placeholder="Sucres"
+              className="text-center"
+              onChange={(e) => handleSearchSugar(e)}
+            />
           </Form.Group>
         </Col>
       </Form>
@@ -69,8 +86,8 @@ const Search = () => {
       >
         Remise à 0
       </Button>
-      <Row>
-        <div className="d-flex flex-wrap">
+      <Row className="container-card">
+        <div className="d-flex flex-wrap justify-content-around">
           {searchResult.map((element) => (
             <Link to={{ pathname: `product/${element._id}` }}>
               <SearchCard data={element} />
@@ -79,9 +96,11 @@ const Search = () => {
         </div>
       </Row>
       {searchResult.length === 0 && (
-      <div className="w-100">
-        <h4 className="text-center">Aucuns résultats. Essayez autre chose.</h4>
-      </div>
+        <div className="w-100">
+          <h4 className="text-center">
+            Aucun résultats. Essayez autre chose.
+          </h4>
+        </div>
       )}
     </div>
   );
