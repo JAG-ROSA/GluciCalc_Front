@@ -1,5 +1,5 @@
 @import "base/fonts", "base/colors", "base/animations";
-@import "components/buttons", "components/borders", "components/forms", "components/jumbotron";
+@import "components/buttons", "components/borders", "components/forms", "components/tab", "components/jumbotron";
 @import "helpers/variables";
 @import "layout/navbar", "layout/footer";
 @import "pages/dashboard", "pages/searchPage";
@@ -53,11 +53,12 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-.headingProfile {
-  display: flex;
-  border-bottom: 1px solid;
+
+.margin-container {
+  margin: 40px;
 }
 
-.searchList {
-  position: absolute;
+.title-semi-bold {
+  font-family: 'Chakra-Petch-SemiBold';
+  letter-spacing: 1.2px;
 }
