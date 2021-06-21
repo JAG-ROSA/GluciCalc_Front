@@ -29,7 +29,7 @@ export default class UserManager {
         registrationSuccess({
           id: response.data.id,
           firstName: response.data.first_name,
-        }),
+        }, response.headers.authorization),
       );
       Cookies.set(AUTH_TOKEN, response.headers.authorization, { expires: 7 });
       Cookies.set(USER_ID, response.data.id, { expires: 7 });
@@ -58,7 +58,7 @@ export default class UserManager {
         loginSuccess({
           id: response.data.id,
           firstName: response.data.first_name,
-        }),
+        }, response.headers.authorization),
       );
       Cookies.set(AUTH_TOKEN, response.headers.authorization, { expires: 7 });
       Cookies.set(USER_ID, response.data.id, { expires: 7 });

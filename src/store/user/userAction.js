@@ -21,9 +21,10 @@ export const registrationRequest = () => ({
   type: REGISTRATION_REQUEST,
 });
 
-export const registrationSuccess = (user) => ({
+export const registrationSuccess = (user, token) => ({
   type: REGISTRATION_SUCCESS,
   userProfile: user,
+  jtwToken: token,
 });
 
 export const registrationFailed = (error) => ({
@@ -35,9 +36,10 @@ export const loginRequest = () => ({
   type: LOGIN_REQUEST,
 });
 
-export const loginSuccess = (user) => ({
+export const loginSuccess = (user, token) => ({
   type: LOGIN_SUCCESS,
   userProfile: user,
+  jtwToken: token,
 });
 
 export const loginFailed = (error) => ({
