@@ -6,6 +6,7 @@ import MealSummary from "components/MealSummary";
 import MealsManager from "services/meals";
 import EmptyState from "assets/images/empty-state.jpg";
 import QuantitiesManager from "services/quantities";
+import Calendar from "components/Calendar";
 
 const DaySummary = () => {
   const [date, setDate] = useState(moment());
@@ -19,6 +20,8 @@ const DaySummary = () => {
       setMeals(data);
     });
   }, [deletedMeal, deletedMealQuantity, date]);
+
+  console.log(meals);
 
   const changeDay = (nbDay) => {
     const newDate = moment(date);
@@ -46,6 +49,7 @@ const DaySummary = () => {
   };
   return (
     <div className="DaySummary">
+      <Calendar data={meals} />
       <div className="headerDashboard">
         <div className="containerDashboard d-flex justify-content-between align-items-center">
           <div className="chevron">
