@@ -21,8 +21,6 @@ const DaySummary = () => {
     });
   }, [deletedMeal, deletedMealQuantity, date]);
 
-  console.log(meals);
-
   const changeDay = (nbDay) => {
     const newDate = moment(date);
     newDate.add(nbDay, "day");
