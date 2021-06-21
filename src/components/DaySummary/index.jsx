@@ -5,27 +5,44 @@ import "moment/locale/fr";
 import MealSummary from "components/MealSummary";
 import MealsManager from "services/meals";
 import EmptyState from "assets/images/empty-state.jpg";
+import QuantitiesManager from "services/quantities";
 
 const DaySummary = () => {
   const [date, setDate] = useState(moment());
   const [meals, setMeals] = useState([]);
   const [deletedMeal, setDeletedMeals] = useState("");
+  const [deletedMealQuantity, setDeletedMealQuantity] = useState("");
+  const [isInputHidden, setIsInputHidden] = useState(false);
+
+  useEffect(() => {
+    MealsManager.getMealsForDay(date.format("YYYY-MM-DD")).then((data) => {
+      setMeals(data);
+    });
+  }, [deletedMeal, deletedMealQuantity, date]);
+
+  const changeDay = (nbDay) => {
+    const newDate = moment(date);
+    newDate.add(nbDay, "day");
+    setDate(newDate);
+  };
 
   const deleteMeal = (event, id) => {
     event.preventDefault();
     MealsManager.destroyMeal(id).then(() => setDeletedMeals(id));
   };
 
-  useEffect(() => {
-    MealsManager.getMealsForDay(date.format("YYYY-MM-DD")).then((data) => {
-      setMeals(data);
-    });
-  }, [deletedMeal, date]);
+  const updateMeal = (mealIndex, quantityId, quantity) => {
+    const newMeals = [...meals];
+    const quantityIndex = newMeals[mealIndex].quantities.findIndex((q) => q.id === quantityId);
+    if (quantityIndex >= 0) {
+      newMeals[mealIndex].quantities[quantityIndex].quantity = quantity.quantity;
+    }
+    setMeals(newMeals);
+  };
 
-  const changeDay = (nbDay) => {
-    const newDate = moment(date);
-    newDate.add(nbDay, "day");
-    setDate(newDate);
+  const deleteMealQuantity = (event, id) => {
+    event.preventDefault();
+    QuantitiesManager.deleteProductQuantityInMeal(id).then(() => setDeletedMealQuantity(id));
   };
   return (
     <div className="DaySummary">
@@ -44,9 +61,16 @@ const DaySummary = () => {
       </div>
       <div className="containerDashboard">
         {meals.length !== 0 ? (
-          meals.map((meal) => (
+          meals.map((meal, index) => (
             <div key={meal.id}>
-              <MealSummary meal={meal} onDelete={deleteMeal} />
+              <MealSummary
+                meal={meal}
+                onDeleteMeal={deleteMeal}
+                onDeleteQuantity={deleteMealQuantity}
+                isHidden={isInputHidden}
+                setIsHidden={setIsInputHidden}
+                updateMeal={(quantityId, quantity) => updateMeal(index, quantityId, quantity)}
+              />
             </div>
           ))
         ) : (
