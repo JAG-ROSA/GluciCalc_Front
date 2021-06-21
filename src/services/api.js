@@ -1,16 +1,19 @@
 import axios from "axios";
-import Cookies from "js-cookie";
-import { BASE_URL, AUTH_TOKEN } from "config";
+import { BASE_URL } from "config";
+import store from "store/store";
 
 const API = axios.create({ baseURL: BASE_URL });
 
-API.interceptors.request.use(({ headers, ...config }) => ({
-  ...config,
-  headers: {
-    ...headers,
-    "Content-Type": "application/json",
-    Authorization: `${headers.Authorization || Cookies.get(AUTH_TOKEN)}`,
-  },
-}));
+API.interceptors.request.use(async ({ headers, ...config }) => {
+  const state = await store.getState();
+  return {
+    ...config,
+    headers: {
+      ...headers,
+      "Content-Type": "application/json",
+      Authorization: `${headers.Authorization ?? state.jwtToken}`,
+    },
+  };
+});
 
 export default API;
