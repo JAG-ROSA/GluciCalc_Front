@@ -21,19 +21,25 @@ const AddProductToMeal = ({ data }) => {
     });
   }, [idProduct, newMeal]);
 
-  const handleAddProduct = (e) => {
-    e.preventDefault();
-    MealsManager.getProductId(idProduct, searchResult.product_name_fr)
-      .then((response) => MealsManager.addProductToMeal(
+  const handleAddProduct = async (e) => {
+    try {
+      e.preventDefault();
+      const response = await MealsManager.getProductId(
+        idProduct,
+        searchResult.product_name_fr,
+      );
+      await MealsManager.addProductToMeal(
         amountConsumption,
-        searchResult.nutriments.carbohydrates_100g, e.target.mealSelect.value, response.id,
-      ).then(() => {
-        UiManager.openNotification(
-          "success",
-          "Produit ajouté au repas 😉",
-        );
-        history.push("/dashboard");
-      }));
+        searchResult.nutriments.carbohydrates_100g,
+        e.target.mealSelect.value,
+        response.id,
+      );
+
+      UiManager.openNotification("success", "Produit ajouté au repas 😉");
+      history.push("/dashboard");
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleNewMeal = (value) => {
@@ -44,27 +50,27 @@ const AddProductToMeal = ({ data }) => {
     <div>
       <CreateMeal newMeal={handleNewMeal} />
       <Card.Body>
-        <Card.Title>
-          Selectionner le repas
-        </Card.Title>
+        <Card.Title>Selectionner le repas</Card.Title>
         <Form onSubmit={handleAddProduct}>
           {mealList.length > 0 ? (
             <Form.Group controlId="mealSelect">
               <Form.Control as="select">
                 {mealList.map((element) => (
-                  <option key={element.id} value={element.id}>{element.name}</option>
+                  <option key={element.id} value={element.id}>
+                    {element.name}
+                  </option>
                 ))}
               </Form.Control>
               <Button variant="primary" type="submit">
                 Ajouter au repas
               </Button>
             </Form.Group>
-          )
-            : (
-              <Card.Text>
-                Il n&apos;y a pas encore de repas disponible, merci d&apos;en créer un.
-              </Card.Text>
-            )}
+          ) : (
+            <Card.Text>
+              Il n&apos;y a pas encore de repas disponible, merci d&apos;en
+              créer un.
+            </Card.Text>
+          )}
         </Form>
       </Card.Body>
     </div>
