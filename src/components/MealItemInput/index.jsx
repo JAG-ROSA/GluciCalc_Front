@@ -2,7 +2,7 @@ import React from "react";
 import Button from "components/Button";
 import { Form, Col, Row } from "react-bootstrap";
 
-const MealItem = ({ meal, onDelete, onSave }) => (
+const MealItemInput = ({ meal, onDelete, onSave }) => (
   <div className="detailsMeal">
     {meal.quantities.map((quantity) => {
       const food = quantity.product ?? quantity.recipe;
@@ -27,4 +27,4 @@ const MealItem = ({ meal, onDelete, onSave }) => (
   </div>
 );
 
-export default MealItem;
+export default MealItemInput;
