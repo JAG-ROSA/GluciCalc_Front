@@ -5,7 +5,7 @@ const Button = ({
   type, content, styles, onAction,
 }) => (
   // eslint-disable-next-line react/button-has-type
-  <button type={type} className={styles} onClick={onAction}>
+  <button type={type} className={`my-btn ${styles}`} onClick={onAction}>
     <span>{content}</span>
   </button>
 );
