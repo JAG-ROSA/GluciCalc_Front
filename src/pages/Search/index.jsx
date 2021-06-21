@@ -10,13 +10,19 @@ const Search = () => {
   const { data } = useLocation();
   const [searchTerme, setSearchTerme] = useState(data) || "";
   const [searchBrand, setSearchBrand] = useState("");
-  const [searchSugar, setSearchSugar] = useState(500000);
+  const [searchSugar, setSearchSugar] = useState(100);
   const [searchResult, setSearchResult] = useState([]);
 
   const searchFetch = () => {
-    fetch(`https://fr.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${searchTerme}&tagtype_0=brands&tag_contains_0=contains&tag_0=${searchBrand}&nutriment_0=sugars&nutriment_compare_0=lte&nutriment_value_0=${searchSugar}&json=1`)
-      .then((response) => response.json())
-      .then((response) => setSearchResult(response.products));
+    if (searchBrand.length === 0) {
+      fetch(`https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${searchTerme}&json=1&page_size=24`)
+        .then((response) => response.json())
+        .then((response) => setSearchResult(response.products));
+    } else {
+      fetch(`https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${searchTerme}&tagtype_0=brands&tag_contains_0=contains&tag_0=${searchBrand}&nutriment_0=sugars&nutriment_compare_0=lte&nutriment_value_0=${searchSugar}&json=1&page_size=24`)
+        .then((response) => response.json())
+        .then((response) => setSearchResult(response.products));
+    }
   };
 
   const handleSearchTerme = (e) => {
@@ -89,7 +95,7 @@ const Search = () => {
       <Row className="container-card">
         <div className="d-flex flex-wrap justify-content-around">
           {searchResult.map((element) => (
-            <Link to={{ pathname: `product/${element._id}` }}>
+            <Link to={{ pathname: `product/${element._id}` }} key={element._id}>
               <SearchCard data={element} />
             </Link>
           ))}

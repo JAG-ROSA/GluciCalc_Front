@@ -10,8 +10,8 @@ const SearchBar = () => {
   const [searchResult, setSearchResult] = useState([]);
   const [searchList, setSearchList] = useState([]);
 
-  const searchFetch = () => {
-    fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${searchTerme}&action=process&json=1&page_size=5`)
+  const searchFetch = (value) => {
+    fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${value}&action=process&json=1&page_size=5`)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -21,7 +21,7 @@ const SearchBar = () => {
 
   const handleSearch = (e) => {
     setSearchTerme(e.target.value);
-    searchFetch();
+    searchFetch(e.target.value);
   };
 
   useEffect(() => {
@@ -40,14 +40,14 @@ const SearchBar = () => {
         <Col md={{ span: 4, offset: 4 }} className="searchList">
           <ListGroup>
             {searchList.map((element) => (
-              <Link to={{ pathname: `product/${element._id}` }}>
-                <ListGroup.Item>
+              <Link to={{ pathname: `product/${element._id}` }} key={element._id}>
+                <ListGroup.Item key={element._id}>
                   {element.product_name_fr}
                 </ListGroup.Item>
               </Link>
             ))}
             <Link to={{ pathname: "/search", data: searchTerme }}>
-              <ListGroup.Item>
+              <ListGroup.Item key="no found">
                 Plus de résultats
               </ListGroup.Item>
             </Link>

@@ -18,34 +18,32 @@ const SearchCard = ({ data }) => (
             <SearchCardNova data={data} />
           </Col>
           <Col>
-            <Card.Text>
+            <p>
+              <span>Marque :</span>
+              {" "}
+              {data.brands}
+            </p>
+            <p>
+              <span>Quantité :</span>
+              {" "}
+              {data.quantity}
+            </p>
+            {data.nutriments !== undefined && (
               <p>
-                <span>Marque :</span>
+                <span>Glucides (%) :</span>
                 {" "}
-                {data.brands}
+                {data.nutriments.carbohydrates_100g}
+                &nbsp; g
               </p>
+            )}
+            {data.nutriments !== undefined && (
               <p>
-                <span>Quantité :</span>
+                <span>Dont sucres :</span>
                 {" "}
-                {data.quantity}
+                {data.nutriments.sugars}
+                &nbsp; g
               </p>
-              {data.nutriments !== undefined && (
-                <p>
-                  <span>Glucides (%) :</span>
-                  {" "}
-                  {data.nutriments.carbohydrates_100g}
-                  &nbsp; g
-                </p>
-              )}
-              {data.nutriments !== undefined && (
-                <p>
-                  <span>Dont sucres :</span>
-                  {" "}
-                  {data.nutriments.sugars}
-                  &nbsp; g
-                </p>
-              )}
-            </Card.Text>
+            )}
           </Col>
         </Row>
       </Card.Body>
