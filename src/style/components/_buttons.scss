@@ -9,6 +9,8 @@
   font-size: 17px;
   letter-spacing: 1px;
   border: none;
+  color: $black-color;
+  text-decoration: none;
   
   & span {
     position: absolute;
@@ -22,6 +24,7 @@
 
   &:hover{
     z-index: 1;
+    color: $black-color;
     border: 1px solid $black-color;
     & span {
       animation: bounce 2s infinite linear;

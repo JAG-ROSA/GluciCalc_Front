@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Form } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
+import { useHistory, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { UiManager, UserManager } from "services";
 import Button from "components/Button";
@@ -11,11 +11,13 @@ const Register = () => {
   const history = useHistory();
   const isRegisterSuccess = useSelector((registerStore) => registerStore.isLogged);
   const isRegisterFailed = useSelector((registerStore) => !!registerStore.registrationError);
+  const location = useLocation();
 
   useEffect(() => {
     if (isRegisterSuccess) {
       UiManager.openNotification("success", "Bienvenue 🙂");
-      history.push("/dashboard");
+      const redirect = location.state?.redirectUrl ?? "/dashboard";
+      history.push(redirect);
     } else if (isRegisterFailed) {
       UiManager.openNotification(
         "error",

@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import {
   Container, Row, Col, Card,
 } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import SearchCard from "components/SearchCard";
 import Nutriments from "components/Nutriments";
@@ -53,12 +53,19 @@ const Product = () => {
                       data={{ amountConsumption, idProduct, searchResult }}
                     />
                   </div>
-                )
-                  : (
-                    <Card.Text>
-                      Vous devez vous connecter pour ajouter ce produit à votre repas
-                    </Card.Text>
-                  )}
+                ) : (
+                  <div className="d-flex justify-content-center p-4">
+                    <Link
+                      to={{
+                        pathname: "/login",
+                        state: { redirectUrl: window.location.pathname },
+                      }}
+                      className="my-btn my-btn-primary px-4"
+                    >
+                      Ajouter au repas
+                    </Link>
+                  </div>
+                )}
               </Card>
             </Container>
           </Col>
