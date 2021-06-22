@@ -1,9 +1,13 @@
 @import "base/fonts", "base/colors", "base/animations";
-@import "components/buttons", "components/borders", "components/forms", "components/tab", "components/jumbotron";
 @import "helpers/variables";
-@import "layout/navbar", "layout/footer";
+@import "layout/navbar","layout/footer";
 @import "pages/dashboard", "pages/searchPage";
-
+@import "components/buttons",
+        "components/borders",
+        "components/calendar",
+        "components/forms",
+        "components/tab",
+        "components/jumbotron";
 
 * {
   box-sizing: border-box;
