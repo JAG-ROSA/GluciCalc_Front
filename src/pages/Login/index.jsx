@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { Form } from "react-bootstrap";
 import { UserManager, UiManager } from "services";
 import { resetErrors } from "store";
@@ -11,11 +11,27 @@ const Login = () => {
   const isLoginSuccess = useSelector((loginstore) => loginstore.isLogged);
   const history = useHistory();
   const isLoginFailed = useSelector((loginstore) => !!loginstore.loginError);
+  const location = useLocation();
+
+  const getQueryVariable = (variable) => {
+    const query = window.location.search.substring(1);
+    const vars = query.split("&");
+    for (let i = 0; i < vars.length; i += 1) {
+      const pair = vars[i].split("=");
+      if (decodeURIComponent(pair[0]) === variable) {
+        return decodeURIComponent(pair[1]);
+      }
+    }
+    console.log("Query variable %s not found", variable);
+    return null;
+  };
+
+  const getRedirectUrl = () => getQueryVariable("redirectUrl") ?? location.state?.redirectUrl ?? "/my-meals";
 
   useEffect(() => {
     if (isLoginSuccess) {
       UiManager.openNotification("success", "Connexion réussie ! 😉");
-      history.push("/my-meals");
+      history.push(getRedirectUrl());
     } else if (isLoginFailed) {
       UiManager.openNotification(
         "error",
@@ -50,12 +66,26 @@ const Login = () => {
             <Form.Control type="password" placeholder="Mot de passe" />
           </Form.Group>
 
-          <Button type="submit" content="Se connecter" styles="my-btn-primary my-2" />
+          <Button
+            type="submit"
+            content="Se connecter"
+            styles="my-btn-primary my-2"
+          />
         </Form>
 
-        <Link to="/password/forgot" className="link-primary">Mot de passe oublié ?</Link>
+        <Link to="/password/forgot" className="link-primary">
+          Mot de passe oublié ?
+        </Link>
         <br />
-        <Link to="/register" className="link-primary">S&apos;inscrire</Link>
+        <Link
+          to={{
+            pathname: "/register",
+            state: { redirectUrl: getRedirectUrl() },
+          }}
+          className="link-primary"
+        >
+          S&apos;inscrire
+        </Link>
       </div>
     </div>
   );
