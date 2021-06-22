@@ -2,7 +2,7 @@
 @import "components/buttons", "components/borders", "components/forms", "components/tab", "components/jumbotron";
 @import "helpers/variables";
 @import "layout/navbar", "layout/footer";
-@import "pages/dashboard", "pages/searchPage";
+@import "pages/dashboard", "pages/searchPage", "pages/product";
 
 
 * {
@@ -40,19 +40,6 @@ h1, h2, h3, h4, h5, h6 {
 .searchList {
   position: absolute;
 }
-
-.searchCard {
-  & .productImage {
-    width: 50px;
-  }
-  & .nutriscoreImage {
-    width: 75px;
-  }
-  & .novagroupImage {
-    width: 25px;
-  }
-}
-
 
 .margin-container {
   margin: 40px;
