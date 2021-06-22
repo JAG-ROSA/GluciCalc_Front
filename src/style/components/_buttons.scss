@@ -2,13 +2,15 @@
 @include anim-bounce;
 
 
-button {
+.my-btn {
   cursor: pointer;
   position: relative;
-  padding: 1.8em 5em 1.8em;
-  font-size: 20px;
+  padding: 1.4em 4.4em 1.4em;
+  font-size: 17px;
   letter-spacing: 1px;
   border: none;
+  color: $black-color;
+  text-decoration: none;
   
   & span {
     position: absolute;
@@ -22,6 +24,7 @@ button {
 
   &:hover{
     z-index: 1;
+    color: $black-color;
     border: 1px solid $black-color;
     & span {
       animation: bounce 2s infinite linear;

@@ -1,0 +1,33 @@
+.fc-daygrid-day-number {
+  color: $quaternary-color;
+  &:hover {
+    color: $quaternary-color;
+  }
+}
+
+.fc-col-header-cell-cushion {
+  color: $black-color;
+  cursor: default;
+  &:hover {
+    color: $black-color;
+  }
+}
+
+.fc-button-primary:focus {
+  background-color: $quaternary-color;
+}
+
+
+.fc-event-title-container {
+  color: $black-color;
+}
+
+
+
+:root {
+  --fc-button-border-color: #fff;
+  --fc-button-bg-color: none;
+  --fc-button-text-color: #C6611D;
+  --fc-button-hover-border-color: #C6611D;
+  --fc-button-hover-bg-color: #fff;
+}

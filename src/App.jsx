@@ -12,6 +12,9 @@ import Login from "pages/Login";
 import Dashboard from "pages/Dashboard";
 import Profile from "pages/Profile";
 import Search from "pages/Search";
+import Product from "pages/Product";
+import ForgotPassword from "pages/ForgotPassword";
+import ResetPassword from "pages/ResetPassword";
 
 const App = () => (
   <Router>
@@ -30,12 +33,19 @@ const App = () => (
         <Route path="/login">
           <Login />
         </Route>
-        <PrivateRoute path="/profile" component={Profile} />
-        <Route path="/dashboard">
-          <Dashboard />
+        <Route path="/password/forgot">
+          <ForgotPassword />
         </Route>
+        <Route path="/password/reset/:token">
+          <ResetPassword />
+        </Route>
+        <PrivateRoute path="/dashboard" component={Profile} />
+        <PrivateRoute path="/my-meals" component={Dashboard} />
         <Route path="/search">
           <Search />
+        </Route>
+        <Route path="/product/:idProduct">
+          <Product />
         </Route>
       </Switch>
     </main>

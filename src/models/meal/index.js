@@ -17,7 +17,7 @@ class Meal {
 
   get totalCarbs() {
     return this.quantities.reduce(
-      (acc, quantity) => acc + quantity.carbs_per_100g * quantity.quantity,
+      (acc, quantity) => acc + (quantity.carbs_per_100g * quantity.quantity) / 100,
       0,
     );
   }
