@@ -1,8 +1,13 @@
 @import "base/fonts", "base/colors", "base/animations";
-@import "components/buttons", "components/borders", "components/forms", "components/jumbotron";
 @import "helpers/variables";
-@import "layout/navbar", "layout/footer";
-
+@import "layout/navbar","layout/footer";
+@import "pages/dashboard", "pages/searchPage", "pages/product";
+@import "components/buttons",
+        "components/borders",
+        "components/calendar",
+        "components/forms",
+        "components/tab",
+        "components/jumbotron";
 
 * {
   box-sizing: border-box;
@@ -36,27 +41,16 @@ h1, h2, h3, h4, h5, h6 {
   padding-top: 150px;
 }
 
-.searchList {
+.search-list {
   position: absolute;
+  z-index: 1000;
 }
 
-.searchCard {
-  & .productImage {
-    width: 50px;
-  }
-  & .nutriscoreImage {
-    width: 75px;
-  }
-  & .novagroupImage {
-    width: 25px;
-  }
+.margin-container {
+  margin: 40px;
 }
 
-.headingProfile {
-  display: flex;
-  border-bottom: 1px solid;
-}
-
-.searchList {
-  position: absolute;
+.title-semi-bold {
+  font-family: 'Chakra-Petch-SemiBold';
+  letter-spacing: 1.2px;
 }

@@ -10,50 +10,49 @@ const SearchBar = () => {
   const [searchResult, setSearchResult] = useState([]);
   const [searchList, setSearchList] = useState([]);
 
-  const searchFetch = () => {
-    fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${searchTerme}&action=process&json=1&page_size=5`, {
-      method: "GET",
-    })
+  const searchFetch = (value) => {
+    fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${value}&action=process&json=1&page_size=5`)
       .then((response) => response.json())
-      .then((data) => setSearchResult(data.products.map((element) => element.product_name_fr)));
+      .then((data) => {
+        setSearchResult(data.products.map((element) => element));
+      });
   };
 
   const handleSearch = (e) => {
     setSearchTerme(e.target.value);
+    searchFetch(e.target.value);
   };
-
-  useEffect(() => {
-    searchFetch();
-  }, [searchTerme]);
 
   useEffect(() => {
     setSearchList(searchResult);
   }, [searchResult]);
 
   return (
-    <div>
-      <Form>
-        <Col md={{ span: 4, offset: 4 }}>
-          <Form.Group controlId="searchTerme">
-            <Form.Control type="text" placeholder="Je recherche..." className="text-center" onChange={(e) => handleSearch(e)} />
-          </Form.Group>
-        </Col>
-        { searchTerme.length !== 0 && (
-        <Col md={{ span: 4, offset: 4 }} className="searchList">
-          <ListGroup>
-            {searchList.map((element) => (
-              <ListGroup.Item>
-                {element}
+    <Form>
+      <Col>
+        <Form.Group controlId="searchTerme">
+          <Form.Control type="text" placeholder="Je recherche..." className="text-center" onChange={(e) => handleSearch(e)} />
+        </Form.Group>
+      </Col>
+      { searchTerme.length !== 0 && (
+      <Col className="search-list col-lg-3">
+        <ListGroup>
+          {searchList.map((element) => (
+            <Link to={{ pathname: `/product/${element._id}` }} key={element._id} onClick={() => setSearchTerme("")}>
+              <ListGroup.Item key={element._id}>
+                {element.product_name_fr}
               </ListGroup.Item>
-            ))}
-            <ListGroup.Item>
-              <Link to={{ pathname: "/search", data: searchTerme }}>Plus de résultats</Link>
+            </Link>
+          ))}
+          <Link to={{ pathname: "/search", data: searchTerme }} onClick={() => setSearchTerme("")}>
+            <ListGroup.Item key="no found">
+              Plus de résultats
             </ListGroup.Item>
-          </ListGroup>
-        </Col>
-        )}
-      </Form>
-    </div>
+          </Link>
+        </ListGroup>
+      </Col>
+      )}
+    </Form>
   );
 };
 

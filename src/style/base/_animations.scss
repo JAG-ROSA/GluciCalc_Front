@@ -15,3 +15,17 @@
   animation: slideRight 1s ease .1s forwards;
   opacity: 0;
 }
+
+@include keyframes(slideBottom, translateY, 800px, 0);
+
+.slide-bottom {
+  animation: slideBottom 1s ease .1s forwards;
+  opacity: 0;
+}
+
+@include keyframes(slideTop, translateY, -800px, 0);
+
+.slide-top {
+  animation: slideTop 1s ease .1s forwards;
+  opacity: 0;
+}

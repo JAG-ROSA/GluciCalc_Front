@@ -22,6 +22,7 @@ import {
 const INITIAL_STATE = {
   loading: false,
   isLogged: !!Cookies.get(AUTH_TOKEN),
+  jwtToken: Cookies.get(AUTH_TOKEN),
   isUpdateSucceed: false,
   userProfile: {
     id: Cookies.get(USER_ID), firstName: "",
@@ -53,6 +54,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: false,
         isLogged: false,
+        jwtToken: "",
         registrationError: action.error,
       };
     case LOGIN_FAILED:
@@ -60,6 +62,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: false,
         isLogged: false,
+        jwtToken: "",
         loginError: action.error,
       };
     case REGISTRATION_SUCCESS:
@@ -68,6 +71,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         loading: false,
         isLogged: true,
+        jwtToken: action.jtwToken,
         userProfile: action.userProfile,
       };
     case UPDATE_USER_SUCCESS:
@@ -89,13 +93,13 @@ const userReducer = (state = INITIAL_STATE, action) => {
       return {
         loading: false,
         isLogged: false,
+        jwtToken: "",
         userProfile: {},
       };
     case LOGOUT_FAILED:
       return {
         ...state,
         loading: false,
-        isLogged: true,
         logoutError: action.error,
       };
     case GET_USER_FAILED:

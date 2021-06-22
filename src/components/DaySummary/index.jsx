@@ -1,20 +1,26 @@
 import React, { useEffect, useState } from "react";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import moment from "moment";
 import "moment/locale/fr";
+import { useLocation } from "react-router-dom";
 import MealSummary from "components/MealSummary";
-import { Button } from "react-bootstrap";
 import MealsManager from "services/meals";
+import EmptyState from "assets/images/empty-state.jpg";
+import QuantitiesManager from "services/quantities";
 
 const DaySummary = () => {
-  const [date, setDate] = useState(moment());
+  const location = useLocation();
+  const [date, setDate] = useState(moment(location.calendarDate));
   const [meals, setMeals] = useState([]);
+  const [deletedMeal, setDeletedMeals] = useState("");
+  const [deletedMealQuantity, setDeletedMealQuantity] = useState("");
+  const [isInputHidden, setIsInputHidden] = useState(false);
 
   useEffect(() => {
     MealsManager.getMealsForDay(date.format("YYYY-MM-DD")).then((data) => {
-      console.log(data);
       setMeals(data);
     });
-  }, [date]);
+  }, [deletedMeal, deletedMealQuantity, date]);
 
   const changeDay = (nbDay) => {
     const newDate = moment(date);
@@ -22,20 +28,60 @@ const DaySummary = () => {
     setDate(newDate);
   };
 
+  const deleteMeal = (event, id) => {
+    event.preventDefault();
+    MealsManager.destroyMeal(id).then(() => setDeletedMeals(id));
+  };
+
+  const updateMeal = (mealIndex, quantityId, quantity) => {
+    const newMeals = [...meals];
+    const quantityIndex = newMeals[mealIndex].quantities.findIndex((q) => q.id === quantityId);
+    if (quantityIndex >= 0) {
+      newMeals[mealIndex].quantities[quantityIndex].quantity = quantity.quantity;
+    }
+    setMeals(newMeals);
+  };
+
+  const deleteMealQuantity = (event, id) => {
+    event.preventDefault();
+    QuantitiesManager.deleteProductQuantityInMeal(id).then(() => setDeletedMealQuantity(id));
+  };
   return (
     <div className="DaySummary">
-      <Button variant="info" onClick={() => changeDay(-1)}>
-        Prec
-      </Button>
-      <h1>{date.locale("fr").format("dddd Do MMMM")}</h1>
-      <Button variant="info" onClick={() => changeDay(1)}>
-        Suiv
-      </Button>
-      {meals.map((meal) => (
-        <div key={meal.id}>
-          <MealSummary meal={meal} />
+      <div className="headerDashboard">
+        <div className="containerDashboard d-flex justify-content-between align-items-center">
+          <div className="chevron">
+            <FaChevronLeft onClick={() => changeDay(-1)} />
+          </div>
+          <div className="displayDate">
+            <h2>{date.locale("fr").format("dddd Do MMMM")}</h2>
+          </div>
+          <div className="chevron">
+            <FaChevronRight onClick={() => changeDay(+1)} />
+          </div>
         </div>
-      ))}
+      </div>
+      <div className="containerDashboard">
+        {meals.length !== 0 ? (
+          meals.map((meal, index) => (
+            <div key={meal.id}>
+              <MealSummary
+                meal={meal}
+                onDeleteMeal={deleteMeal}
+                onDeleteQuantity={deleteMealQuantity}
+                isHidden={isInputHidden}
+                setIsHidden={setIsInputHidden}
+                updateMeal={(quantityId, quantity) => updateMeal(index, quantityId, quantity)}
+              />
+            </div>
+          ))
+        ) : (
+          <div className="emptyState">
+            <img src={EmptyState} alt="empty-state-img" />
+            <p>Recherche un aliment pour commencer ta journée...</p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
