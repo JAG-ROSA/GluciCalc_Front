@@ -15,7 +15,7 @@ const Register = () => {
   useEffect(() => {
     if (isRegisterSuccess) {
       UiManager.openNotification("success", "Bienvenue 🙂");
-      history.push("/dashboard");
+      history.push("/my-meals");
     } else if (isRegisterFailed) {
       UiManager.openNotification(
         "error",
