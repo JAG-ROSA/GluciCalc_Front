@@ -26,7 +26,7 @@ const Login = () => {
     return null;
   };
 
-  const getRedirectUrl = () => getQueryVariable("redirectUrl") ?? location.state?.redirectUrl ?? "/dashboard";
+  const getRedirectUrl = () => getQueryVariable("redirectUrl") ?? location.state?.redirectUrl ?? "/my-meals";
 
   useEffect(() => {
     if (isLoginSuccess) {

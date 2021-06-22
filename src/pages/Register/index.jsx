@@ -16,7 +16,7 @@ const Register = () => {
   useEffect(() => {
     if (isRegisterSuccess) {
       UiManager.openNotification("success", "Bienvenue 🙂");
-      const redirect = location.state?.redirectUrl ?? "/dashboard";
+      const redirect = location.state?.redirectUrl ?? "/my-meals";
       history.push(redirect);
     } else if (isRegisterFailed) {
       UiManager.openNotification(
