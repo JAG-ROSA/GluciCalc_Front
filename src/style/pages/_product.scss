@@ -1,0 +1,15 @@
+
+.product-image {
+  width: 75%;
+  margin: auto;
+  display: block;
+}
+.product-nutriscore {
+  & .nutriscoreImage {
+    width: 200px;
+  }
+  & .novagroupImage {
+    width: 100px;
+  }
+}
+

@@ -1,19 +1,20 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from "react";
 import {
-  Container, Row, Col, Card,
+  Col, Card, Row,
 } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import SearchCard from "components/SearchCard";
 import Nutriments from "components/Nutriments";
 import CarbohydratesCalculus from "components/CarbohydratesCalculus";
 import AddProductToMeal from "components/AddProductToMeal";
+import ProductImage from "components/Product/ProductImage";
+import ProductInfoDisplay from "components/Product/ProductInfoDisplay";
 
 const Product = () => {
   const { idProduct } = useParams();
   const [amountConsumption, setAmountConsumption] = useState(null);
-  const [searchResult, setSearchResult] = useState([]);
+  const [productResult, setProductResult] = useState([]);
   const [isFetched, setIsFetched] = useState(false);
   const auth = useSelector((store) => store.isLogged);
 
@@ -21,50 +22,61 @@ const Product = () => {
     fetch(`https://world.openfoodfacts.org/api/v0/product/${idProduct}.json`)
       .then((response) => response.json())
       .then((response) => {
-        setSearchResult(response.product);
+        setProductResult(response.product);
         setIsFetched("true");
       });
   }, [idProduct]);
 
+  console.log(productResult);
   const handleAmountQuantity = (value) => {
     setAmountConsumption(value);
   };
 
   return (
-    <Container className="d-flex flex-wrap">
+    <div className="margin-container">
       {isFetched && (
-        <Row>
-          <Col>
-            <SearchCard data={searchResult} />
-          </Col>
-          <Col>
-            <Nutriments data={searchResult.nutriments} />
-          </Col>
-          <Col>
-            <Container className="py-2 mr-5">
-              <Card style={{ width: "18rem" }}>
-                <CarbohydratesCalculus
-                  data={searchResult.nutriments.carbohydrates_100g}
-                  amountQuantity={handleAmountQuantity}
+        <Card className="border-shadow p-5 mt-5 mx-3">
+          <Row className="mx-0">
+            <Col xs sm="2" md="4" className="d-flex justify-content-center">
+              <ProductImage data={productResult} />
+            </Col>
+            <Col xs sm="10" md="8">
+              <h2 className="my-text-primary pb-3">{(productResult.product_name_fr) ?? "Produit sans nom"}</h2>
+              <Row className="product-nutriscore">
+                <Col>
+                  <h3 className="my-text-primary pb-3">Composition produit</h3>
+                  <ProductInfoDisplay data={productResult} />
+                </Col>
+                <Col>
+                  <h3 className="my-text-primary pb-3">Repère nutritionnels pour 100g</h3>
+                  <Nutriments data={productResult.nutriments} />
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+          <Row className="border-shadow p-5 mt-5">
+            <Col>
+              <CarbohydratesCalculus
+                data={productResult.nutriments.carbohydrates_100g}
+                amountQuantity={handleAmountQuantity}
+              />
+            </Col>
+            {auth ? (
+              <Col>
+                <AddProductToMeal
+                  data={{ amountConsumption, idProduct, productResult }}
                 />
-                {auth ? (
-                  <div>
-                    <AddProductToMeal
-                      data={{ amountConsumption, idProduct, searchResult }}
-                    />
-                  </div>
-                )
-                  : (
-                    <Card.Text>
-                      Vous devez vous connecter pour ajouter ce produit à votre repas
-                    </Card.Text>
-                  )}
-              </Card>
-            </Container>
-          </Col>
-        </Row>
+              </Col>
+            )
+              : (
+                <Card.Text>
+                  Vous devez vous connecter pour ajouter ce produit à votre repas
+                </Card.Text>
+              )}
+          </Row>
+        </Card>
       )}
-    </Container>
+    </div>
   );
 };
 
