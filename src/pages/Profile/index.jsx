@@ -12,7 +12,7 @@ const Profile = () => {
   const isUpdateSucceed = useSelector((store) => store.isUpdateSucceed);
   const [currentTable, setCurrentTable] = useState(1);
   const tabLinkActive = "tab-link-active";
-  const [mealCalendar, setMealCalendar] = useState("");
+  const [mealsCalendar, setMealsCalendar] = useState("");
 
   const updateUserProfile = (event) => {
     event.preventDefault();
@@ -36,10 +36,8 @@ const Profile = () => {
         "Hum... il y a une petite erreur! Veuillez ré-essayer 🤔",
       );
     }
-    MealsManager.showMeals().then((response) => setMealCalendar(response));
+    MealsManager.showMeals().then((response) => setMealsCalendar(response));
   }, [isUpdateSucceed, isUpdateUserProfile, isUpdateUserFailed]);
-
-  console.log(mealCalendar);
 
   return (
     <div className="margin-container">
@@ -54,7 +52,7 @@ const Profile = () => {
         <div className="col tab-content mt-4" id="tabContent">
           <div className="tab-pane active" id="1">{currentTable === 1 && <ProfileInput userDetails={userProfile} onUpdate={updateUserProfile} />}</div>
           <div className="tab-pane active" id="2">{currentTable === 2 && <div>Afficher les statistiques</div>}</div>
-          <div className="tab-pane active" id="3">{currentTable === 3 && <div><Calendar data={mealCalendar} /></div>}</div>
+          <div className="tab-pane active" id="3">{currentTable === 3 && <div><Calendar mealsCalendar={mealsCalendar} /></div>}</div>
           <div className="tab-pane active" id="4">{currentTable === 4 && <div>Afficher les recettes</div>}</div>
         </div>
       </div>
