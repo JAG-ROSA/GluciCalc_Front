@@ -28,33 +28,31 @@ const SearchBar = () => {
   }, [searchResult]);
 
   return (
-    <div>
-      <Form>
-        <Col md={{ span: 4, offset: 4 }}>
-          <Form.Group controlId="searchTerme">
-            <Form.Control type="text" placeholder="Je recherche..." className="text-center" onChange={(e) => handleSearch(e)} />
-          </Form.Group>
-        </Col>
-        { searchTerme.length !== 0 && (
-        <Col md={{ span: 4, offset: 4 }} className="searchList">
-          <ListGroup>
-            {searchList.map((element) => (
-              <Link to={{ pathname: `product/${element._id}` }} key={element._id}>
-                <ListGroup.Item key={element._id}>
-                  {element.product_name_fr}
-                </ListGroup.Item>
-              </Link>
-            ))}
-            <Link to={{ pathname: "/search", data: searchTerme }}>
-              <ListGroup.Item key="no found">
-                Plus de résultats
+    <Form>
+      <Col>
+        <Form.Group controlId="searchTerme">
+          <Form.Control type="text" placeholder="Je recherche..." className="text-center" onChange={(e) => handleSearch(e)} />
+        </Form.Group>
+      </Col>
+      { searchTerme.length !== 0 && (
+      <Col className="search-list col-lg-3">
+        <ListGroup>
+          {searchList.map((element) => (
+            <Link to={{ pathname: `/product/${element._id}` }} key={element._id} onClick={() => setSearchTerme("")}>
+              <ListGroup.Item key={element._id}>
+                {element.product_name_fr}
               </ListGroup.Item>
             </Link>
-          </ListGroup>
-        </Col>
-        )}
-      </Form>
-    </div>
+          ))}
+          <Link to={{ pathname: "/search", data: searchTerme }} onClick={() => setSearchTerme("")}>
+            <ListGroup.Item key="no found">
+              Plus de résultats
+            </ListGroup.Item>
+          </Link>
+        </ListGroup>
+      </Col>
+      )}
+    </Form>
   );
 };
 

@@ -39,8 +39,8 @@ const App = () => (
         <Route path="/password/reset/:token">
           <ResetPassword />
         </Route>
-        <PrivateRoute path="/profile" component={Profile} />
-        <PrivateRoute path="/dashboard" component={Dashboard} />
+        <PrivateRoute path="/dashboard" component={Profile} />
+        <PrivateRoute path="/my-meals" component={Dashboard} />
         <Route path="/search">
           <Search />
         </Route>

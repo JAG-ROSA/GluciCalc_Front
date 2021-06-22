@@ -36,7 +36,7 @@ const AddProductToMeal = ({ data }) => {
       );
 
       UiManager.openNotification("success", "Produit ajouté au repas 😉");
-      history.push("/dashboard");
+      history.push("/my-meals");
     } catch (err) {
       console.log(err);
     }
