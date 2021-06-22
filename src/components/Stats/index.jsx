@@ -20,10 +20,8 @@ const Stats = ({ mealsStats }) => {
   const allDaysInMonth = () => {
     let allDaysInMonthArr = [];
     for (let i = 1; i <= date.daysInMonth(); i += 1) {
-      allDaysInMonthArr = [...allDaysInMonthArr, { name: strftime("%F", new Date(date.format("YYYY-MM-") + i)), totalCarbs: mealsPerMonth.filter((element) => strftime("%Y-%m-%d", new Date(element.date)) === (date.format("YYYY-MM-") + i)).map((element) => element.totalCarbs).reduce((a, b) => a + b, 0) }];
+      allDaysInMonthArr = [...allDaysInMonthArr, { name: strftime("%F", new Date(date.format("YYYY-MM-") + i)), glucides: mealsPerMonth.filter((element) => strftime("%Y-%m-%d", new Date(element.date)) === (date.format("YYYY-MM-") + i)).map((element) => element.totalCarbs).reduce((a, b) => a + b, 0) }];
     }
-    console.log("mdfsjgmfdojg");
-
     setTotalCarbsPerDay(allDaysInMonthArr);
   };
 
@@ -50,25 +48,32 @@ const Stats = ({ mealsStats }) => {
           <FaChevronRight onClick={() => changeMonth(+1)} />
         </div>
       </div>
-      <div style={{ width: "100%", height: 300 }}>
+      <div style={{ width: "100%", height: 500 }}>
         <ResponsiveContainer>
           <BarChart
             width={500}
-            height={400}
+            height={500}
             data={totalCarbsPerDay}
             margin={{
-              top: 5,
+              top: 15,
               right: 30,
               left: 20,
-              bottom: 5,
+              bottom: 25,
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
-            <YAxis />
+            <YAxis label={{
+              value: "gramme", angle: -90, dx: -20,
+            }}
+            />
             <Tooltip />
-            <Legend />
-            <Bar dataKey="totalCarbs" fill="red" />
+            <Legend wrapperStyle={{
+              bottom: 0,
+              lineHeight: "24px",
+            }}
+            />
+            <Bar dataKey="glucides" name="Total des glucides (g)" fill="#C6611D" />
           </BarChart>
         </ResponsiveContainer>
       </div>
