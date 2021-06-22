@@ -26,10 +26,10 @@ const Navbar = () => {
             ) : (
               <>
                 <li className="ms-3">
-                  <Link to="/dashboard">Mon dashboard</Link>
+                  <Link to="/my-meals">Mes repas</Link>
                 </li>
                 <li className="ms-3">
-                  <Link to="/profile">Mon profil</Link>
+                  <Link to="/dashboard">Mon dashboard</Link>
                 </li>
                 <li className="ms-3">
                   <Link to="/logout">Se déconnecter</Link>
