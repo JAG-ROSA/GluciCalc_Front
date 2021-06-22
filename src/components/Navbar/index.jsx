@@ -6,7 +6,6 @@ import SearchBar from "components/SearchBar";
 const Navbar = () => {
   const auth = useSelector((store) => store.isLogged);
   const location = useLocation();
-  console.log(location.pathname);
 
   return (
     <header>
