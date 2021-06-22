@@ -6,6 +6,15 @@ export default class MealsManager {
     return API.get(`/days/${date}`).then((response) => response.data.map((meal) => new Meal(meal)));
   }
 
+  static async showMeals() {
+    try {
+      const response = await API.get("/meals");
+      return response.data.map((meal) => new Meal(meal));
+    } catch (error) {
+      return error.message;
+    }
+  }
+
   static async createMeal(mealName) {
     try {
       const response = await API.post("/meals", { name: mealName });

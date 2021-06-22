@@ -14,7 +14,6 @@ const SearchBar = () => {
     fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${value}&action=process&json=1&page_size=5`)
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         setSearchResult(data.products.map((element) => element));
       });
   };
