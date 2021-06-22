@@ -40,7 +40,20 @@ const Calendar = ({ mealsCalendar }) => {
       }}
       plugins={[dayGridPlugin, interactionPlugin]}
       height={640}
+      dayMaxEventRows
       events={mealsEvent}
+      views={{
+        dayGridMonth: {
+          dayMaxEventRows: 3,
+        },
+      }}
+      moreLinkContent={(args) => {
+        const countElement = document.createElement("span");
+        countElement.innerHTML = `${args.shortText} événements`;
+        return {
+          domNodes: [countElement],
+        };
+      }}
       navLinks
       navLinkDayClick={(date) => handleNavLinkDayClick(date)}
       eventClick={(date) => handleEventClick(date)}
