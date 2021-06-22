@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import moment from "moment";
 import "moment/locale/fr";
+import { useLocation } from "react-router-dom";
 import MealSummary from "components/MealSummary";
 import MealsManager from "services/meals";
 import EmptyState from "assets/images/empty-state.jpg";
 import QuantitiesManager from "services/quantities";
 
 const DaySummary = () => {
-  const [date, setDate] = useState(moment());
+  const location = useLocation();
+  const [date, setDate] = useState(moment(location.calendarDate));
   const [meals, setMeals] = useState([]);
   const [deletedMeal, setDeletedMeals] = useState("");
   const [deletedMealQuantity, setDeletedMealQuantity] = useState("");

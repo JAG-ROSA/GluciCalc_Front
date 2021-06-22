@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import {
   Col, Card, Row,
 } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Nutriments from "components/Nutriments";
 import CarbohydratesCalculus from "components/CarbohydratesCalculus";
@@ -27,7 +27,6 @@ const Product = () => {
       });
   }, [idProduct]);
 
-  console.log(productResult);
   const handleAmountQuantity = (value) => {
     setAmountConsumption(value);
   };
@@ -69,9 +68,17 @@ const Product = () => {
               </Col>
             )
               : (
-                <Card.Text>
-                  Vous devez vous connecter pour ajouter ce produit à votre repas
-                </Card.Text>
+                <div className="d-flex justify-content-center p-4">
+                  <Link
+                    to={{
+                      pathname: "/login",
+                      state: { redirectUrl: window.location.pathname },
+                    }}
+                    className="my-btn my-btn-primary px-4"
+                  >
+                    Ajouter au repas
+                  </Link>
+                </div>
               )}
           </Row>
         </Card>
