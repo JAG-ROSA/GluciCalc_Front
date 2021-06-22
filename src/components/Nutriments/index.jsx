@@ -25,42 +25,38 @@ const Nutriments = ({ data }) => {
   }, [data]);
 
   return (
-    <div>
-      <Row>
-        <div className="py-2 mr-5">
-          <Card>
-            <Card.Body>
-              <Image variant="top" src={nutriQuantityFat} className="nutriQuantityImage" alt="Nutriments quantity value" />
-              &nbsp;
-              {data.fat_100g}
-              &nbsp;
-              g de Matières grasses / Lipides
-            </Card.Body>
-            <Card.Body>
-              <Image variant="top" src={nutriQuantitySaturatedFat} className="nutriQuantityImage" alt="Nutriments quantity value" />
-              &nbsp;
-              {data["saturated-fat_100g"]}
-              &nbsp;
-              g d&apos;Acides gras saturés
-            </Card.Body>
-            <Card.Body>
-              <Image variant="top" src={nutriQuantitySugar} className="nutriQuantityImage" alt="Nutriments quantity value" />
-              &nbsp;
-              {data.sugars}
-              &nbsp;
-              g de Sucres
-            </Card.Body>
-            <Card.Body>
-              <Image variant="top" src={nutriQuantitySodium} className="nutriQuantityImage" alt="Nutriments quantity value" />
-              &nbsp;
-              {data.salt}
-              &nbsp;
-              g de Sel
-            </Card.Body>
-          </Card>
-        </div>
-      </Row>
-    </div>
+    <Row>
+      <div className="py-2 mr-5">
+        <Card.Body>
+          <Image variant="top" src={nutriQuantityFat} className="nutriQuantityImage" alt="Nutriments quantity value" />
+          &nbsp;
+          {data.fat_100g}
+          &nbsp;
+          g de Matières grasses / Lipides
+        </Card.Body>
+        <Card.Body>
+          <Image variant="top" src={nutriQuantitySaturatedFat} className="nutriQuantityImage" alt="Nutriments quantity value" />
+          &nbsp;
+          {data["saturated-fat_100g"]}
+          &nbsp;
+          g d&apos;Acides gras saturés
+        </Card.Body>
+        <Card.Body>
+          <Image variant="top" src={nutriQuantitySugar} className="nutriQuantityImage" alt="Nutriments quantity value" />
+          &nbsp;
+          {data.sugars}
+          &nbsp;
+          g de Sucres
+        </Card.Body>
+        <Card.Body>
+          <Image variant="top" src={nutriQuantitySodium} className="nutriQuantityImage" alt="Nutriments quantity value" />
+          &nbsp;
+          {data.salt}
+          &nbsp;
+          g de Sel
+        </Card.Body>
+      </div>
+    </Row>
   );
 };
 

@@ -1,7 +1,7 @@
 @import "base/fonts", "base/colors", "base/animations";
 @import "helpers/variables";
 @import "layout/navbar","layout/footer";
-@import "pages/dashboard", "pages/searchPage";
+@import "pages/dashboard", "pages/searchPage", "pages/product";
 @import "components/buttons",
         "components/borders",
         "components/calendar",
@@ -44,18 +44,6 @@ h1, h2, h3, h4, h5, h6 {
 .search-list {
   position: absolute;
   z-index: 1000;
-}
-
-.searchCard {
-  & .productImage {
-    width: 50px;
-  }
-  & .nutriscoreImage {
-    width: 75px;
-  }
-  & .novagroupImage {
-    width: 25px;
-  }
 }
 
 .margin-container {

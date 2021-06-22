@@ -8,10 +8,10 @@ import SearchCardNova from "components/SearchCardNova";
 
 const SearchCard = ({ data }) => (
   <div key={data._id} className="searchCard">
-    <Card style={{ width: "18rem" }}>
+    <Card style={{ width: "18rem" }} className="search-card">
       <SearchCardImage data={data} />
-      <Card.Body>
-        <Card.Title>{data.product_name_fr}</Card.Title>
+      <Card.Body className="search-card-body">
+        <Card.Title className="search-card-title">{data.product_name_fr}</Card.Title>
         <Row className="show-product-infos d-flex">
           <Col className="card-img-bottom my-2 d-flex flex-column">
             <SearchCardNutriscore data={data} />
