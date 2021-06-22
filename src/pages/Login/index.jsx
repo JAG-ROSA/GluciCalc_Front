@@ -15,7 +15,7 @@ const Login = () => {
   useEffect(() => {
     if (isLoginSuccess) {
       UiManager.openNotification("success", "Connexion réussie ! 😉");
-      history.push("/dashboard");
+      history.push("/my-meals");
     } else if (isLoginFailed) {
       UiManager.openNotification(
         "error",
