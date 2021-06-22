@@ -28,8 +28,10 @@ const Calendar = ({ mealsCalendar }) => {
 
   return (
     <FullCalendar
+      plugins={[dayGridPlugin, interactionPlugin]}
       locale="fr"
       initialView="dayGridMonth"
+      height={640}
       headerToolbar={{
         left: "",
         center: "title",
@@ -38,8 +40,6 @@ const Calendar = ({ mealsCalendar }) => {
       buttonText={{
         today: "Aujourd'hui",
       }}
-      plugins={[dayGridPlugin, interactionPlugin]}
-      height={640}
       dayMaxEventRows
       events={mealsEvent}
       views={{
