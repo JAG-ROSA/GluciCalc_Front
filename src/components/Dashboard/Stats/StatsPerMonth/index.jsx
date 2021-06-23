@@ -44,7 +44,7 @@ const StatsPerMonth = ({ mealsStats }) => {
           <FaChevronLeft onClick={() => changeMonth(-1)} />
         </div>
         <div className="displayDate">
-          <h2>{date.locale("fr").format("MMMM YYYY")}</h2>
+          <h2 className="fs-3">{date.locale("fr").format("MMMM YYYY")}</h2>
         </div>
         <div className="chevron">
           <FaChevronRight onClick={() => changeMonth(+1)} />
@@ -59,15 +59,20 @@ const StatsPerMonth = ({ mealsStats }) => {
             data={totalCarbsPerDay}
             margin={{
               top: 15,
-              right: 0,
-              left: 0,
+              right: -10,
+              left: -15,
               bottom: 25,
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" />
+            <XAxis
+              dataKey="date"
+              label={{
+                value: "jour", dy: 15,
+              }}
+            />
             <YAxis label={{
-              value: "gramme", angle: -90, dx: -20,
+              value: "gramme", angle: -90, dx: -10,
             }}
             />
             <Tooltip />

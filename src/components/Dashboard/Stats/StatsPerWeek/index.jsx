@@ -38,26 +38,24 @@ const StatsPerWeek = ({ mealsStats }) => {
     setDate(newDate);
   };
 
-  console.log(Number(date.startOf("week").day(7).format("D")));
-
   return (
     <div>
       <div className="containerDashboard d-flex justify-content-between align-items-center text-center">
         <div className="chevron">
-          <FaChevronLeft onClick={() => changeWeek(-1)} />
+          <FaChevronLeft className onClick={() => changeWeek(-1)} />
         </div>
         <div className="displayDate">
-          <h2 className="text-center">
+          <h2 className="fs-3">
             semaine
             {" "}
             {date.locale("fr").format("W")}
           </h2>
-          <h4>
+          <h3 className="fs-5">
             {" "}
             {date.startOf("week").locale("fr").format("DD MMMM YYYY")}
             {" - "}
             {date.endOf("week").locale("fr").format("DD MMMM YYYY")}
-          </h4>
+          </h3>
         </div>
         <div className="chevron">
           <FaChevronRight onClick={() => changeWeek(+1)} />
@@ -72,15 +70,20 @@ const StatsPerWeek = ({ mealsStats }) => {
             data={totalCarbsPerDay}
             margin={{
               top: 15,
-              right: 0,
-              left: 0,
+              right: -10,
+              left: -15,
               bottom: 25,
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" />
+            <XAxis
+              dataKey="date"
+              label={{
+                value: "jour", dy: 15,
+              }}
+            />
             <YAxis label={{
-              value: "gramme", angle: -90, dx: -20,
+              value: "gramme", angle: -90, dx: -10,
             }}
             />
             <Tooltip />
