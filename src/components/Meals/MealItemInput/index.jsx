@@ -1,29 +1,29 @@
 import React from "react";
-import Button from "components/Button";
-import { Form, Col, Row } from "react-bootstrap";
+import { Form, Row } from "react-bootstrap";
 
 const MealItemInput = ({
   meal, onDelete, onSave, onCancel,
 }) => {
   const food = meal.product ?? meal.recipe;
+
   return (
-    <div className="detailsMeal">
-      <div key={meal.quantity.id} className="products d-flex justify-content-between pb-2">
-        <Form onSubmit={(event) => onSave(event, meal.id)}>
+    <div key={meal.quantity.id} className="pb-2">
+      <Form onSubmit={(event) => onSave(event, meal.id)}>
+        <div className="d-flex justify-content-between align-items-baseline flex-wrap">
           <Form.Group as={Row} controlId={`formQuantityInput${meal.id}`}>
-            <Col sm="10" className="d-flex align-items-baseline">
-              {`${food.name}`}
-              <Form.Control size="sm" type="text" defaultValue={meal.quantity} />
+            <div sm="10" className="d-flex align-items-baseline">
+              {`${food.name} -`}
+              <Form.Control size="sm" type="text" className="w-25" defaultValue={meal.quantity} />
               g
-            </Col>
+            </div>
           </Form.Group>
-          <div>
-            <Button type="submit" content="Valider" styles="my-btn-tertiary my-btn-sm me-2" />
-            <Button type="button" content="Suprimer" styles="my-btn-tertiary my-btn-sm me-2" onAction={(event) => onDelete(event, meal.id)} />
-            <Button type="button" content="Annuler" styles="my-btn-tertiary my-btn-sm me-2" onAction={onCancel} />
+          <div className="d-flex py-2">
+            <button type="submit" className="me-4">Valider</button>
+            <button type="submit" className="me-4" onClick={(event) => onDelete(event, meal.id)}>Suprimer</button>
+            <button type="submit" onClick={onCancel}>Annuler</button>
           </div>
-        </Form>
-      </div>
+        </div>
+      </Form>
     </div>
   );
 };
