@@ -21,10 +21,9 @@ const Profile = () => {
       first_name: event.target.formPlaintextFirstName.value,
       last_name: event.target.formPlaintextLastName.value,
     };
-    UserManager.updateUser(data)
-      .then((response) => {
-        setIsUpdateUserProfile(response);
-      });
+    UserManager.updateUser(data).then((response) => {
+      setIsUpdateUserProfile(response);
+    });
   };
 
   useEffect(() => {
@@ -37,19 +36,52 @@ const Profile = () => {
         "Hum... il y a une petite erreur! Veuillez ré-essayer 🤔",
       );
     }
-    MealsManager.showMeals().then((response) => setAllMeals(response));
+    MealsManager.showMeals()
+      .then((response) => setAllMeals(response))
+      .catch((error) => console.log(error));
   }, [isUpdateSucceed, isUpdateUserProfile, isUpdateUserFailed]);
 
   return (
     <div className="margin-container">
       <div className="tab">
-        <div className="col-md-4 col-lg-2 multi-tab me-3" id="tab" role="tablist">
-          <button className={`tab-link ${currentTable === 1 ? tabLinkActive : null}`} id="1" type="button" onClick={() => setCurrentTable(1)}>Informations</button>
-          <button className={`tab-link ${currentTable === 2 ? tabLinkActive : null}`} id="2" type="button" onClick={() => setCurrentTable(2)}>Statistiques</button>
-          <button className={`tab-link ${currentTable === 3 ? tabLinkActive : null}`} id="3" type="button" onClick={() => setCurrentTable(3)}>Calendrier</button>
-          <button className={`tab-link ${currentTable === 4 ? tabLinkActive : null}`} id="4" type="button" onClick={() => setCurrentTable(4)}>Recettes</button>
+        <div
+          className="col-md-4 col-lg-2 multi-tab me-3"
+          id="tab"
+          role="tablist"
+        >
+          <button
+            className={`tab-link ${currentTable === 1 ? tabLinkActive : null}`}
+            id="1"
+            type="button"
+            onClick={() => setCurrentTable(1)}
+          >
+            Informations
+          </button>
+          <button
+            className={`tab-link ${currentTable === 2 ? tabLinkActive : null}`}
+            id="2"
+            type="button"
+            onClick={() => setCurrentTable(2)}
+          >
+            Statistiques
+          </button>
+          <button
+            className={`tab-link ${currentTable === 3 ? tabLinkActive : null}`}
+            id="3"
+            type="button"
+            onClick={() => setCurrentTable(3)}
+          >
+            Calendrier
+          </button>
+          <button
+            className={`tab-link ${currentTable === 4 ? tabLinkActive : null}`}
+            id="4"
+            type="button"
+            onClick={() => setCurrentTable(4)}
+          >
+            Recettes
+          </button>
         </div>
-
         <div className="col tab-content mt-4" id="tabContent">
           <div className="tab-pane active" id="1">{currentTable === 1 && <ProfileInput userDetails={userProfile} onUpdate={updateUserProfile} />}</div>
           <div className="tab-pane active" id="2">{currentTable === 2 && <div><Stats mealsStats={allMeals} /></div>}</div>

@@ -4,21 +4,23 @@ import { UiManager } from "services";
 import MealsManager from "services/meals";
 
 const CreateMeal = ({ newMeal }) => {
-  const handleMealCreate = (e) => {
+  const handleMealCreate = async (e) => {
     e.preventDefault();
-    MealsManager.createMeal(e.target.mealCreateForm.value)
-      .then(() => {
-        newMeal(e.target.mealCreateForm.value);
-        document.querySelector("#mealCreateForm").value = "";
-        UiManager.openNotification(
-          "success",
-          "Repas créé 😉",
-        );
-      })
-      .catch(() => UiManager.openNotification(
-        "error",
-        "Hum... il y a une petite erreur ! 🤔",
-      ));
+    try {
+      await MealsManager.createMeal(e.target.mealCreateForm.value);
+      newMeal(e.target.mealCreateForm.value);
+      document.querySelector("#mealCreateForm").value = "";
+      UiManager.openNotification(
+        "success",
+        "Repas créé 😉",
+      );
+    } catch (error) {
+      console.log(error);
+      UiManager.openNotification(
+        "warning",
+        "Donne un nom à ton repas 😉",
+      );
+    }
   };
 
   return (
