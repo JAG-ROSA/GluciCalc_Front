@@ -1,85 +1,73 @@
-.DaySummary {
-  padding: 2% 0;
-  margin: 2% 0;
-  .headerDashboard {
-    .containerDashboard {
-      background-color: rgba(255, 229, 121, 0.5);
-      padding: 2% 20%;
-      .chevron {
-        cursor: pointer;
-        font-size: large;
-        &:hover {
-          svg {
-            transform: scale(1.7);
-            color: $quaternary-color;
-            transition: 0.2s;
-          }
-        }
-      }
-      .displayDate {
-        flex: 1;
-        text-align: center;
-        h2 {
-          margin: 0;
-          padding: 0;
-        }
-      }
-    }
-  }
-  .containerDashboard {
-    padding: 2% 20%;
-    .MealSummary {
-      border-radius: 8px;
-      margin: 2%;
-      padding: 4%;
-      background-color: $light-color;
-      box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
-      .carbsMeal {
-        .iconMeal {
-          margin: 0 3%;
-          font-size: large;
-        }
-      }
-      .showDetailsMeal {
-        button {
-          border: none;
-          background-color: transparent;
-          color: $secondary-color;
-          font-style: italic;
-          width: 100%;
-          padding: 0;
-          text-align: left;
-          &:focus {
-            outline: 0;
-            box-shadow: 0 0 0 0.25rem $light-color;
-          }
-          .iconMeal {
-            margin: 0 1%;
-          }
-        }
-        .detailsMeal {
-          padding-left: 25px;
-        }
-      }
-    }
-    .emptyState {
-      text-align: center;
-      p {
-        color: #8ca8b4;
-        font-style: italic;
-      }
-    }
+.header-my-meals {
+  background-color: $tertiary-color;
+  padding: 15px 0;
+  .display-date {
+    flex: 1;
   }
 }
 
 .chevron {
   cursor: pointer;
-  font-size: large;
+  font-size: 1.8em;
+  color: $quaternary-color;
   &:hover {
     svg {
-      transform: scale(1.7);
+      transform: scale(1.5);
       color: $quaternary-color;
       transition: 0.2s;
     }
   }
 }
+
+.my-icon {
+  cursor: pointer;
+  font-size: 1.5em;
+  color: $quaternary-color;
+  padding: 0;
+  margin: 0;
+  &:hover, &:focus {
+    color: $secondary-color;
+  }
+  &-secondary {
+    color: $secondary-color;
+    &:hover, &:focus {
+      color: $quaternary-color;
+    }
+  }
+}
+
+  
+.container-my-meals {
+  margin-top: 3%;
+  .MealSummary {
+    margin: 2% 0;
+    padding: 3.5%;
+    background-color: #fff;
+    border: 1px solid $secondary-color;
+    .icon-meal {
+      font-size: 1.3em;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+.show-details-meal {
+  button {
+    border: none;
+    background-color: transparent;
+    color: $secondary-color;
+    font-style: italic;
+    width: 100%;
+    padding: 0;
+    text-align: left;
+    &:hover {
+      color: $quaternary-color;
+    }
+    &:focus, &:active {
+      outline: 0;
+      box-shadow: none;
+    }
+  }
+}
+

@@ -59,41 +59,43 @@ const DaySummary = () => {
       UiManager.openNotification("error", "La quantité n'a pas pu être supprimée...");
     }
   };
+
   return (
     <div className="DaySummary">
-      <div className="headerDashboard">
-        <div className="containerDashboard d-flex justify-content-between align-items-center">
-          <div className="chevron">
-            <FaChevronLeft onClick={() => changeDay(-1)} />
-          </div>
-          <div className="displayDate">
-            <h2>{date.locale("fr").format("dddd Do MMMM")}</h2>
-          </div>
-          <div className="chevron">
-            <FaChevronRight onClick={() => changeDay(+1)} />
-          </div>
+      <div className="header-my-meals d-flex justify-content-between align-items-center">
+        <div className="chevron ms-2">
+          <FaChevronLeft onClick={() => changeDay(-1)} />
+        </div>
+        <div className="display-date text-center">
+          <h2 className="m-0">{date.locale("fr").format("dddd Do MMMM")}</h2>
+        </div>
+        <div className="chevron me-2">
+          <FaChevronRight onClick={() => changeDay(+1)} />
         </div>
       </div>
-      <div className="containerDashboard">
-        {meals.length !== 0 ? (
-          meals.map((meal, index) => (
-            <div key={meal.id}>
-              <MealSummary
-                meal={meal}
-                onDeleteMeal={deleteMeal}
-                onDeleteQuantity={deleteMealQuantity}
-                isHidden={isInputHidden}
-                setIsHidden={setIsInputHidden}
-                updateMeal={(quantityId, quantity) => updateMeal(index, quantityId, quantity)}
-              />
+
+      <div className="container-my-meals">
+        <div className="row d-flex justify-content-center">
+          {meals.length !== 0 ? (
+            meals.map((meal, index) => (
+              <div key={meal.id} className="col-lg-8">
+                <MealSummary
+                  meal={meal}
+                  onDeleteMeal={deleteMeal}
+                  onDeleteQuantity={deleteMealQuantity}
+                  isHidden={isInputHidden}
+                  setIsHidden={setIsInputHidden}
+                  updateMeal={(quantityId, quantity) => updateMeal(index, quantityId, quantity)}
+                />
+              </div>
+            ))
+          ) : (
+            <div className="text-center">
+              <img src={EmptyState} alt="empty-state-img" />
+              <p>Recherche un aliment pour commencer ta journée...</p>
             </div>
-          ))
-        ) : (
-          <div className="emptyState">
-            <img src={EmptyState} alt="empty-state-img" />
-            <p>Recherche un aliment pour commencer ta journée...</p>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );
