@@ -34,11 +34,11 @@ const AddProductToMeal = ({ data }) => {
         e.target.mealSelect.value,
         response.id,
       );
-
       UiManager.openNotification("success", "Produit ajouté au repas 😉");
       history.push("/my-meals");
     } catch (err) {
       console.log(err);
+      UiManager.openNotification("warning", "Ajoute une quantité 😉");
     }
   };
 
