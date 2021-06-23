@@ -34,7 +34,7 @@ const DaySummary = () => {
     try {
       await MealsManager.destroyMeal(id);
       setDeletedMeals(id);
-      UiManager.openNotification("success", "Repas supprimé!");
+      UiManager.openNotification("success", "Repas supprimé ! 🚮");
     } catch (error) {
       console.log(error);
       UiManager.openNotification("error", "Le repas n'a pas pu être supprimé...");
@@ -50,9 +50,16 @@ const DaySummary = () => {
     setMeals(newMeals);
   };
 
-  const deleteMealQuantity = (event, id) => {
+  const deleteMealQuantity = async (event, id) => {
     event.preventDefault();
-    QuantitiesManager.deleteProductQuantityInMeal(id).then(() => setDeletedMealQuantity(id));
+    try {
+      await QuantitiesManager.deleteProductQuantityInMeal(id);
+      setDeletedMealQuantity(id);
+      UiManager.openNotification("success", "Quantité supprimée ! 🚮");
+    } catch (error) {
+      console.log(error);
+      UiManager.openNotification("error", "La quantité n'a pas pu être supprimée...");
+    }
   };
   return (
     <div className="DaySummary">
