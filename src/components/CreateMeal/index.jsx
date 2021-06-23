@@ -25,10 +25,10 @@ const CreateMeal = ({ newMeal }) => {
 
   return (
     <Card.Body>
-      <Card.Title>Donne un nom à ton repas</Card.Title>
+      <Card.Title>Nom du Repas</Card.Title>
       <Form onSubmit={handleMealCreate}>
         <Form.Group controlId="mealCreateForm">
-          <Form.Control type="text" placeholder="Mon nouveau repas" />
+          <Form.Control type="text" placeholder="Nom du repas" />
         </Form.Group>
         <Button variant="primary" type="submit">
           Créer le repas

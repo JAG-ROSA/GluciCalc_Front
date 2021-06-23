@@ -51,7 +51,7 @@
   .tab {
     flex-direction: column;
 
-    > div  {
+    .multi-tab  {
       display: flex;
       width: 100%;
     }
@@ -63,6 +63,7 @@
       margin-left: calc(0.1rem * -1);
       flex-grow: 1;
       transition: flex-grow .25s ease;
+      overflow: hidden;
       
       &-active, &:hover, &:focus {
         flex-grow: 2;
@@ -83,7 +84,7 @@
     }
     
     &-pane {
-      padding-top: 15px;
+      margin-top: 20px;
     }
   }
 }

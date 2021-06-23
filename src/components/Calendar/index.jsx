@@ -19,11 +19,11 @@ const Calendar = ({ mealsCalendar }) => {
   }, [mealsCalendar]);
 
   const handleNavLinkDayClick = (date) => {
-    history.push({ pathname: "/dashboard", calendarDate: strftime("%F", new Date(date.toISOString())) });
+    history.push({ pathname: "/my-meals", calendarDate: strftime("%F", new Date(date.toISOString())) });
   };
 
   const handleEventClick = (date) => {
-    history.push({ pathname: "/dashboard", calendarDate: strftime("%F", new Date(date.event._instance.range.start.toISOString())) });
+    history.push({ pathname: "/my-meals", calendarDate: strftime("%F", new Date(date.event._instance.range.start.toISOString())) });
   };
 
   return (
@@ -33,12 +33,9 @@ const Calendar = ({ mealsCalendar }) => {
       initialView="dayGridMonth"
       height={640}
       headerToolbar={{
-        left: "",
+        left: "prev",
         center: "title",
-        right: "today,prevYear,prev,next,nextYear",
-      }}
-      buttonText={{
-        today: "Aujourd'hui",
+        right: "next",
       }}
       dayMaxEventRows
       events={mealsEvent}
@@ -57,6 +54,7 @@ const Calendar = ({ mealsCalendar }) => {
       navLinks
       navLinkDayClick={(date) => handleNavLinkDayClick(date)}
       eventClick={(date) => handleEventClick(date)}
+      eventColor="#A3DADA"
     />
   );
 };

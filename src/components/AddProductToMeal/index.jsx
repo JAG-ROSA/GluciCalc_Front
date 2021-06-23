@@ -1,6 +1,8 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from "react";
-import { Card, Form, Button } from "react-bootstrap";
+import {
+  Card, Form, Button, Row,
+} from "react-bootstrap";
 import moment from "moment";
 import "moment/locale/fr";
 import { useHistory } from "react-router-dom";
@@ -9,7 +11,7 @@ import MealsManager from "services/meals";
 import CreateMeal from "components/CreateMeal";
 
 const AddProductToMeal = ({ data }) => {
-  const { amountConsumption, idProduct, searchResult } = data;
+  const { amountConsumption, idProduct, productResult } = data;
   const [mealList, setMealList] = useState([]);
   const [newMeal, setNewMeal] = useState("");
   const date = moment();
@@ -26,11 +28,11 @@ const AddProductToMeal = ({ data }) => {
       e.preventDefault();
       const response = await MealsManager.getProductId(
         idProduct,
-        searchResult.product_name_fr,
+        productResult.product_name_fr,
       );
       await MealsManager.addProductToMeal(
         amountConsumption,
-        searchResult.nutriments.carbohydrates_100g,
+        productResult.nutriments.carbohydrates_100g,
         e.target.mealSelect.value,
         response.id,
       );
@@ -47,7 +49,7 @@ const AddProductToMeal = ({ data }) => {
   };
 
   return (
-    <div>
+    <Row>
       <CreateMeal newMeal={handleNewMeal} />
       <Card.Body>
         <Card.Title>Selectionner le repas</Card.Title>
@@ -73,7 +75,7 @@ const AddProductToMeal = ({ data }) => {
           )}
         </Form>
       </Card.Body>
-    </div>
+    </Row>
   );
 };
 
