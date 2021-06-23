@@ -4,10 +4,8 @@ import moment from "moment";
 import "moment/locale/fr";
 import { useLocation } from "react-router-dom";
 import MealSummary from "components/Meals/MealSummary";
-import MealsManager from "services/meals";
 import EmptyState from "assets/images/empty-state.jpg";
-import QuantitiesManager from "services/quantities";
-import { UiManager } from "services";
+import { UiManager, QuantitiesManager, MealsManager } from "services";
 
 const DaySummary = () => {
   const location = useLocation();
@@ -55,7 +53,7 @@ const DaySummary = () => {
     try {
       await QuantitiesManager.deleteProductQuantityInMeal(id);
       setDeletedMealQuantity(id);
-      UiManager.openNotification("success", "Quantité supprimée ! 🚮");
+      UiManager.openNotification("success", "Produit supprimé ! 🚮");
     } catch (error) {
       console.log(error);
       UiManager.openNotification("error", "La quantité n'a pas pu être supprimée...");
