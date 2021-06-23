@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Button from "components/Button";
-import StatsPerMonth from "./StatsPerMonth";
-import StatsPerWeek from "./StatsPerWeek";
+import StatsPerMonth from "../StatsPerMonth";
+import StatsPerWeek from "../StatsPerWeek";
 
-const Stats = ({ mealsStats }) => {
+const StatsGlobal = ({ mealsStats }) => {
   const [currentStats, setCurrentStats] = useState(2);
 
   return (
@@ -16,4 +16,4 @@ const Stats = ({ mealsStats }) => {
   );
 };
 
-export default Stats;
+export default StatsGlobal;
