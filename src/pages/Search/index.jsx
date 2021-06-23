@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from "react";
 import {
-  Form, Col, Button, Row,
+  Form, Col, Button, Row, Spinner,
 } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
 import SearchCard from "components/SearchPage/SearchCard";
@@ -12,17 +12,24 @@ const Search = () => {
   const [searchBrand, setSearchBrand] = useState("");
   const [searchSugar, setSearchSugar] = useState(100);
   const [searchResult, setSearchResult] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const searchFetch = () => {
+  const searchFetch = async () => {
+    setIsLoading(true);
+    let products = [];
+    let response;
     if (searchBrand.length === 0) {
-      fetch(`https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${searchTerme}&json=1&page_size=24`)
-        .then((response) => response.json())
-        .then((response) => setSearchResult(response.products));
+      response = await fetch(
+        `https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${searchTerme}&json=1&page_size=24`,
+      );
     } else {
-      fetch(`https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${searchTerme}&tagtype_0=brands&tag_contains_0=contains&tag_0=${searchBrand}&nutriment_0=sugars&nutriment_compare_0=lte&nutriment_value_0=${searchSugar}&json=1&page_size=24`)
-        .then((response) => response.json())
-        .then((response) => setSearchResult(response.products));
+      response = await fetch(
+        `https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${searchTerme}&tagtype_0=brands&tag_contains_0=contains&tag_0=${searchBrand}&nutriment_0=sugars&nutriment_compare_0=lte&nutriment_value_0=${searchSugar}&json=1&page_size=24`,
+      );
     }
+    products = (await response.json()).products;
+    setSearchResult(products);
+    setIsLoading(false);
   };
 
   const handleSearchTerme = (e) => {
@@ -101,10 +108,15 @@ const Search = () => {
           ))}
         </div>
       </Row>
-      {searchResult.length === 0 && (
+      {isLoading && (
+        <div className="loader d-flex justify-content-center">
+          <Spinner animation="border" role="status" />
+        </div>
+      )}
+      {!isLoading && searchResult.length === 0 && (
         <div className="w-100">
           <h4 className="text-center">
-            Aucun résultats. Essayez autre chose.
+            Nous sommes désolés, aucun résultat n&apos;est disponible.
           </h4>
         </div>
       )}
