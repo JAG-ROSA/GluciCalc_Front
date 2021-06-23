@@ -5,9 +5,9 @@ import {
 } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Nutriments from "components/Nutriments";
-import CarbohydratesCalculus from "components/CarbohydratesCalculus";
-import AddProductToMeal from "components/AddProductToMeal";
+import Nutriments from "components/Product/Nutriments";
+import CarbohydratesCalculus from "components/Product/CarbohydratesCalculus";
+import AddProductToMeal from "components/Product/AddProductToMeal";
 import ProductImage from "components/Product/ProductImage";
 import ProductInfoDisplay from "components/Product/ProductInfoDisplay";
 

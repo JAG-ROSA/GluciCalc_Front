@@ -4,7 +4,7 @@ import {
 } from "react-bootstrap";
 import { BsSearch } from "react-icons/bs";
 import { GiScales } from "react-icons/gi";
-import MealItem from "components/MealItem";
+import MealItem from "components/Meals/MealItem";
 import Button1 from "components/Button";
 
 const MealSummary = ({

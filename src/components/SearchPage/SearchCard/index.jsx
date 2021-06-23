@@ -2,9 +2,9 @@
 /* eslint-disable no-underscore-dangle */
 import React from "react";
 import { Card, Row, Col } from "react-bootstrap";
-import SearchCardImage from "components/SearchCardImage";
-import SearchCardNutriscore from "components/SearchCardNutriscore";
-import SearchCardNova from "components/SearchCardNova";
+import SearchCardImage from "components/SearchPage/SearchCardImage";
+import SearchCardNutriscore from "components/SearchPage/SearchCardNutriscore";
+import SearchCardNova from "components/SearchPage/SearchCardNova";
 
 const SearchCard = ({ data }) => (
   <div key={data._id} className="searchCard">
