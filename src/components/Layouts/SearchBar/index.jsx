@@ -3,13 +3,14 @@ import React, { useEffect, useState } from "react";
 import {
   Form, ListGroup, Col,
 } from "react-bootstrap";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
 const SearchBar = () => {
   const [searchTerme, setSearchTerme] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [searchList, setSearchList] = useState([]);
   const [focused, setFocused] = useState(false);
+  const history = useHistory();
 
   const searchFetch = (value) => {
     fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${value}&action=process&json=1&page_size=5`)
@@ -28,15 +29,16 @@ const SearchBar = () => {
     setSearchList(searchResult);
   }, [searchResult]);
 
-  const handleSubmit = () => {
-    console.log("fdfdg");
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    history.push({ pathname: "/search", data: searchTerme });
   };
 
   const onFocus = () => setFocused(true);
-  const onBlur = () => setFocused(false);
+  const onBlur = () => setTimeout((() => setFocused(false)), 100);
 
   return (
-    <Form className="searchForm" onSubmit={handleSubmit}>
+    <Form className="searchForm" onSubmit={(e) => handleSubmit(e)}>
       <Col>
         <Form.Group controlId="searchTerme">
           <Form.Control type="text" placeholder="Je recherche..." className="text-center" onChange={(e) => handleSearch(e)} onFocus={onFocus} onBlur={onBlur} />
