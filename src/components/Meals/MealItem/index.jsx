@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import MealItemInput from "components/MealItemInput";
-import MealItemDisplay from "components/MealItemDisplay";
+import MealItemInput from "components/Meals/MealItemInput";
+import MealItemDisplay from "components/Meals/MealItemDisplay";
 import QuantitiesManager from "services/quantities";
 
 const MealItem = ({

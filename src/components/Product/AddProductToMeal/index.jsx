@@ -8,7 +8,7 @@ import "moment/locale/fr";
 import { useHistory } from "react-router-dom";
 import { UiManager } from "services";
 import MealsManager from "services/meals";
-import CreateMeal from "components/CreateMeal";
+import CreateMeal from "components/Product/CreateMeal";
 
 const AddProductToMeal = ({ data }) => {
   const { amountConsumption, idProduct, productResult } = data;

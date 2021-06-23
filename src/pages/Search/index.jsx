@@ -4,7 +4,7 @@ import {
   Form, Col, Button, Row,
 } from "react-bootstrap";
 import { Link, useLocation } from "react-router-dom";
-import SearchCard from "components/SearchCard";
+import SearchCard from "components/SearchPage/SearchCard";
 
 const Search = () => {
   const { data } = useLocation();

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import SearchBar from "components/SearchBar";
+import SearchBar from "components/Layouts/SearchBar";
 
 const Navbar = () => {
   const auth = useSelector((store) => store.isLogged);
