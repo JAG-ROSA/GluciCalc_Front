@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Spinner } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { UiManager, UserManager } from "services";
@@ -29,9 +28,7 @@ const Logout = () => {
   }, []);
 
   return (
-    <div className="Logout">
-      <Spinner animation="border" />
-    </div>
+    <div className="Logout"> </div>
   );
 };
 export default Logout;
