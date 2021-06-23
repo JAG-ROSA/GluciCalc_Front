@@ -26,7 +26,7 @@ const CarbohydratesCalculus = ({ data, amountQuantity }) => {
         Ma portion en g:
         &nbsp;
         <Form.Group controlId="searchSugar">
-          <Form.Control type="number" step="0.1" placeholder="Entrez votre portion en grammes" className="text-center" onChange={(e) => handleCarbohydratesQuantity(e)} />
+          <Form.Control type="number" step="0.1" min="0" placeholder="Entrez votre portion en grammes" className="text-center" onChange={(e) => handleCarbohydratesQuantity(e)} />
         </Form.Group>
       </Card.Text>
       <Card.Text>
