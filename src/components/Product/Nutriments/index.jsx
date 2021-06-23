@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Row, Image, Card } from "react-bootstrap";
 
 const Nutriments = ({ data }) => {
   const [nutriQuantityFat, setNutriQuantityFat] = useState("");
@@ -25,38 +24,36 @@ const Nutriments = ({ data }) => {
   }, [data]);
 
   return (
-    <Row>
-      <div className="py-2 mr-5">
-        <Card.Body>
-          <Image variant="top" src={nutriQuantityFat} className="nutriQuantityImage" alt="Nutriments quantity value" />
-          &nbsp;
-          {data.fat_100g}
-          &nbsp;
-          g de Matières grasses / Lipides
-        </Card.Body>
-        <Card.Body>
-          <Image variant="top" src={nutriQuantitySaturatedFat} className="nutriQuantityImage" alt="Nutriments quantity value" />
-          &nbsp;
-          {data["saturated-fat_100g"]}
-          &nbsp;
-          g d&apos;Acides gras saturés
-        </Card.Body>
-        <Card.Body>
-          <Image variant="top" src={nutriQuantitySugar} className="nutriQuantityImage" alt="Nutriments quantity value" />
-          &nbsp;
-          {data.sugars}
-          &nbsp;
-          g de Sucres
-        </Card.Body>
-        <Card.Body>
-          <Image variant="top" src={nutriQuantitySodium} className="nutriQuantityImage" alt="Nutriments quantity value" />
-          &nbsp;
-          {data.salt}
-          &nbsp;
-          g de Sel
-        </Card.Body>
+    <div className="py-2 mr-5">
+      <div>
+        <img src={nutriQuantityFat} className="nutriQuantityImage" alt="Nutriments quantity value" />
+        &nbsp;
+        {data.fat_100g}
+        &nbsp;
+        g de Matières grasses / Lipides
       </div>
-    </Row>
+      <div>
+        <img src={nutriQuantitySaturatedFat} className="nutriQuantityImage" alt="Nutriments quantity value" />
+        &nbsp;
+        {data["saturated-fat_100g"]}
+        &nbsp;
+        g d&apos;Acides gras saturés
+      </div>
+      <div>
+        <img src={nutriQuantitySugar} className="nutriQuantityImage" alt="Nutriments quantity value" />
+        &nbsp;
+        {data.sugars}
+        &nbsp;
+        g de Sucres
+      </div>
+      <div>
+        <img src={nutriQuantitySodium} className="nutriQuantityImage" alt="Nutriments quantity value" />
+        &nbsp;
+        {data.salt}
+        &nbsp;
+        g de Sel
+      </div>
+    </div>
   );
 };
 

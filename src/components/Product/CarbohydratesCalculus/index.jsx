@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import { Card, Form } from "react-bootstrap";
+import {
+  Card, Form,
+} from "react-bootstrap";
 
 const CarbohydratesCalculus = ({ data, amountQuantity }) => {
   const [carbohydratesQuantity, setCarbohydratesQuantity] = useState(0);
@@ -15,20 +17,18 @@ const CarbohydratesCalculus = ({ data, amountQuantity }) => {
       <Card.Title>
         Calcul des glucides
       </Card.Title>
-      <Card.Text>
-        Glucides / 100g:
-        &nbsp;
-        {data}
-        &nbsp;
-        g
-      </Card.Text>
-      <Card.Text>
-        Ma portion en g:
-        &nbsp;
+      <Form>
         <Form.Group controlId="searchSugar">
-          <Form.Control type="number" step="0.1" min="0" placeholder="Entrez votre portion en grammes" className="text-center" onChange={(e) => handleCarbohydratesQuantity(e)} />
+          <Form.Label>
+            Glucides / 100g:
+            &nbsp;
+            {data}
+            &nbsp;
+            g
+          </Form.Label>
+          <Form.Control type="number" step="0.1" min="0" placeholder="Portion en grammes" className="text-center" onChange={(e) => handleCarbohydratesQuantity(e)} />
         </Form.Group>
-      </Card.Text>
+      </Form>
       <Card.Text>
         Total de glucides pour la portion:
         &nbsp;
