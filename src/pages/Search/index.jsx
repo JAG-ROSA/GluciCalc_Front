@@ -14,11 +14,20 @@ const Search = () => {
   const [searchResult, setSearchResult] = useState([]);
 
   const searchFetch = () => {
+    console.log(searchSugar);
     if (searchBrand.length === 0) {
-      fetch(`https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${searchTerme}&json=1&page_size=24`)
-        .then((response) => response.json())
-        .then((response) => setSearchResult(response.products));
+      if (searchSugar !== 0) {
+        console.log("dlsifhlsdf");
+        fetch(`https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${searchTerme}&nutriment_0=sugars&nutriment_compare_0=lte&nutriment_value_0=${searchSugar}&json=1&page_size=24`)
+          .then((response) => response.json())
+          .then((response) => setSearchResult(response.products));
+      } else {
+        fetch(`https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${searchTerme}&json=1&page_size=24`)
+          .then((response) => response.json())
+          .then((response) => setSearchResult(response.products));
+      }
     } else {
+      console.log("pouet");
       fetch(`https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${searchTerme}&tagtype_0=brands&tag_contains_0=contains&tag_0=${searchBrand}&nutriment_0=sugars&nutriment_compare_0=lte&nutriment_value_0=${searchSugar}&json=1&page_size=24`)
         .then((response) => response.json())
         .then((response) => setSearchResult(response.products));
