@@ -8,27 +8,33 @@ import SearchCard from "components/SearchPage/SearchCard";
 
 const Search = () => {
   const { data } = useLocation();
-  const [searchTerme, setSearchTerme] = useState(data) || "";
+  const [searchTerme, setSearchTerme] = useState("");
   const [searchBrand, setSearchBrand] = useState("");
-  const [searchSugar, setSearchSugar] = useState(100);
+  const [searchSugar, setSearchSugar] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const setData = () => (typeof data === "undefined" ? setSearchTerme("") : setSearchTerme(data));
+  useEffect(() => { setData(); }, [data]);
 
   const searchFetch = async () => {
     setIsLoading(true);
-    let products = [];
+    let allProducts = [];
     let response;
     if (searchBrand.length === 0) {
-      response = await fetch(
-        `https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${searchTerme}&json=1&page_size=24`,
-      );
+      if (searchSugar !== 0) {
+        response = await fetch(`https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${searchTerme}&nutriment_0=sugars&nutriment_compare_0=lte&nutriment_value_0=${searchSugar}&json=1&page_size=24`);
+      } else {
+        response = await fetch(
+          `https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${searchTerme}&json=1&page_size=24`,
+        );
+      }
     } else {
       response = await fetch(
         `https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${searchTerme}&tagtype_0=brands&tag_contains_0=contains&tag_0=${searchBrand}&nutriment_0=sugars&nutriment_compare_0=lte&nutriment_value_0=${searchSugar}&json=1&page_size=24`,
       );
     }
-    products = (await response.json()).products;
-    setSearchResult(products);
+    allProducts = (await response.json()).products;
+    setSearchResult(allProducts);
     setIsLoading(false);
   };
 
@@ -46,9 +52,7 @@ const Search = () => {
   const handleSearchReset = () => {
     setSearchTerme("");
     setSearchBrand("");
-    setSearchSugar(500000);
-    document.querySelector("#searchBrand").value = "";
-    document.querySelector("#searchSugar").value = "";
+    setSearchSugar("");
   };
 
   useEffect(() => {
@@ -75,6 +79,7 @@ const Search = () => {
               type="text"
               placeholder="Marque"
               className="text-center"
+              value={searchBrand}
               onChange={(e) => handleSearchBrand(e)}
             />
           </Form.Group>
@@ -84,8 +89,10 @@ const Search = () => {
             <Form.Control
               type="number"
               step="0.1"
+              min="0"
               placeholder="Sucres"
               className="text-center"
+              value={searchSugar}
               onChange={(e) => handleSearchSugar(e)}
             />
           </Form.Group>
