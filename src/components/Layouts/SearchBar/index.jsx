@@ -9,6 +9,7 @@ const SearchBar = () => {
   const [searchTerme, setSearchTerme] = useState("");
   const [searchResult, setSearchResult] = useState([]);
   const [searchList, setSearchList] = useState([]);
+  const [focused, setFocused] = useState(false);
 
   const searchFetch = (value) => {
     fetch(`https://world.openfoodfacts.org/cgi/search.pl?search_terms=${value}&action=process&json=1&page_size=5`)
@@ -27,19 +28,26 @@ const SearchBar = () => {
     setSearchList(searchResult);
   }, [searchResult]);
 
+  const handleSubmit = () => {
+    console.log("fdfdg");
+  };
+
+  const onFocus = () => setFocused(true);
+  const onBlur = () => setFocused(false);
+
   return (
-    <Form className="searchForm">
+    <Form className="searchForm" onSubmit={handleSubmit}>
       <Col>
         <Form.Group controlId="searchTerme">
-          <Form.Control type="text" placeholder="Je recherche..." className="text-center" onChange={(e) => handleSearch(e)} />
+          <Form.Control type="text" placeholder="Je recherche..." className="text-center" onChange={(e) => handleSearch(e)} onFocus={onFocus} onBlur={onBlur} />
         </Form.Group>
       </Col>
-      { searchTerme.length !== 0 && (
+      { focused && (searchTerme.length !== 0 && (
       <Col className="search-list">
         <ListGroup>
           {searchList.map((element) => (
             typeof element.product_name_fr !== "undefined" ? (
-              <Link to={{ pathname: `/product/${element._id}` }} key={element._id} onClick={() => setSearchTerme("")}>
+              <Link to={{ pathname: `/product/${element._id}` }} key={element._id}>
                 <ListGroup.Item key={element._id}>
                   {element.product_name_fr}
                 </ListGroup.Item>
@@ -54,7 +62,7 @@ const SearchBar = () => {
           </Link>
         </ListGroup>
       </Col>
-      )}
+      ))}
     </Form>
   );
 };

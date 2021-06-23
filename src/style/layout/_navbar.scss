@@ -66,6 +66,28 @@ nav {
       }
     }
   }
+
+  .searchForm {
+    position: relative;
+  }
+
+  .search-list {
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+  }
+
+  @media (max-width:850px) {
+    .search-list {
+      padding-right: 50px;
+    }
+  }
+  
+  @media (max-width:480px) {
+    .search-list {
+      padding-right: 0;
+    }
+  }
 }
 
 

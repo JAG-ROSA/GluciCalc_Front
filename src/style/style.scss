@@ -41,28 +41,6 @@ h1, h2, h3, h4, h5, h6 {
   padding-top: 150px;
 }
 
-.searchForm {
-  position: relative;
-}
-
-.search-list {
-  position: absolute;
-  z-index: 1000;
-  width: 100%;
-}
-
-@media (max-width:850px) {
-  .search-list {
-    padding-right: 50px;
-  }
-}
-
-@media (max-width:480px) {
-  .search-list {
-    padding-right: 0;
-  }
-}
-
 .margin-container {
   margin: 40px;
 }
