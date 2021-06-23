@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import MealItemInput from "components/Meals/MealItemInput";
 import MealItemDisplay from "components/Meals/MealItemDisplay";
-import QuantitiesManager from "services/quantities";
-import { UiManager } from "services";
+import { UiManager, QuantitiesManager } from "services";
 
 const MealItem = ({
   meal, onDelete, updateMeal,

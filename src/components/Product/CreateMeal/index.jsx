@@ -1,7 +1,6 @@
 import React from "react";
 import { Card, Form, Button } from "react-bootstrap";
-import { UiManager } from "services";
-import MealsManager from "services/meals";
+import { UiManager, MealsManager } from "services";
 
 const CreateMeal = ({ newMeal }) => {
   const handleMealCreate = async (e) => {

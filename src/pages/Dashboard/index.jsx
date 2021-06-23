@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { UiManager, UserManager } from "services";
-import MealsManager from "services/meals";
+import { UiManager, UserManager, MealsManager } from "services";
 import ProfileInput from "components/Dashboard/ProfileInput";
 import Calendar from "components/Dashboard/Calendar";
 import StatsGlobal from "components/Dashboard/Stats/StatsGlobal";

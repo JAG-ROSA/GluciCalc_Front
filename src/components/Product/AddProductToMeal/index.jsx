@@ -6,8 +6,7 @@ import {
 import moment from "moment";
 import "moment/locale/fr";
 import { useHistory } from "react-router-dom";
-import { UiManager } from "services";
-import MealsManager from "services/meals";
+import { UiManager, MealsManager } from "services";
 import CreateMeal from "components/Product/CreateMeal";
 
 const AddProductToMeal = ({ data }) => {
