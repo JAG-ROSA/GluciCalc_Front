@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import MealItemInput from "components/Meals/MealItemInput";
 import MealItemDisplay from "components/Meals/MealItemDisplay";
-import QuantitiesManager from "services/quantities";
+import { UiManager, QuantitiesManager } from "services";
 
 const MealItem = ({
   meal, onDelete, updateMeal,
@@ -20,9 +20,15 @@ const MealItem = ({
     const quantityData = {
       quantity: document.querySelector(`#formQuantityInput${id}`).value,
     };
-    const response = await QuantitiesManager.updateProductQuantityInMeal(id, quantityData);
-    updateMeal(id, response);
-    setEditMode(false);
+    try {
+      const response = await QuantitiesManager.updateProductQuantityInMeal(id, quantityData);
+      updateMeal(id, response);
+      setEditMode(false);
+      UiManager.openNotification("success", "Quantité modifiée! ⚖️");
+    } catch (error) {
+      console.log(error);
+      UiManager.openNotification("error", "La quantité n'a pas pu être modifiée...");
+    }
   };
 
   if (editMode) {

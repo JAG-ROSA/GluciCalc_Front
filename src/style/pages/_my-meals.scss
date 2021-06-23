@@ -71,3 +71,15 @@
     }
   }
 }
+
+.chevron {
+  cursor: pointer;
+  font-size: large;
+  &:hover {
+    svg {
+      transform: scale(1.7);
+      color: $quaternary-color;
+      transition: 0.2s;
+    }
+  }
+}

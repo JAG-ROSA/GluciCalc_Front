@@ -12,13 +12,8 @@ export default class MealsManager {
   }
 
   static async createMeal(mealName) {
-    try {
-      const response = await API.post("/meals", { name: mealName });
-      return response.data;
-    } catch (error) {
-      console.log(error);
-      throw new Error(error.message);
-    }
+    const response = await API.post("/meals", { name: mealName });
+    return response.data;
   }
 
   static async addProductToMeal(amount, carbs, mealId, productId) {
@@ -37,10 +32,6 @@ export default class MealsManager {
   }
 
   static async destroyMeal(id) {
-    try {
-      await API.delete(`/meals/${id}`);
-    } catch (error) {
-      console.log(error);
-    }
+    await API.delete(`/meals/${id}`);
   }
 }

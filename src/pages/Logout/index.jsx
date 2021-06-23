@@ -12,9 +12,8 @@ const Logout = () => {
   const isLogoutFailed = useSelector((logoutStore) => !!logoutStore.logoutError);
 
   useEffect(() => {
-    if (!isLogoutSuccess) {
+    if (isLogoutSuccess) {
       UiManager.openNotification("success", "À bientôt ✌️");
-      // history.push("/");
     } else if (isLogoutFailed) {
       UiManager.openNotification(
         "error",

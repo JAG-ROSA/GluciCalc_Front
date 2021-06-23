@@ -26,7 +26,7 @@ const CarbohydratesCalculus = ({ data, amountQuantity }) => {
             &nbsp;
             g
           </Form.Label>
-          <Form.Control type="number" step="0.1" placeholder="Portion en grammes" className="text-center" onChange={(e) => handleCarbohydratesQuantity(e)} />
+          <Form.Control type="number" step="0.1" min="0" placeholder="Portion en grammes" className="text-center" onChange={(e) => handleCarbohydratesQuantity(e)} />
         </Form.Group>
       </Form>
       <Card.Text>

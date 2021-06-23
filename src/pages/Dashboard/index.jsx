@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { UiManager, UserManager } from "services";
-import MealsManager from "services/meals";
+import { UiManager, UserManager, MealsManager } from "services";
 import ProfileInput from "components/Dashboard/ProfileInput";
 import Calendar from "components/Dashboard/Calendar";
-import Stats from "components/Dashboard/Stats";
+import StatsGlobal from "components/Dashboard/Stats/StatsGlobal";
 
 const Dashboard = () => {
   const [userProfile, setUserProfile] = useState("");
@@ -84,7 +83,7 @@ const Dashboard = () => {
         </div>
         <div className="col tab-content mt-4" id="tabContent">
           <div className="tab-pane active" id="1">{currentTable === 1 && <ProfileInput userDetails={userProfile} onUpdate={updateUserProfile} />}</div>
-          <div className="tab-pane active" id="2">{currentTable === 2 && <div><Stats mealsStats={allMeals} /></div>}</div>
+          <div className="tab-pane active" id="2">{currentTable === 2 && <div><StatsGlobal mealsStats={allMeals} /></div>}</div>
           <div className="tab-pane active" id="3">{currentTable === 3 && <div><Calendar mealsCalendar={allMeals} /></div>}</div>
           <div className="tab-pane active" id="4">{currentTable === 4 && <div>Afficher les recettes</div>}</div>
         </div>

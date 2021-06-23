@@ -7,20 +7,22 @@ import "moment/locale/fr";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import strftime from "strftime";
 
-const Stats = ({ mealsStats }) => {
+const StatsPerMonth = ({ mealsStats }) => {
+  const dateYMD = (format, value) => strftime(format, new Date(value));
+
   const [date, setDate] = useState(moment());
-  const [mealsPerMonth, setMealsPerMonth] = useState(mealsStats.filter((element) => strftime("%Y-%m", new Date(element.date)) === date.format("YYYY-MM")));
+  const [mealsPerMonth, setMealsPerMonth] = useState(mealsStats.filter((element) => dateYMD("%Y-%m", element.date) === date.format("YYYY-MM")));
   const [totalCarbsPerDay, setTotalCarbsPerDay] = useState();
 
   useEffect(() => {
-    const filteredMealsPerMonth = mealsStats.filter((element) => strftime("%Y-%m", new Date(element.date)) === date.format("YYYY-MM"));
+    const filteredMealsPerMonth = mealsStats.filter((element) => dateYMD("%Y-%m", element.date) === date.format("YYYY-MM"));
     setMealsPerMonth(filteredMealsPerMonth);
   }, [mealsStats, date]);
 
   const allDaysInMonth = () => {
     let allDaysInMonthArr = [];
     for (let i = 1; i <= date.daysInMonth(); i += 1) {
-      allDaysInMonthArr = [...allDaysInMonthArr, { name: strftime("%F", new Date(date.format("YYYY-MM-") + i)), glucides: mealsPerMonth.filter((element) => strftime("%Y-%m-%d", new Date(element.date)) === (date.format("YYYY-MM-") + i)).map((element) => element.totalCarbs).reduce((a, b) => a + b, 0) }];
+      allDaysInMonthArr = [...allDaysInMonthArr, { date: i, glucides: (Math.round(mealsPerMonth.filter((element) => dateYMD("%Y-%m-%d", element.date) === (date.format("YYYY-MM-") + i)).map((element) => element.totalCarbs).reduce((a, b) => a + b, 0) * 100) / 100) }];
     }
     setTotalCarbsPerDay(allDaysInMonthArr);
   };
@@ -42,12 +44,13 @@ const Stats = ({ mealsStats }) => {
           <FaChevronLeft onClick={() => changeMonth(-1)} />
         </div>
         <div className="displayDate">
-          <h2>{date.locale("fr").format("MMMM YYYY")}</h2>
+          <h2 className="fs-3">{date.locale("fr").format("MMMM YYYY")}</h2>
         </div>
         <div className="chevron">
           <FaChevronRight onClick={() => changeMonth(+1)} />
         </div>
       </div>
+      {typeof totalCarbsPerDay !== "undefined" && (
       <div style={{ width: "100%", height: 500 }}>
         <ResponsiveContainer>
           <BarChart
@@ -56,15 +59,20 @@ const Stats = ({ mealsStats }) => {
             data={totalCarbsPerDay}
             margin={{
               top: 15,
-              right: 30,
-              left: 20,
+              right: -10,
+              left: -15,
               bottom: 25,
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
+            <XAxis
+              dataKey="date"
+              label={{
+                value: "jour", dy: 15,
+              }}
+            />
             <YAxis label={{
-              value: "gramme", angle: -90, dx: -20,
+              value: "gramme", angle: -90, dx: -10,
             }}
             />
             <Tooltip />
@@ -77,8 +85,9 @@ const Stats = ({ mealsStats }) => {
           </BarChart>
         </ResponsiveContainer>
       </div>
+      )}
     </div>
   );
 };
 
-export default Stats;
+export default StatsPerMonth;
