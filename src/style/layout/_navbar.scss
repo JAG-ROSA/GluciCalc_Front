@@ -90,6 +90,7 @@ nav {
       padding-right: 20px;
     }
     & div form {
+      min-width: 250px;
       padding-right: 50px;
     }
   }
@@ -141,6 +142,13 @@ nav {
     & #nav-check:checked ~ ul {
       height: 5em;
       overflow-y: auto;
+    }
+  }
+}
+@media (max-width:480px) {
+  nav div {
+    & div form {
+      padding-right: 0;
     }
   }
 }

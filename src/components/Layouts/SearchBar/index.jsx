@@ -28,14 +28,14 @@ const SearchBar = () => {
   }, [searchResult]);
 
   return (
-    <Form>
+    <Form className="searchForm">
       <Col>
         <Form.Group controlId="searchTerme">
           <Form.Control type="text" placeholder="Je recherche..." className="text-center" onChange={(e) => handleSearch(e)} />
         </Form.Group>
       </Col>
       { searchTerme.length !== 0 && (
-      <Col className="search-list col-lg-3">
+      <Col className="search-list">
         <ListGroup>
           {searchList.map((element) => (
             typeof element.product_name_fr !== "undefined" ? (
