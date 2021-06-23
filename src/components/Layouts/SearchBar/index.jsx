@@ -38,11 +38,14 @@ const SearchBar = () => {
       <Col className="search-list col-lg-3">
         <ListGroup>
           {searchList.map((element) => (
-            <Link to={{ pathname: `/product/${element._id}` }} key={element._id} onClick={() => setSearchTerme("")}>
-              <ListGroup.Item key={element._id}>
-                {element.product_name_fr}
-              </ListGroup.Item>
-            </Link>
+            typeof element.product_name_fr !== "undefined" ? (
+              <Link to={{ pathname: `/product/${element._id}` }} key={element._id} onClick={() => setSearchTerme("")}>
+                <ListGroup.Item key={element._id}>
+                  {element.product_name_fr}
+                </ListGroup.Item>
+              </Link>
+            )
+              : null
           ))}
           <Link to={{ pathname: "/search", data: searchTerme }} onClick={() => setSearchTerme("")}>
             <ListGroup.Item key="no found">
