@@ -1,7 +1,6 @@
-/* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from "react";
 import {
-  Card, Form, Button, Row,
+  Card, Form, Button,
 } from "react-bootstrap";
 import moment from "moment";
 import "moment/locale/fr";
@@ -49,7 +48,7 @@ const AddProductToMeal = ({ data }) => {
   };
 
   return (
-    <Row>
+    <>
       <CreateMeal newMeal={handleNewMeal} />
       <Card.Body>
         <Card.Title>Selectionner le repas</Card.Title>
@@ -75,7 +74,7 @@ const AddProductToMeal = ({ data }) => {
           )}
         </Form>
       </Card.Body>
-    </Row>
+    </>
   );
 };
 

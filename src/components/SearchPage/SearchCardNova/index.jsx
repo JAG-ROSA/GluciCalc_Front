@@ -1,7 +1,4 @@
-/* eslint-disable consistent-return */
-/* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from "react";
-import { Card } from "react-bootstrap";
 
 const SearchCardNova = ({ data }) => {
   const [nova, setNova] = useState("");
@@ -19,7 +16,7 @@ const SearchCardNova = ({ data }) => {
   }, [data]);
 
   return (
-    <Card.Img variant="bottom" src={`https://static.openfoodfacts.org/images/attributes/nova-group-${nova}.svg`} className="novagroupImage" alt="Representation of the nova group value" />
+    <img variant="bottom" src={`https://static.openfoodfacts.org/images/attributes/nova-group-${nova}.svg`} className="novagroup-image" alt="Representation of the nova group value" />
   );
 };
 
