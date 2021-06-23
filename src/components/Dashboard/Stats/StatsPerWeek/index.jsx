@@ -14,7 +14,6 @@ const StatsPerWeek = ({ mealsStats }) => {
   const [date, setDate] = useState(moment());
   const [mealsPerWeek, setMealsPerWeek] = useState(mealsStats.filter((element) => moment(dateYMD("%Y-%m-%d", element.date)).week() == date.format("W")));
   const [totalCarbsPerDay, setTotalCarbsPerDay] = useState();
-  console.log(mealsStats.filter((element) => moment(dateYMD("%Y-%m-%d", element.date)).week() == date.format("W")));
 
   useEffect(() => {
     const filteredMealsPerWeek = mealsStats.filter((element) => moment(dateYMD("%Y-%m-%d", element.date)).week() == date.format("W"));
@@ -23,8 +22,8 @@ const StatsPerWeek = ({ mealsStats }) => {
 
   const allDaysInWeek = () => {
     let allDaysInWeekArr = [];
-    for (let i = Number(date.startOf("week").format("D")); i <= Number(date.endOf("week").format("D")); i += 1) {
-      allDaysInWeekArr = [...allDaysInWeekArr, { date: i, glucides: (Math.round(mealsPerWeek.filter((element) => dateYMD("%Y-%m-%d", element.date) === (date.format("YYYY-MM-") + i)).map((element) => element.totalCarbs).reduce((a, b) => a + b, 0) * 100) / 100) }];
+    for (let i = 1; i <= 7; i += 1) {
+      allDaysInWeekArr = [...allDaysInWeekArr, { date: Number(date.startOf("week").day(i).format("D")), glucides: (Math.round(mealsPerWeek.filter((element) => dateYMD("%Y-%m-%d", element.date) === (date.format("YYYY-MM-") + Number(date.startOf("week").day(i).format("D")))).map((element) => element.totalCarbs).reduce((a, b) => a + b, 0) * 100) / 100) }];
     }
     setTotalCarbsPerDay(allDaysInWeekArr);
   };
@@ -39,7 +38,7 @@ const StatsPerWeek = ({ mealsStats }) => {
     setDate(newDate);
   };
 
-  console.log(Number(date.startOf("week").format("D")));
+  console.log(Number(date.startOf("week").day(7).format("D")));
 
   return (
     <div>
