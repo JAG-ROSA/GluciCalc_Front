@@ -7,6 +7,7 @@ import MealSummary from "components/Meals/MealSummary";
 import MealsManager from "services/meals";
 import EmptyState from "assets/images/empty-state.jpg";
 import QuantitiesManager from "services/quantities";
+import { UiManager } from "services";
 
 const DaySummary = () => {
   const location = useLocation();
@@ -28,9 +29,16 @@ const DaySummary = () => {
     setDate(newDate);
   };
 
-  const deleteMeal = (event, id) => {
+  const deleteMeal = async (event, id) => {
     event.preventDefault();
-    MealsManager.destroyMeal(id).then(() => setDeletedMeals(id));
+    try {
+      await MealsManager.destroyMeal(id);
+      setDeletedMeals(id);
+      UiManager.openNotification("success", "Repas supprimé!");
+    } catch (error) {
+      console.log(error);
+      UiManager.openNotification("error", "Le repas n'a pas pu être supprimé...");
+    }
   };
 
   const updateMeal = (mealIndex, quantityId, quantity) => {
