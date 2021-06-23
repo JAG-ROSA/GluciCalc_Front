@@ -10,7 +10,7 @@ const Search = () => {
   const { data } = useLocation();
   const [searchTerme, setSearchTerme] = useState(data) || "";
   const [searchBrand, setSearchBrand] = useState("");
-  const [searchSugar, setSearchSugar] = useState(100);
+  const [searchSugar, setSearchSugar] = useState("");
   const [searchResult, setSearchResult] = useState([]);
 
   const searchFetch = () => {
@@ -39,10 +39,10 @@ const Search = () => {
   const handleSearchReset = () => {
     setSearchTerme("");
     setSearchBrand("");
-    setSearchSugar(500000);
-    document.querySelector("#searchBrand").value = "";
-    document.querySelector("#searchSugar").value = "";
+    setSearchSugar("");
   };
+
+  console.log(searchSugar);
 
   useEffect(() => {
     searchFetch();
@@ -68,6 +68,7 @@ const Search = () => {
               type="text"
               placeholder="Marque"
               className="text-center"
+              value={searchBrand}
               onChange={(e) => handleSearchBrand(e)}
             />
           </Form.Group>
@@ -79,6 +80,7 @@ const Search = () => {
               step="0.1"
               placeholder="Sucres"
               className="text-center"
+              value={searchSugar}
               onChange={(e) => handleSearchSugar(e)}
             />
           </Form.Group>

@@ -36,12 +36,13 @@ const SearchBar = () => {
 
   const onFocus = () => setFocused(true);
   const onBlur = () => setTimeout((() => setFocused(false)), 100);
+  console.log(searchTerme);
 
   return (
     <Form className="searchForm" onSubmit={(e) => handleSubmit(e)}>
       <Col>
         <Form.Group controlId="searchTerme">
-          <Form.Control type="text" placeholder="Je recherche..." className="text-center" onChange={(e) => handleSearch(e)} onFocus={onFocus} onBlur={onBlur} />
+          <Form.Control type="text" placeholder="Je recherche..." className="text-center" value={searchTerme} onChange={(e) => handleSearch(e)} onFocus={onFocus} onBlur={onBlur} />
         </Form.Group>
       </Col>
       { focused && (searchTerme.length !== 0 && (
@@ -49,7 +50,7 @@ const SearchBar = () => {
         <ListGroup>
           {searchList.map((element) => (
             typeof element.product_name_fr !== "undefined" ? (
-              <Link to={{ pathname: `/product/${element._id}` }} key={element._id}>
+              <Link to={{ pathname: `/product/${element._id}` }} key={element._id} onClick={() => setSearchTerme("")}>
                 <ListGroup.Item key={element._id}>
                   {element.product_name_fr}
                 </ListGroup.Item>
