@@ -10,15 +10,24 @@ const Search = () => {
   const { data } = useLocation();
   const [searchTerme, setSearchTerme] = useState(data) || "";
   const [searchBrand, setSearchBrand] = useState("");
-  const [searchSugar, setSearchSugar] = useState(100);
+  const [searchSugar, setSearchSugar] = useState("");
   const [searchResult, setSearchResult] = useState([]);
 
   const searchFetch = () => {
+    console.log(searchSugar);
     if (searchBrand.length === 0) {
-      fetch(`https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${searchTerme}&json=1&page_size=24`)
-        .then((response) => response.json())
-        .then((response) => setSearchResult(response.products));
+      if (searchSugar !== 0) {
+        console.log("dlsifhlsdf");
+        fetch(`https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${searchTerme}&nutriment_0=sugars&nutriment_compare_0=lte&nutriment_value_0=${searchSugar}&json=1&page_size=24`)
+          .then((response) => response.json())
+          .then((response) => setSearchResult(response.products));
+      } else {
+        fetch(`https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${searchTerme}&json=1&page_size=24`)
+          .then((response) => response.json())
+          .then((response) => setSearchResult(response.products));
+      }
     } else {
+      console.log("pouet");
       fetch(`https://world.openfoodfacts.org/cgi/search.pl?action=process&search_terms=${searchTerme}&tagtype_0=brands&tag_contains_0=contains&tag_0=${searchBrand}&nutriment_0=sugars&nutriment_compare_0=lte&nutriment_value_0=${searchSugar}&json=1&page_size=24`)
         .then((response) => response.json())
         .then((response) => setSearchResult(response.products));
@@ -39,10 +48,10 @@ const Search = () => {
   const handleSearchReset = () => {
     setSearchTerme("");
     setSearchBrand("");
-    setSearchSugar(500000);
-    document.querySelector("#searchBrand").value = "";
-    document.querySelector("#searchSugar").value = "";
+    setSearchSugar("");
   };
+
+  console.log(searchSugar);
 
   useEffect(() => {
     searchFetch();
@@ -68,6 +77,7 @@ const Search = () => {
               type="text"
               placeholder="Marque"
               className="text-center"
+              value={searchBrand}
               onChange={(e) => handleSearchBrand(e)}
             />
           </Form.Group>
@@ -79,6 +89,7 @@ const Search = () => {
               step="0.1"
               placeholder="Sucres"
               className="text-center"
+              value={searchSugar}
               onChange={(e) => handleSearchSugar(e)}
             />
           </Form.Group>
