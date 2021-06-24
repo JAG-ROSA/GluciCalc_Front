@@ -1,7 +1,4 @@
-/* eslint-disable consistent-return */
-/* eslint-disable no-underscore-dangle */
 import React, { useState, useEffect } from "react";
-import { Card } from "react-bootstrap";
 
 const SearchCardNutriscore = ({ data }) => {
   const [nutriscore, setNutriscore] = useState("");
@@ -19,7 +16,7 @@ const SearchCardNutriscore = ({ data }) => {
   }, [data]);
 
   return (
-    <Card.Img variant="bottom" src={`https://static.openfoodfacts.org/images/attributes/nutriscore-${nutriscore}.svg`} className="nutriscoreImage" alt="Representation of the nutriscore value" />
+    <img src={`https://static.openfoodfacts.org/images/attributes/nutriscore-${nutriscore}.svg`} className="nutriscore-image pe-3" alt="Representation of the nutriscore value" />
   );
 };
 

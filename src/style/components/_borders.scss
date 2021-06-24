@@ -2,12 +2,14 @@
 
 .border-black {
   border: 1px solid $black-color;
+  border-radius: none;
 }
 
 .border-shadow {
   position: relative;
   background-color: #fff;
   border: 1px solid $black-color;
+  border-radius: none;
 
   &:after {
     background-color: $primary-color;

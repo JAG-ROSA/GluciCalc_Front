@@ -1,15 +1,29 @@
 
 .product-image {
-  width: 75%;
+  width: 80%;
   margin: auto;
   display: block;
 }
-.product-nutriscore {
-  & .nutriscoreImage {
-    width: 200px;
-  }
-  & .novagroupImage {
-    width: 100px;
+
+.nutriscore-image {
+  width: 15%;
+}
+.novagroup-image {
+  width: 4%;
+}
+
+@media (min-width:750px) and (max-width:990px) {
+  .product-image {
+    max-width: 70%;
+    padding: 0;
   }
 }
 
+@media (max-width:750px) {
+  .nutriscore-image {
+    width: 70%;
+  }
+  .novagroup-image {
+    width: 20%;
+  }
+}
