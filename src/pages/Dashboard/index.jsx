@@ -28,7 +28,7 @@ const Dashboard = () => {
   useEffect(() => {
     UserManager.getUser().then((response) => setUserProfile(response));
     if (isUpdateSucceed) {
-      UiManager.openNotification("success", "Profil mise à jour !");
+      UiManager.openNotification("success", "Profil mis à jour !");
     } else if (isUpdateUserFailed) {
       UiManager.openNotification(
         "error",
