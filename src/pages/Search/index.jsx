@@ -1,10 +1,9 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useEffect, useState } from "react";
-import {
-  Form, Col, Button, Row, Spinner,
-} from "react-bootstrap";
-import { Link, useLocation } from "react-router-dom";
+import { Form, Spinner } from "react-bootstrap";
 import SearchCard from "components/SearchPage/SearchCard";
+import Button from "components/Button";
+import { Link, useLocation } from "react-router-dom";
 
 const Search = () => {
   const { data } = useLocation();
@@ -60,53 +59,49 @@ const Search = () => {
   }, [searchTerme, searchBrand, searchSugar]);
 
   return (
-    <div>
+    <div className="margin-container">
       <Form>
-        <Col md={{ span: 4, offset: 4 }}>
-          <Form.Group controlId="searchTerme">
-            <Form.Control
-              type="text"
-              placeholder="Je recherche..."
-              value={searchTerme}
-              className="text-center"
-              onChange={(e) => handleSearchTerme(e)}
-            />
-          </Form.Group>
-        </Col>
-        <Col md={{ span: 4, offset: 4 }}>
-          <Form.Group controlId="searchBrand">
-            <Form.Control
-              type="text"
-              placeholder="Marque"
-              className="text-center"
-              value={searchBrand}
-              onChange={(e) => handleSearchBrand(e)}
-            />
-          </Form.Group>
-        </Col>
-        <Col md={{ span: 4, offset: 4 }}>
-          <Form.Group controlId="searchSugar">
-            <Form.Control
-              type="number"
-              step="0.1"
-              min="0"
-              placeholder="Sucres"
-              className="text-center"
-              value={searchSugar}
-              onChange={(e) => handleSearchSugar(e)}
-            />
-          </Form.Group>
-        </Col>
+        <div className="d-flex justify-content-center pb-4">
+          <div className="row col-md-6 col-lg-5">
+            <Form.Group controlId="searchTerme">
+              <Form.Control
+                type="text"
+                placeholder="Je recherche..."
+                value={searchTerme}
+                className="text-center"
+                onChange={(e) => handleSearchTerme(e)}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="searchBrand">
+              <Form.Control
+                type="text"
+                placeholder="Marque"
+                className="text-center"
+                value={searchBrand}
+                onChange={(e) => handleSearchBrand(e)}
+              />
+            </Form.Group>
+
+            <Form.Group controlId="searchSugar">
+              <Form.Control
+                type="number"
+                step="0.1"
+                min="0"
+                placeholder="Sucres"
+                className="text-center"
+                value={searchSugar}
+                onChange={(e) => handleSearchSugar(e)}
+              />
+            </Form.Group>
+            <div className="d-flex justify-content-center">
+              <Button type="submit" content="Remise à 0" styles="my-btn-primary my-btn-sm my-3" onClick={handleSearchReset} />
+            </div>
+          </div>
+        </div>
       </Form>
-      <Button
-        variant="primary"
-        type="submit"
-        className="btn btn-secondary mt-2 mb-3"
-        onClick={handleSearchReset}
-      >
-        Remise à 0
-      </Button>
-      <Row className="container-card">
+
+      <div className="container-card">
         <div className="d-flex flex-wrap justify-content-around">
           {searchResult.map((element) => (
             <Link to={{ pathname: `product/${element._id}` }} key={element._id}>
@@ -114,7 +109,8 @@ const Search = () => {
             </Link>
           ))}
         </div>
-      </Row>
+      </div>
+
       {isLoading && (
         <div className="loader d-flex justify-content-center">
           <Spinner animation="border" role="status" />
@@ -122,9 +118,7 @@ const Search = () => {
       )}
       {!isLoading && searchResult.length === 0 && (
         <div className="w-100">
-          <h4 className="text-center">
-            Nous sommes désolés, aucun résultat n&apos;est disponible.
-          </h4>
+          <h4 className="text-center">Nous sommes désolés, aucun résultat n&apos;est disponible.</h4>
         </div>
       )}
     </div>

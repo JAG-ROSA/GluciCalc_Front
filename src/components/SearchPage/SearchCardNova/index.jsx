@@ -16,7 +16,7 @@ const SearchCardNova = ({ data }) => {
   }, [data]);
 
   return (
-    <img variant="bottom" src={`https://static.openfoodfacts.org/images/attributes/nova-group-${nova}.svg`} className="novagroup-image" alt="Representation of the nova group value" />
+    <img src={`https://static.openfoodfacts.org/images/attributes/nova-group-${nova}.svg`} className="novagroup-image" alt="Representation of the nova group value" />
   );
 };
 

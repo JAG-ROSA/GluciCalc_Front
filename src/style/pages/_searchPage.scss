@@ -1,13 +1,20 @@
 .container-card {
   padding: auto auto;
   margin: 0;
-  .searchCard {
+  .SearchCard {
     .search-card {
       border-radius: 0;
       text-align: center;
-      margin: 0.7em;
+      margin: 0.7em 0;
       background-color: #fff;
-      box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+      border: 1px solid $secondary-color;
+
+      & .nutriscore-image {
+        width: 100px;
+      }
+      & .novagroup-image {
+        width: 30px;
+      }
       .search-card-img-top {
         padding: 1em 1em 0 1em;
         width: 100%;
@@ -16,6 +23,10 @@
       }
       .search-card-body {
         .search-card-title {
+          width: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
           font-size: small;
           text-transform: uppercase;
           color: $black-color;
@@ -23,37 +34,48 @@
         }
         .show-product-infos {
           position: absolute;
+          margin:0;
           top: 0;
           left: 0;
           right: 0;
           height: 100%;
-          background-color: rgba(89, 175, 124, 0.9);
+          background-color: rgba(163, 218, 218, 0.8);
           opacity: 0;
           transition: opacity ease 0.5s;
-          color: $light-color;
-          font-size: small;
+          color: $black-color;
           font-weight: bold;
           text-align: left;
           padding: 1em;
-        }
-        &:hover {
-          .show-product-infos {
-            opacity: 1;
+          p {
+            margin: 0;
+            padding-bottom: .3em;
           }
+        }
+      }
+      &:hover {
+        .show-product-infos {
+          opacity: 1;
         }
       }
     }
   }
 }
 
-.searchCard {
-  & .productImage {
-    width: 50px;
-  }
-  & .nutriscoreImage {
-    width: 75px;
-  }
-  & .novagroupImage {
-    width: 25px;
+
+@media (max-width:750px) {
+  .container-card {
+    .SearchCard {
+      .search-card{
+        
+        &:hover {
+          .show-product-infos {
+            opacity: 0;
+          }
+        }
+        .search-card-img-top {
+          height: 35vw;
+        }
+      }
+    }
   }
 }
