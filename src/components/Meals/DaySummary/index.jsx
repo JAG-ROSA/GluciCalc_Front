@@ -34,7 +34,6 @@ const DaySummary = () => {
       setDeletedMeals(id);
       UiManager.openNotification("success", "Repas supprimé ! 🚮");
     } catch (error) {
-      console.log(error);
       UiManager.openNotification("error", "Le repas n'a pas pu être supprimé...");
     }
   };
@@ -55,7 +54,6 @@ const DaySummary = () => {
       setDeletedMealQuantity(id);
       UiManager.openNotification("success", "Produit supprimé ! 🚮");
     } catch (error) {
-      console.log(error);
       UiManager.openNotification("error", "La quantité n'a pas pu être supprimée...");
     }
   };

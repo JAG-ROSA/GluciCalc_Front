@@ -14,7 +14,6 @@ const CreateMeal = ({ newMeal }) => {
         "Repas créé 😉",
       );
     } catch (error) {
-      console.log(error);
       UiManager.openNotification(
         "warning",
         "Donne un nom à ton repas 😉",
