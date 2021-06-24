@@ -35,8 +35,7 @@ const SearchBar = () => {
   };
 
   const onFocus = () => setFocused(true);
-  const onBlur = () => setTimeout((() => setFocused(false)), 100);
-  console.log(searchTerme);
+  const onBlur = () => setTimeout((() => setFocused(false)), 500);
 
   return (
     <Form className="searchForm" onSubmit={(e) => handleSubmit(e)}>
