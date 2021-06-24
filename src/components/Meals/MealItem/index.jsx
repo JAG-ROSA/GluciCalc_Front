@@ -26,7 +26,6 @@ const MealItem = ({
       setEditMode(false);
       UiManager.openNotification("success", "Quantité modifiée! ⚖️");
     } catch (error) {
-      console.log(error);
       UiManager.openNotification("error", "La quantité n'a pas pu être modifiée...");
     }
   };
