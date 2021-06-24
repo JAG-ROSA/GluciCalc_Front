@@ -90,7 +90,7 @@ const DaySummary = () => {
               </div>
             ))
           ) : (
-            <div className="text-center">
+            <div className="empty-state text-center">
               <img src={EmptyState} alt="empty-state-img" />
               <p>Recherche un aliment pour commencer ta journée...</p>
             </div>
