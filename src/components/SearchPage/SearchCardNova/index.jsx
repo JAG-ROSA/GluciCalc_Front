@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 
 const SearchCardNova = ({ data }) => {
-  const [nova, setNova] = useState("");
+  const [nova, setNova] = useState("unknown");
 
   const novaValue = (value) => {
     if (value.nova_group !== undefined) {
       setNova(value.nova_group);
-    } else {
-      setNova("unknown");
     }
   };
 

@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 
 const SearchCardNutriscore = ({ data }) => {
-  const [nutriscore, setNutriscore] = useState("");
+  const [nutriscore, setNutriscore] = useState("unknown");
 
   const nutriscoreValue = (value) => {
     if (value.nutriscore_grade !== undefined) {
       setNutriscore(value.nutriscore_grade);
-    } else {
-      setNutriscore("unknown");
     }
   };
 
