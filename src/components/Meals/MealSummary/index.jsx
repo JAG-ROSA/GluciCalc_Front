@@ -22,7 +22,7 @@ const MealSummary = ({
 
     <div>
       {meals.quantities.length !== 0 && (
-      <Accordion animation="false">
+      <Accordion>
         <div className="show-details-meal">
           <Accordion.Toggle as={Button} variant="link" eventKey="0">
             <div className="d-flex align-items-baseline">
