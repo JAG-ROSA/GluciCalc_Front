@@ -10,8 +10,8 @@ const ProfileInput = ({ userDetails, onUpdate }) => {
       {(!!userDetails) && (
         <div className="d-flex justify-content-between align-items-baseline flex-wrap">
           <div className="col-sm-12 col-lg-6 pb-5">
-            <p className="fs-5 title-semi-bold">{`Prénom : ${userDetails.user.first_name}`}</p>
-            <p className="fs-5 title-semi-bold">{`Nom : ${userDetails.user.last_name}`}</p>
+            <p className="fs-5 title-semi-bold">{`Prénom : ${userDetails.user.first_name ?? ""}`}</p>
+            <p className="fs-5 title-semi-bold">{`Nom : ${userDetails.user.last_name ?? ""}`}</p>
             <p className="fs-5 title-semi-bold">{`Email : ${userDetails.user.email}`}</p>
           </div>
 
