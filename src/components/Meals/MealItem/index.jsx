@@ -30,17 +30,28 @@ const MealItem = ({
     }
   };
 
+  const deleteMealQuantity = async (event, id) => {
+    event.preventDefault();
+    try {
+      await QuantitiesManager.deleteProductQuantityInMeal(id);
+      onDelete(id);
+      UiManager.openNotification("success", "Produit supprimé ! 🚮");
+    } catch (error) {
+      UiManager.openNotification("error", "La quantité n'a pas pu être supprimée...");
+    }
+  };
+
   if (editMode) {
     return (
       <MealItemInput
         meal={meal}
-        onDelete={onDelete}
+        onDelete={deleteMealQuantity}
         onSave={updateMealQuantity}
         onCancel={handleCancel}
       />
     );
   }
-  return (<MealItemDisplay meal={meal} onDelete={onDelete} onShow={handleShow} />);
+  return (<MealItemDisplay meal={meal} onDelete={deleteMealQuantity} onShow={handleShow} />);
 };
 
 export default MealItem;

@@ -5,37 +5,24 @@ import "moment/locale/fr";
 import { useLocation } from "react-router-dom";
 import MealSummary from "components/Meals/MealSummary";
 import EmptyState from "assets/images/empty-state.jpg";
-import { UiManager, QuantitiesManager, MealsManager } from "services";
+import { MealsManager } from "services";
 
 const DaySummary = () => {
   const location = useLocation();
   const [date, setDate] = useState(moment(location.calendarDate));
   const [meals, setMeals] = useState([]);
-  const [deletedMeal, setDeletedMeals] = useState("");
-  const [deletedMealQuantity, setDeletedMealQuantity] = useState("");
   const [isInputHidden, setIsInputHidden] = useState(false);
 
   useEffect(() => {
     MealsManager.getMealsForDay(date.format("YYYY-MM-DD")).then((data) => {
       setMeals(data);
     });
-  }, [deletedMeal, deletedMealQuantity, date]);
+  }, [date]);
 
   const changeDay = (nbDay) => {
     const newDate = moment(date);
     newDate.add(nbDay, "day");
     setDate(newDate);
-  };
-
-  const deleteMeal = async (event, id) => {
-    event.preventDefault();
-    try {
-      await MealsManager.destroyMeal(id);
-      setDeletedMeals(id);
-      UiManager.openNotification("success", "Repas supprimé ! 🚮");
-    } catch (error) {
-      UiManager.openNotification("error", "Le repas n'a pas pu être supprimé...");
-    }
   };
 
   const updateMeal = (mealIndex, quantityId, quantity) => {
@@ -47,15 +34,17 @@ const DaySummary = () => {
     setMeals(newMeals);
   };
 
-  const deleteMealQuantity = async (event, id) => {
-    event.preventDefault();
-    try {
-      await QuantitiesManager.deleteProductQuantityInMeal(id);
-      setDeletedMealQuantity(id);
-      UiManager.openNotification("success", "Produit supprimé ! 🚮");
-    } catch (error) {
-      UiManager.openNotification("error", "La quantité n'a pas pu être supprimée...");
-    }
+  const deleteProductInMeal = (mealIndex, quantityId) => {
+    const newMeals = [...meals];
+    const quantityIndex = newMeals[mealIndex].quantities.indexOf(quantityId);
+    newMeals[mealIndex].quantities.splice(quantityIndex);
+    setMeals(newMeals);
+  };
+
+  const deleteMeal = (mealIndex) => {
+    const newMeals = [...meals];
+    newMeals.splice(mealIndex, 1);
+    setMeals(newMeals);
   };
 
   return (
@@ -79,8 +68,8 @@ const DaySummary = () => {
               <div key={meal.id} className="col-lg-8">
                 <MealSummary
                   meal={meal}
-                  onDeleteMeal={deleteMeal}
-                  onDeleteQuantity={deleteMealQuantity}
+                  onDeleteMeal={() => deleteMeal(index)}
+                  onDeleteQuantity={(quantityId) => deleteProductInMeal(index, quantityId)}
                   isHidden={isInputHidden}
                   setIsHidden={setIsInputHidden}
                   updateMeal={(quantityId, quantity) => updateMeal(index, quantityId, quantity)}
