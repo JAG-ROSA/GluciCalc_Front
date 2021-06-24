@@ -17,7 +17,7 @@ const CarbohydratesCalculus = ({ data, amountQuantity }) => {
       <Card.Title>
         Calcul des glucides
       </Card.Title>
-      <Form>
+      <Form onSubmit={(event) => event.preventDefault()}>
         <Form.Group controlId="searchSugar">
           <Form.Label>
             Glucides / 100g:
