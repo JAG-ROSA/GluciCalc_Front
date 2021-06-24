@@ -6,12 +6,13 @@ import moment from "moment";
 import "moment/locale/fr";
 import { useHistory } from "react-router-dom";
 import { UiManager, MealsManager } from "services";
-import CreateMeal from "components/Product/CreateMeal";
+import ModalToCreateMeal from "../ModalToCreateMeal";
 
 const AddProductToMeal = ({ data }) => {
   const { amountConsumption, idProduct, productResult } = data;
   const [mealList, setMealList] = useState([]);
-  const [newMeal, setNewMeal] = useState("");
+  const [modalShow, setModalShow] = useState(false);
+  const [selectedMealId, setSelectedMealId] = useState("");
   const date = moment();
   const history = useHistory();
 
@@ -19,9 +20,9 @@ const AddProductToMeal = ({ data }) => {
     MealsManager.getMealsForDay(date.format("YYYY-MM-DD")).then((response) => {
       setMealList(response);
     });
-  }, [idProduct, newMeal]);
+  }, [idProduct]);
 
-  const handleAddProduct = async (e) => {
+  const addProduct = async (e) => {
     try {
       e.preventDefault();
       const response = await MealsManager.getProductId(
@@ -37,40 +38,66 @@ const AddProductToMeal = ({ data }) => {
       UiManager.openNotification("success", "Produit ajouté au repas 😉");
       history.push("/my-meals");
     } catch (err) {
-      console.log(err);
       UiManager.openNotification("warning", "Ajoute une quantité 😉");
     }
   };
 
-  const handleNewMeal = (value) => {
-    setNewMeal(value);
+  const createMeal = async (mealName) => {
+    if (!mealName) {
+      return;
+    }
+    try {
+      const response = await MealsManager.createMeal(mealName);
+      setMealList([...mealList, response]);
+      setSelectedMealId(response.id);
+      UiManager.openNotification(
+        "success",
+        "Repas créé 😉",
+      );
+    } catch (error) {
+      UiManager.openNotification(
+        "warning",
+        "Donne un nom à ton repas 😉",
+      );
+    }
+  };
+
+  const checkIfCreateMeal = (event) => {
+    if (event.target.value === "-1") {
+      setModalShow(true);
+    }
   };
 
   return (
     <>
-      <CreateMeal newMeal={handleNewMeal} />
+      <ModalToCreateMeal
+        show={modalShow}
+        onHide={(mealName) => {
+          setModalShow(false);
+          createMeal(mealName);
+        }}
+      />
       <Card.Body>
-        <Card.Title>Selectionner le repas</Card.Title>
-        <Form onSubmit={handleAddProduct}>
-          {mealList.length > 0 ? (
-            <Form.Group controlId="mealSelect">
-              <Form.Control as="select">
-                {mealList.map((element) => (
-                  <option key={element.id} value={element.id}>
-                    {element.name}
-                  </option>
-                ))}
-              </Form.Control>
-              <Button variant="primary" type="submit">
-                Ajouter au repas
-              </Button>
-            </Form.Group>
-          ) : (
-            <Card.Text>
-              Il n&apos;y a pas encore de repas disponible, merci d&apos;en
-              créer un.
-            </Card.Text>
-          )}
+        <Card.Title>Selectionne ton repas</Card.Title>
+        <Form onSubmit={addProduct}>
+          <Form.Group controlId="mealSelect">
+            <Form.Control as="select" onChange={checkIfCreateMeal} value={selectedMealId}>
+              {mealList.length === 0 && (
+                <option value="0">Tu n&apos;as pas encore créé de repas...</option>
+              )}
+              {mealList.map((element) => (
+                <option key={element.id} value={element.id}>
+                  {element.name}
+                </option>
+              ))}
+              <option key="0" value="-1">
+                Créer un nouveau repas
+              </option>
+            </Form.Control>
+            <Button variant="primary" type="submit">
+              Ajouter au repas
+            </Button>
+          </Form.Group>
         </Form>
       </Card.Body>
     </>

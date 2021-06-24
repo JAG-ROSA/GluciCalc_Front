@@ -13,7 +13,7 @@ export default class MealsManager {
 
   static async createMeal(mealName) {
     const response = await API.post("/meals", { name: mealName });
-    return response.data;
+    return new Meal(response.data);
   }
 
   static async addProductToMeal(amount, carbs, mealId, productId) {
