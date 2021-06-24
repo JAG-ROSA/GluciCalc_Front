@@ -52,6 +52,15 @@
   }
 }
 
+.DaySummary {
+  .empty-state {
+    > p {
+      color: #8ca8b4;
+      font-style: italic;
+    }
+  }
+}
+
 .show-details-meal {
   button {
     border: none;
