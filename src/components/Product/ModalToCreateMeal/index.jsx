@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Form } from "react-bootstrap";
+import Button from "components/Button";
 
 const ModalToCreateMeal = ({ show, onHide }) => {
   const [mealName, setMealName] = useState("");
@@ -16,18 +17,33 @@ const ModalToCreateMeal = ({ show, onHide }) => {
         aria-labelledby="contained-modal-title-vcenter"
         centered
       >
-        <Modal.Header>
-          <Modal.Title id="contained-modal-title-vcenter">
-            Donne un nom à ton repas
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <input type="text" onChange={getMealName} />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={() => onHide(mealName)}>Créer</Button>
-          <Button onClick={() => onHide("")}>Annuler</Button>
-        </Modal.Footer>
+        <div className="m-3">
+          <h5>Donne un nom à ton repas</h5>
+        </div>
+        <div className="m-3">
+          <Form.Control
+            size="lg"
+            type="text"
+            placeholder="ex: Petit déjeuner"
+            onChange={getMealName}
+          />
+        </div>
+        <div className="mb-4 d-flex justify-content-end mx-3">
+          <div className="mx-2">
+            <Button
+              content="Annuler"
+              styles="my-btn-secondary"
+              onAction={() => onHide("")}
+            />
+          </div>
+          <div className="mx-2">
+            <Button
+              content="Créer"
+              styles="my-btn-primary"
+              onAction={() => onHide(mealName)}
+            />
+          </div>
+        </div>
       </Modal>
     </div>
   );

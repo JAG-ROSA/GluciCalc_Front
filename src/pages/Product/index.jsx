@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Row,
-} from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import { useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Nutriments from "components/Product/Nutriments";
@@ -35,61 +33,64 @@ const Product = () => {
   return (
     <div className="margin-container">
       {isFetched && (
-        <div className="border-black bg-white p-5 mt-5">
+        <div className="ProductPage">
           <Row>
-            <div className="d-flex justify-content-center col-md-12 col-sm-12 col-lg-5">
-              <ProductImage data={productResult} />
-            </div>
-
-            <div className="col-md-12 col-sm-12 col-lg-7">
-              <h2 className="my-text-primary text-center">{(productResult.product_name_fr) ?? "Produit sans nom"}</h2>
-              <div className="d-flex flex-wrap">
-                <div className="col-lg-6 col-sm-12">
-                  <h3 className="my-text-primary">Composition produit</h3>
+            <div className="col-lg-8 col-sm-12 pt-3">
+              <div className="border-black bg-white p-3">
+                <Row className="text-center">
+                  <h1 className="mb-2 mx-2 my-text-primary">{(productResult.product_name_fr) ?? "Produit sans nom"}</h1>
                   <ProductInfoDisplay data={productResult} />
-                </div>
-                <div className="col-lg-6 col-sm-12">
-                  <h3 className="my-text-primary">Repère nutritionnels pour 100g</h3>
-                  <Nutriments data={productResult.nutriments} />
-                </div>
-              </div>
-              <div className="d-flex flex-column justify-content-center">
-                <h3 className="my-text-primary">Score du Produit</h3>
-                <div className="mx-0 d-flex align-items-center">
-                  <SearchCardNutriscore data={productResult} />
-                  <SearchCardNova data={productResult} />
-                </div>
+                </Row>
+                <Row>
+                  <div className="d-flex flex-column justify-content-center col-md-12 col-sm-12 col-lg-5">
+                    <div className="product-img-container">
+                      <ProductImage data={productResult} />
+                    </div>
+                  </div>
+                  <div className="d-flex col-md-12 col-sm-12 col-lg-7 justify-content-center flex-column py-4">
+                    <div className="align-self-center">
+                      <h3 className="my-text-secondary">Repère nutritionnels pour 100g</h3>
+                      <Nutriments data={productResult.nutriments} />
+                    </div>
+                    <div className="align-self-center">
+                      <SearchCardNutriscore data={productResult} />
+                      <SearchCardNova data={productResult} />
+                    </div>
+                  </div>
+                </Row>
               </div>
             </div>
-
-          </Row>
-          <Row>
-            <div className="col-lg-6 col-sm-12">
-              <CarbohydratesCalculus
-                data={productResult.nutriments.carbohydrates_100g}
-                amountQuantity={handleAmountQuantity}
-              />
-            </div>
-            {auth ? (
-              <div className="col-lg-6 col-sm-12">
-                <AddProductToMeal
-                  data={{ amountConsumption, idProduct, productResult }}
-                />
-              </div>
-            )
-              : (
-                <div className="d-flex justify-content-center p-4">
-                  <Link
-                    to={{
-                      pathname: "/login",
-                      state: { redirectUrl: window.location.pathname },
-                    }}
-                    className="my-btn my-btn-primary px-4"
-                  >
-                    Ajouter au repas
-                  </Link>
+            <div className="col-lg-4 col-sm-12 pt-3">
+              <div className="border-black bg-white p-3 h-100 d-flex flex-column justify-content-center">
+                <h4 className="text-center">J&apos;ajoute cet aliment</h4>
+                <div className="col-lg-12 col-sm-12">
+                  <CarbohydratesCalculus
+                    data={productResult.nutriments.carbohydrates_100g}
+                    amountQuantity={handleAmountQuantity}
+                  />
                 </div>
-              )}
+                {auth ? (
+                  <div className="col-lg-12 col-sm-12">
+                    <AddProductToMeal
+                      data={{ amountConsumption, idProduct, productResult }}
+                    />
+                  </div>
+                )
+                  : (
+                    <div className="d-flex justify-content-center p-4">
+                      <Link
+                        to={{
+                          pathname: "/login",
+                          state: { redirectUrl: window.location.pathname },
+                        }}
+                        className="my-btn my-btn-primary px-4"
+                      >
+                        Ajouter au repas
+                      </Link>
+                    </div>
+                  )}
+              </div>
+            </div>
           </Row>
         </div>
       )}

@@ -1,3 +1,49 @@
+.containerAdd {
+  input[type="number"],
+  .form-control-secondary {
+    border-bottom: 2px solid $secondary-color;
+    &:hover, &:focus {
+      border: 2px solid $secondary-color;
+    } 
+  }
+  .total-carbs {
+    margin-top: 10px;
+    text-align: center;
+    background-color: $tertiary-color;
+    border-radius: 6px;
+    padding: 5px 30px;
+    transform: scale(1);
+    transition: transform 0.5s cubic-bezier(0.42, 0, 0, 1);
+    &.hidden {
+      transform: scale(0);
+    }
+  }
+  
+}
+
+.ProductPage{
+  h4 {
+    color: $quaternary-color;
+    margin-bottom: 40px;
+  }
+  .product-img-container {
+    text-align: center;
+    .product-img {
+    max-width: 100%;
+    }
+  }
+
+  .nutriscore-image {
+    height: 4em;
+  }
+  .novagroup-image {
+    height: 4em;
+  }
+}
+
+.modal-content  {
+  border-radius: 0;
+}
 
 .product-image {
   width: 80%;
@@ -12,6 +58,7 @@
   width: 4%;
 }
 
+
 @media (min-width:750px) and (max-width:990px) {
   .product-image {
     max-width: 70%;
@@ -20,10 +67,10 @@
 }
 
 @media (max-width:750px) {
-  .nutriscore-image {
-    width: 70%;
+    .nutriscore-image {
+      width: 70%;
+    }
+    .novagroup-image {
+      width: 20%;
+    }
   }
-  .novagroup-image {
-    width: 20%;
-  }
-}
