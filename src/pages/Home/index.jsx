@@ -1,7 +1,10 @@
 import React from "react";
 import Hero from "components/Hero";
 import HomeCard from "components/HomeCard";
-import ScrenShot from "assets/images/01.jpg";
+import Home1 from "assets/images/home1.jpg";
+import Home2 from "assets/images/home2.jpg";
+import Home3 from "assets/images/home3.jpg";
+import Home4 from "assets/images/home4.jpg";
 
 const Home = () => (
   <div className="Home">
@@ -52,18 +55,18 @@ const Home = () => (
 
     <div className="margin-container py-4">
       <h3 className="display-6 text-center pb-2">GluciCalc en quelques vues</h3>
-      <div className="d-flex justify-content-between flex-wrap">
-        <div className="screenshot col-md-6">
-          <img className="screenshot-home" src={ScrenShot} alt="" />
+      <div className="d-flex justify-content-center flex-wrap">
+        <div className="screenshot col-md-6 col-lg-5">
+          <img className="screenshot-home" src={Home3} alt="home-page3" />
         </div>
-        <div className="screenshot col-md-6">
-          <img className="screenshot-home" src={ScrenShot} alt="" />
+        <div className="screenshot col-md-6 col-lg-5">
+          <img className="screenshot-home" src={Home4} alt="home-page4" />
         </div>
-        <div className="screenshot col-md-6">
-          <img className="screenshot-home" src={ScrenShot} alt="" />
+        <div className="screenshot col-md-6 col-lg-5">
+          <img className="screenshot-home" src={Home1} alt="home-page1" />
         </div>
-        <div className="screenshot col-md-6">
-          <img className="screenshot-home" src={ScrenShot} alt="" />
+        <div className="screenshot col-md-6 col-lg-5">
+          <img className="screenshot-home" src={Home2} alt="home-page2" />
         </div>
       </div>
     </div>
