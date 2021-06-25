@@ -1,12 +1,18 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 
-const HomeCard = ({ title, description, image }) => (
-  <Card style={{ border: "none" }}>
+const HomeCard = ({
+  title, description, description2, image,
+}) => (
+  <Card className="card-home m-1">
     <Card.Body>
       {!!image && <Card.Img variant="top" src={image} />}
-      <Card.Title className="text-center">{title}</Card.Title>
-      <Card.Text className="text-center">{description}</Card.Text>
+      <h4 className="my-text-quaternary text-center">{title}</h4>
+      <p className="fs-6 text-center">
+        {description}
+        <br />
+        {description2}
+      </p>
     </Card.Body>
   </Card>
 );
