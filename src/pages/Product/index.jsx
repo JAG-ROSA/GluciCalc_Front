@@ -51,8 +51,6 @@ const Product = () => {
                     <div className="align-self-center">
                       <h3 className="my-text-secondary">Repère nutritionnels pour 100g</h3>
                       <Nutriments data={productResult.nutriments} />
-                    </div>
-                    <div className="align-self-center">
                       <SearchCardNutriscore data={productResult} />
                       <SearchCardNova data={productResult} />
                     </div>

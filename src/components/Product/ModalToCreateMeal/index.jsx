@@ -28,7 +28,7 @@ const ModalToCreateMeal = ({ show, onHide }) => {
             onChange={getMealName}
           />
         </div>
-        <div className="mb-4 d-flex justify-content-end mx-3">
+        <div className="mb-4 d-flex justify-content-center mx-3">
           <div className="mx-2">
             <Button
               content="Annuler"
