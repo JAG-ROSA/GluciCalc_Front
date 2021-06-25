@@ -19,9 +19,8 @@
       </ul>
     </li>
     <li><a href="#demo">Demo</a></li>
-    <li><a href="#features">Features</a></li>
-    <li><a href="#user-journey">User journey</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="#special-thanks">Special Thanks</a></li>
   </ol>
 </details>
 
@@ -72,7 +71,7 @@ Welcome to the GluciCalc app!
 The application design was built with our own UI-Kit to better represent our brand image.
 
 You can find a preview on the following page: 
-* [GluciCalc UI KIT]() 
+* [GluciCalc UI KIT](https://m-tessier.github.io/GluciCalc-Kit-UI/) 
 
 ## Design Frameworks:
 The following design framework were used in addition to our UI-Kit for specific use-cases.
@@ -133,5 +132,5 @@ You can try the application with our user test:
 * [Morgane](https://github.com/m-tessier)
 * [Martin](https://github.com/Martinfzz)
 
-## License
-[MIT](https://choosealicense.com/licenses/mit/)
+# Special Thanks
+A special thanks for our technical sponsor **Guillaume GD** and all our love to **Sophie**.
