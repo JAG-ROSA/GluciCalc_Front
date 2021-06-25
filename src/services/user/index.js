@@ -31,8 +31,8 @@ export default class UserManager {
           firstName: response.data.first_name,
         }, response.headers.authorization),
       );
-      Cookies.set(AUTH_TOKEN, response.headers.authorization, { expires: 7 });
-      Cookies.set(USER_ID, response.data.id, { expires: 7 });
+      Cookies.set(AUTH_TOKEN, response.headers.authorization, { expires: 7, secure: true, sameSite: "strict" });
+      Cookies.set(USER_ID, response.data.id, { expires: 7, secure: true, sameSite: "strict" });
     } catch (error) {
       store.dispatch(registrationFailed(error.message));
     }
@@ -43,8 +43,8 @@ export default class UserManager {
     try {
       await API.delete("/users/sign_out");
       store.dispatch(logoutSuccess());
-      Cookies.remove(AUTH_TOKEN);
-      Cookies.remove(USER_ID);
+      Cookies.remove(AUTH_TOKEN, { secure: true, sameSite: "strict" });
+      Cookies.remove(USER_ID, { secure: true, sameSite: "strict" });
     } catch (error) {
       store.dispatch(logoutFailed(error.message));
     }
@@ -60,8 +60,8 @@ export default class UserManager {
           firstName: response.data.first_name,
         }, response.headers.authorization),
       );
-      Cookies.set(AUTH_TOKEN, response.headers.authorization, { expires: 7 });
-      Cookies.set(USER_ID, response.data.id, { expires: 7 });
+      Cookies.set(AUTH_TOKEN, response.headers.authorization, { expires: 7, secure: true, sameSite: "strict" });
+      Cookies.set(USER_ID, response.data.id, { expires: 7, secure: true, sameSite: "strict" });
     } catch (error) {
       store.dispatch(loginFailed(error.message));
     }

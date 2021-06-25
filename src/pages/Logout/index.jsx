@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Spinner } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { UiManager, UserManager } from "services";
@@ -12,9 +11,8 @@ const Logout = () => {
   const isLogoutFailed = useSelector((logoutStore) => !!logoutStore.logoutError);
 
   useEffect(() => {
-    if (!isLogoutSuccess) {
+    if (isLogoutSuccess) {
       UiManager.openNotification("success", "À bientôt ✌️");
-      // history.push("/");
     } else if (isLogoutFailed) {
       UiManager.openNotification(
         "error",
@@ -30,9 +28,7 @@ const Logout = () => {
   }, []);
 
   return (
-    <div className="Logout">
-      <Spinner animation="border" />
-    </div>
+    <div className="Logout"> </div>
   );
 };
 export default Logout;

@@ -7,51 +7,31 @@ export default class MealsManager {
   }
 
   static async showMeals() {
-    try {
-      const response = await API.get("/meals");
-      return response.data.map((meal) => new Meal(meal));
-    } catch (error) {
-      return error.message;
-    }
+    const response = await API.get("/meals");
+    return response.data.map((meal) => new Meal(meal));
   }
 
   static async createMeal(mealName) {
-    try {
-      const response = await API.post("/meals", { name: mealName });
-      return response.data;
-    } catch (error) {
-      return error.message;
-    }
+    const response = await API.post("/meals", { name: mealName });
+    return new Meal(response.data);
   }
 
   static async addProductToMeal(amount, carbs, mealId, productId) {
-    try {
-      const response = await API.post("/quantities", {
-        quantity:
+    const response = await API.post("/quantities", {
+      quantity:
         {
           quantity: amount, carbs_per_100g: carbs, meal_id: mealId, product_id: productId,
         },
-      });
-      return response.data;
-    } catch (error) {
-      return error.message;
-    }
+    });
+    return response.data;
   }
 
   static async getProductId(id, name) {
-    try {
-      const response = await API.get(`/food/${id}/${name}`);
-      return response.data;
-    } catch (error) {
-      return error.message;
-    }
+    const response = await API.get(`/food/${id}/${name}`);
+    return response.data;
   }
 
   static async destroyMeal(id) {
-    try {
-      await API.delete(`/meals/${id}`);
-    } catch (error) {
-      console.log(error);
-    }
+    await API.delete(`/meals/${id}`);
   }
 }

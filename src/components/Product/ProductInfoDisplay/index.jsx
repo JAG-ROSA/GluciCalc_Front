@@ -1,45 +1,18 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-underscore-dangle */
 import React from "react";
-import { Row } from "react-bootstrap";
-import SearchCardNutriscore from "components/SearchCardNutriscore";
-import SearchCardNova from "components/SearchCardNova";
 
 const ProductInfoDisplay = ({ data }) => (
-  <div key={data._id}>
-    <Row className="show-product-infos d-flex">
-      <p>
-        <span>Marque :</span>
-        {" "}
-        {data.brands}
-      </p>
-      <p>
-        <span>Quantité :</span>
-        {" "}
-        {data.quantity}
-      </p>
-      {data.nutriments !== undefined && (
-        <p>
-          <span>Glucides (%) :</span>
-          {" "}
-          {data.nutriments.carbohydrates_100g}
-          &nbsp; g
-        </p>
-      )}
-      {data.nutriments !== undefined && (
-        <p>
-          <span>Dont sucres :</span>
-          {" "}
-          {data.nutriments.sugars}
-          &nbsp; g
-        </p>
-      )}
-      <h4 className="my-text-primary pb-3">Score du Produit</h4>
-      <Row className="mx-0">
-        <SearchCardNutriscore data={data} />
-        <SearchCardNova data={data} />
-      </Row>
-    </Row>
+  <div>
+    <h2 className="mx-2 my-text-black">{data.brands.toUpperCase()}</h2>
+    <h3 className="mx-2 mb-5 my-text-primary">
+      {data.nutriments !== undefined && data.nutriments.carbohydrates_100g}
+      % de
+      Glucides, dont Sucres :
+      {" "}
+      {data.nutriments !== undefined && data.nutriments.sugars}
+      %
+    </h3>
   </div>
 );
 

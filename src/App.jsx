@@ -1,16 +1,16 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import PrivateRoute from "components/PrivateRoute";
+import PrivateRoute from "components/Layouts/PrivateRoute";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "style/style.scss";
-import Navbar from "components/Navbar";
-import Footer from "components/Footer";
+import Navbar from "components/Layouts/Navbar";
+import Footer from "components/Layouts/Footer";
 import Home from "pages/Home";
 import Register from "pages/Register";
 import Logout from "pages/Logout";
 import Login from "pages/Login";
+import MyMeals from "pages/MyMeals";
 import Dashboard from "pages/Dashboard";
-import Profile from "pages/Profile";
 import Search from "pages/Search";
 import Product from "pages/Product";
 import ForgotPassword from "pages/ForgotPassword";
@@ -39,8 +39,8 @@ const App = () => (
         <Route path="/password/reset/:token">
           <ResetPassword />
         </Route>
-        <PrivateRoute path="/dashboard" component={Profile} />
-        <PrivateRoute path="/my-meals" component={Dashboard} />
+        <PrivateRoute path="/dashboard" component={Dashboard} />
+        <PrivateRoute path="/my-meals" component={MyMeals} />
         <Route path="/search">
           <Search />
         </Route>

@@ -1,7 +1,7 @@
 @import "base/fonts", "base/colors", "base/animations";
 @import "helpers/variables";
 @import "layout/navbar","layout/footer";
-@import "pages/dashboard", "pages/searchPage", "pages/product";
+@import "pages/my-meals", "pages/searchPage", "pages/product", "pages/home";
 @import "components/buttons",
         "components/borders",
         "components/calendar",
@@ -41,13 +41,13 @@ h1, h2, h3, h4, h5, h6 {
   padding-top: 150px;
 }
 
-.search-list {
-  position: absolute;
-  z-index: 1000;
-}
-
 .margin-container {
   margin: 40px;
+}
+
+.maring-sides {
+  margin-right: 40px;
+  margin-left: 40px;
 }
 
 .title-semi-bold {

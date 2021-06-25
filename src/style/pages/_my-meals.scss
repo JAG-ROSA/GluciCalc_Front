@@ -1,0 +1,82 @@
+.header-my-meals {
+  background-color: $tertiary-color;
+  padding: 15px 0;
+  .display-date {
+    flex: 1;
+  }
+}
+
+.chevron {
+  cursor: pointer;
+  font-size: 1.8em;
+  color: $quaternary-color;
+  &:hover {
+    svg {
+      transform: scale(1.5);
+      color: $quaternary-color;
+      transition: 0.2s;
+    }
+  }
+}
+
+.my-icon {
+  cursor: pointer;
+  font-size: 1.5em;
+  color: $quaternary-color;
+  padding: 0;
+  margin: 0;
+  &:hover, &:focus {
+    color: $secondary-color;
+  }
+  &-secondary {
+    color: $secondary-color;
+    &:hover, &:focus {
+      color: $quaternary-color;
+    }
+  }
+}
+
+  
+.container-my-meals {
+  margin-top: 3%;
+  .MealSummary {
+    margin: 2% 0;
+    padding: 3.5%;
+    background-color: #fff;
+    border: 1px solid $secondary-color;
+    .icon-meal {
+      font-size: 1.3em;
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+.DaySummary {
+  .empty-state {
+    > p {
+      color: #8ca8b4;
+      font-style: italic;
+    }
+  }
+}
+
+.show-details-meal {
+  button {
+    border: none;
+    background-color: transparent;
+    color: $quaternary-color;
+    font-style: italic;
+    width: 100%;
+    padding: 0;
+    text-align: left;
+    &:hover {
+      color: $secondary-color;
+    }
+    &:focus, &:active {
+      outline: 0;
+      box-shadow: none;
+    }
+  }
+}
+
