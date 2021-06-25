@@ -60,11 +60,17 @@ const Register = () => {
           <Form.Group controlId="inputPassword" className="fs-6 pb-3">
             <Form.Label>Mot de passe</Form.Label>
             <Form.Control type="password" placeholder="Mot de passe" />
+            <Form.Text id="passwordHelpBlock" muted className="px-2">
+              6 caractères minimum
+            </Form.Text>
           </Form.Group>
 
           <Form.Group controlId="inputPasswordConfirm" className="fs-6 pb-3">
             <Form.Label>Confirmer le mot de passe</Form.Label>
             <Form.Control minLength="6" type="password" placeholder="Confirmer le mot de passe" />
+            <Form.Text id="passwordHelpBlock" muted className="px-2">
+              6 caractères minimum
+            </Form.Text>
           </Form.Group>
 
           <Button type="submit" content="S&apos;inscrire" styles="my-btn-primary my-2" />
