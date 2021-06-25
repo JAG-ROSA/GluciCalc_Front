@@ -49,10 +49,12 @@ const Home = () => (
       </div>
     </div>
 
-    <div id="video" className="bg-white py-4 d-flex justify-content-center">
+    <div id="video" className="bg-white py-4">
       <h3 className="display-6 text-center">Comment utiliser GluciCalc</h3>
-      <div className="col-lg-7 col-md-12">
-        <iframe src="https://www.youtube.com/embed/sUWq8ZmFmFY" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+      <div className="video-wrapper">
+        <div className="video-container">
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/sUWq8ZmFmFY" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+        </div>
       </div>
     </div>
 
