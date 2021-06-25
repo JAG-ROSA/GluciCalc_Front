@@ -1,0 +1,26 @@
+.lead-home {
+  font-family: 'Chakra-Petch-Medium';
+  font-size: 1.5em;
+  padding: 2rem 2rem 1rem;
+}
+
+.card-home {
+  border-radius: 0;
+  border: 2px solid $secondary-color;
+}
+
+
+.screenshot {
+  padding: 1em;
+  &-home {
+    width: 100%;
+  }
+}
+
+
+@media (max-width:800px) {
+  .screenshot {
+    padding: 0;
+    padding-top: 1em;
+  }
+}
