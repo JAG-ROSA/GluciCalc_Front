@@ -5,6 +5,12 @@
   border-radius: none;
 }
 
+.my-border-light {
+  border: 1px solid rgb(221, 221, 221);
+  padding: 24px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 6px 16px;
+}
+
 .border-shadow {
   position: relative;
   background-color: #fff;

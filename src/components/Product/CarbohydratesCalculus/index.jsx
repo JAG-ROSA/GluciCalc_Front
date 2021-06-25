@@ -1,42 +1,35 @@
 import React, { useState } from "react";
-import {
-  Card, Form,
-} from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
 const CarbohydratesCalculus = ({ data, amountQuantity }) => {
-  const [carbohydratesQuantity, setCarbohydratesQuantity] = useState(0);
+  const [quantity, setQuantity] = useState("");
+  const getCarbohydratesQuantity = (qty) => ((data * qty) / 100).toFixed(2);
 
   const handleCarbohydratesQuantity = (e) => {
-    const carbohydratesCalculus = ((data * e.target.value) / 100).toFixed(2);
-    setCarbohydratesQuantity(carbohydratesCalculus);
+    setQuantity(e.target.value);
     amountQuantity(e.target.value);
   };
 
   return (
-    <Card.Body>
-      <Card.Title>
-        Calcul des glucides
-      </Card.Title>
-      <Form>
+    <div className="containerAdd my-3">
+      <Form onSubmit={(event) => event.preventDefault()}>
         <Form.Group controlId="searchSugar">
-          <Form.Label>
-            Glucides / 100g:
-            &nbsp;
-            {data}
-            &nbsp;
-            g
-          </Form.Label>
-          <Form.Control type="number" step="0.1" min="0" placeholder="Portion en grammes" className="text-center" onChange={(e) => handleCarbohydratesQuantity(e)} />
+          <h6>Je choisis ma portion (g, mL)</h6>
+          <Form.Control
+            className="form-control-secondary"
+            type="number"
+            step="1"
+            min="0"
+            placeholder="ex: 130"
+            onChange={(e) => handleCarbohydratesQuantity(e)}
+          />
         </Form.Group>
       </Form>
-      <Card.Text>
-        Total de glucides pour la portion:
-        &nbsp;
-        {carbohydratesQuantity}
-        &nbsp;
-        g
-      </Card.Text>
-    </Card.Body>
+      <div className={`total-carbs${!quantity ? " hidden" : ""}`}>
+        {getCarbohydratesQuantity(quantity)}
+        g  de glucides
+      </div>
+    </div>
   );
 };
 

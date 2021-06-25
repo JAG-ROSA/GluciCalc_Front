@@ -1,38 +1,18 @@
 /* eslint-disable consistent-return */
 /* eslint-disable no-underscore-dangle */
 import React from "react";
-import { Row } from "react-bootstrap";
 
 const ProductInfoDisplay = ({ data }) => (
-  <div key={data._id}>
-    <Row className="show-product-infos">
-      <p>
-        <span>Marque :</span>
-        {" "}
-        {data.brands}
-      </p>
-      <p>
-        <span>Quantité :</span>
-        {" "}
-        {data.quantity}
-      </p>
-      {data.nutriments !== undefined && (
-        <p>
-          <span>Glucides (%) :</span>
-          {" "}
-          {data.nutriments.carbohydrates_100g}
-          &nbsp; g
-        </p>
-      )}
-      {data.nutriments !== undefined && (
-        <p>
-          <span>Dont sucres :</span>
-          {" "}
-          {data.nutriments.sugars}
-          &nbsp; g
-        </p>
-      )}
-    </Row>
+  <div>
+    <h2 className="mx-2 my-text-primary">{data.brands.toUpperCase()}</h2>
+    <h3 className="mx-2 mb-5 my-text-quaternary">
+      {data.nutriments !== undefined && data.nutriments.carbohydrates_100g}
+      % de
+      Glucides, dont Sucres :
+      {" "}
+      {data.nutriments !== undefined && data.nutriments.sugars}
+      %
+    </h3>
   </div>
 );
 
