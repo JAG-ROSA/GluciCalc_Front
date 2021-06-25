@@ -38,11 +38,11 @@ const Product = () => {
             <div className="col-lg-8 col-sm-12 pt-3">
               <div className="border-black bg-white p-3">
                 <Row className="text-center">
-                  <h1 className="mb-2 mx-2 my-text-primary">{(productResult.product_name_fr) ?? "Produit sans nom"}</h1>
+                  <h1 className="mb-2 mx-2 my-text-black">{(productResult.product_name_fr) ?? "Produit sans nom"}</h1>
                   <ProductInfoDisplay data={productResult} />
                 </Row>
                 <Row>
-                  <div className="d-flex flex-column justify-content-center col-md-12 col-sm-12 col-lg-5">
+                  <div className="d-flex flex-column justify-content-center col-md-12 col-sm-12 col-lg-5 px-4">
                     <div className="product-img-container">
                       <ProductImage data={productResult} />
                     </div>
