@@ -49,8 +49,11 @@ const Home = () => (
       </div>
     </div>
 
-    <div id="video" className="bg-white py-4">
-      <h3 className="display-6 text-center">Vidéo</h3>
+    <div id="video" className="bg-white py-4 d-flex justify-content-center">
+      <h3 className="display-6 text-center">Comment utiliser GluciCalc</h3>
+      <div className="col-lg-7 col-md-12">
+        <iframe src="https://www.youtube.com/embed/sUWq8ZmFmFY" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+      </div>
     </div>
 
     <div className="margin-container py-4">
@@ -60,13 +63,13 @@ const Home = () => (
           <img className="screenshot-home" src={Home3} alt="home-page3" />
         </div>
         <div className="screenshot col-md-6 col-lg-5">
-          <img className="screenshot-home" src={Home4} alt="home-page4" />
+          <img className="screenshot-home" src={Home2} alt="home-page4" />
         </div>
         <div className="screenshot col-md-6 col-lg-5">
           <img className="screenshot-home" src={Home1} alt="home-page1" />
         </div>
         <div className="screenshot col-md-6 col-lg-5">
-          <img className="screenshot-home" src={Home2} alt="home-page2" />
+          <img className="screenshot-home" src={Home4} alt="home-page2" />
         </div>
       </div>
     </div>
