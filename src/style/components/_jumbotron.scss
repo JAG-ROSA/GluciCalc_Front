@@ -4,4 +4,17 @@
   width: 100%;
   background-size: cover;
   background-position: center top;
+  &-content {
+    height: 80vh;
+    width: 65%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    a {
+      padding: .5em 1em;
+    }
+    p {
+      font-family: 'Nunito-Sans-SemiBold';
+    }
+  }
 }

@@ -66,6 +66,28 @@ nav {
       }
     }
   }
+
+  .searchForm {
+    position: relative;
+  }
+
+  .search-list {
+    position: absolute;
+    z-index: 1000;
+    width: 100%;
+  }
+
+  @media (max-width:850px) {
+    .search-list {
+      padding-right: 50px;
+    }
+  }
+  
+  @media (max-width:480px) {
+    .search-list {
+      padding-right: 0;
+    }
+  }
 }
 
 
@@ -90,6 +112,7 @@ nav {
       padding-right: 20px;
     }
     & div form {
+      min-width: 250px;
       padding-right: 50px;
     }
   }
@@ -141,6 +164,13 @@ nav {
     & #nav-check:checked ~ ul {
       height: 5em;
       overflow-y: auto;
+    }
+  }
+}
+@media (max-width:480px) {
+  nav div {
+    & div form {
+      padding-right: 0;
     }
   }
 }

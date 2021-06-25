@@ -1,0 +1,49 @@
+.lead-home {
+  font-family: 'Chakra-Petch-Medium';
+  font-size: 1.5em;
+  padding: 2rem 2rem 1rem;
+}
+
+.card-home {
+  border-radius: 0;
+  border: 2px solid $secondary-color;
+}
+
+
+.screenshot {
+  padding: 1em ;
+  &-home {
+    width: 100%;
+  }
+}
+
+
+@media (max-width:800px) {
+  .screenshot {
+    padding: 0;
+    padding-top: 1em;
+  }
+}
+
+.video-container {
+	position: relative;
+	padding-bottom: 56.25%;
+	padding-top: 30px;
+	height: 0;
+	overflow: hidden;
+}
+
+.video-container iframe,  
+.video-container object,  
+.video-container embed {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.video-wrapper {
+	width: 600px;
+	max-width: 100%;
+  margin: auto;
+}
