@@ -8,7 +8,7 @@ const MealItemDisplay = ({ meal, onDelete, onShow }) => {
   return (
     <div key={meal.quantity.id} className="products d-flex justify-content-between align-items-baseline pb-2">
       <Link to={{ pathname: `product/${food.api_product_id}` }} key={food.id} className="link-primary">
-        {`${food.name} - ${meal.quantity} g`}
+        {`${food.name} - ${meal.quantity} g consommés`}
       </Link>
       <div className="d-flex align-items-baseline">
         <FaPencilAlt className="my-icon my-icon-secondary me-2" onClick={onShow} />
