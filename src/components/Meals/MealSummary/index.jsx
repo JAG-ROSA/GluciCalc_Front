@@ -23,9 +23,9 @@ const MealSummary = ({
     <div className="MealSummary">
       <div className="d-flex justify-content-between align-items-baseline">
         <h3 className="fs-5">{meals.name.toUpperCase()}</h3>
-        <div className="icon-meal d-flex align-items-baseline">
+        <div className="icon-meal d-flex align-items-baseline ms-2">
           <GiScales />
-          <p className="ps-2 pe-4">{`${Math.round(meals.totalCarbs)} g`}</p>
+          <p className="ps-2 pe-4">{`${Math.round(meals.totalCarbs)} g de glucides`}</p>
           <div className="my-icon">
             <FaRegTrashAlt onClick={(event) => deleteMeal(event, meals.id)} />
           </div>

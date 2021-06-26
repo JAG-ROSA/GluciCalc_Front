@@ -14,7 +14,7 @@ const MealItemInput = ({
             <div sm="10" className="d-flex align-items-baseline">
               {`${food.name} -`}
               <Form.Control size="sm" type="text" className="w-25" defaultValue={meal.quantity} />
-              g
+              g consommés
             </div>
           </Form.Group>
           <div className="d-flex py-2">

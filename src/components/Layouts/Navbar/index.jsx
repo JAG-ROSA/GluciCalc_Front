@@ -30,7 +30,7 @@ const Navbar = () => {
                   <Link to="/my-meals">Mes repas</Link>
                 </li>
                 <li className="ms-3">
-                  <Link to="/dashboard">Mon dashboard</Link>
+                  <Link to="/dashboard">Mon tableau de bord</Link>
                 </li>
                 <li className="ms-3">
                   <Link to="/logout">Se déconnecter</Link>
